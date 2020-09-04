@@ -35,7 +35,15 @@
         <title>Miss Pan's Bakery {% block extra_title %}{% endblock %}</title>
     </head>
     <body>
-        <h1>Miss Pan's Bakery</h1>
-        
+        <header>
+            <h1>Miss Pan's Bakery</h1>
+        </header>
+
+        {% block content %}
+        {% endblock %}
+
+        {% block postloadjs %}
+        {% endblock %}
+
     </body>
 </html>
