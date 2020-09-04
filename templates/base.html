@@ -16,6 +16,7 @@
     {% block corecss %}
     <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
 
     {% block extra_css %}
@@ -35,8 +36,21 @@
         <title>Miss Pan's Bakery {% block extra_title %}{% endblock %}</title>
     </head>
     <body>
-        <header>
-            <h1>Miss Pan's Bakery</h1>
+        <header class="container-fluid fixed-top">
+            <div class="row">
+                <div class="col-lg-3 py-1">
+                    <h1>Miss Pan's Bakery</h1>
+                </div>
+                <div class="col-lg-3 py-1">
+                </div>
+                <div class="col-lg-3 py-1">
+                    <p>Search here</p>
+                </div>
+                <div class="col-lg-3 py-1">
+                    <p>Sign Up/Register</p>
+                    <p>Cart icon</p>
+                </div>
+            </div>
         </header>
 
         {% block content %}
