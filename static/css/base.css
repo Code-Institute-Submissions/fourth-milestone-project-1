@@ -5,3 +5,24 @@ html {
 body {
     background-color: rgb(204, 171, 235);
 }
+
+header {
+    background-color: #fff;
+}
+
+.header-container {
+    padding-bottom: 8rem;
+}
+
+.home-content {
+    background-color: aquamarine;
+    height: 100vh;
+}
+
+.red-content {
+    background-color: red;
+}
+
+.center-nav {
+    justify-content: center;
+}
