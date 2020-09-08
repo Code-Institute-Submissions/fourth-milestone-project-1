@@ -44,6 +44,10 @@
                     <a href="{% url 'home' %}"><h1>Miss Pan's Bakery</h1></a>
                 </div>
                 <div class="col-lg-4 py-1 text-right">
+                    <form class="GET" action="{% url 'shop' %}">
+                        <input type="text" name="search" placeholder="Search the shop">
+                        <input type="submit" value="Submit">
+                    </form>
                     <p>Login/Register + Cart Icon</p>
                 </div> 
             </div>
