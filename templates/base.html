@@ -63,9 +63,9 @@
                                     Shop
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="shop-links">
-                                    <a href="{% url 'shop' %}" class="dropdown-item">Browse</a>
+                                    <a href="{% url 'shop' %}" class="dropdown-item">Browse All</a>
                                     {% for category in categories %}
-                                        <a href="{% url 'shop' %}" class="dropdown-item">{{category.friendly_name}}</a>
+                                        <a href="{% url 'shop' %}?category={{ category.slug }}" class="dropdown-item">{{category.friendly_name}}</a>
                                     {% endfor %}
                                 </div>
                             </li>
