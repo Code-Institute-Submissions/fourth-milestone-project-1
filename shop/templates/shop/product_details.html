@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 col-lg-4 offset-lg-2">
+            <div>
+                {% if product.image1 %}
+                        <img src="{{ product.image1.url }}" class="card-img-top img-fluid" alt="...">
+                    {% else %}
+                        <img src="{% static 'images/noimage.png' %}" class="card-img-top img-fluid" alt="...">
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div>
+                <h2>{{ product.name }}</h2>
+                <p>£{{ product.price }}</p>
+                <p>{{ product.description }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
