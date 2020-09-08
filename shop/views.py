@@ -11,7 +11,11 @@ def shop(request):
     categories = Category.objects.all()
     products = Product.objects.all()
     query = None
+    filter_categories = None
     if request.GET:
+        if 'category' in request.GET:
+            filter_categories = request.GET['category'].split(',')
+            products = products.filter(category__slug__in=filter_categories)
         if 'search' in request.GET:
             query = request.GET['search']
             if not query:
@@ -25,6 +29,7 @@ def shop(request):
         'categories': categories,
         'products': products,
         'search_text': query,
+        'filter_categories': filter_categories,
     }
     return render(request, 'shop/products.html', context)
 
