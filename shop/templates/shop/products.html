@@ -2,7 +2,16 @@
 {% load static %}
 
 {% block content %}
-
+<div class="container">
+    <p>{{ products|length }}
+        {% if products|length == 1 %}
+        Product
+        {% else %}
+        Products
+        {% endif %}
+        {% if search_text %} found for "{{ search_text }}"{% endif %}
+    </p>
+</div>
 <div class="container-fluid">
     <div class="row card-deck">
         {% for product in products %}
