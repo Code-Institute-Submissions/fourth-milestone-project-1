@@ -49,7 +49,9 @@
                         <input type="submit" value="Submit">
                     </form>
                     <p>Login/Register + 
-                    <a href="{% url 'view_cart' %}">Cart Icon</a>
+                    <a href="{% url 'view_cart' %}">
+                        {{ cart|length }} item{{ cart|length|pluralize }},
+                    </a>
                     </p>
                 </div> 
             </div>
@@ -66,7 +68,7 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="shop-links">
                                     <a href="{% url 'shop' %}" class="dropdown-item">Browse All</a>
-                                    {% for category in categories %}
+                                    {% for category in nav_categories %}
                                         <a href="{% url 'shop' %}?category={{ category.slug }}" class="dropdown-item">{{category.friendly_name}}</a>
                                     {% endfor %}
                                 </div>
