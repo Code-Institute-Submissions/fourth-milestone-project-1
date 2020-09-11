@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.views.decorators.http import require_POST
 from shop.models import Product, Category
+from .cart import Cart
+from .forms import CartAddProductForm
 
 # Create your views here.
 
@@ -12,18 +15,13 @@ def view_cart(request):
     }
     return render(request, 'cart/cart.html', context)
 
-
+@require_POST
 def add_to_cart(request, product_id):
-    """ Add product to cart with correct quantity and spec"""
+    cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
-    quantity = int(request.POST.get('quantity'))
+    form = CartAddProductForm(request.POST)
+    if form.is_valid():
+        cd = form.cleaned_data
+        cart.add(product=product, quantity=cd['quantity'], overwrite_quantity=cd['overwrite'])
     redirect_path = request.POST.get('redirect_path')
-    cart = request.session.get('cart', {})
-    if product_id in list(cart.keys()):
-        cart[product_id]['quantity'] += quantity
-    else:
-        cart[product_id] = {'quantity': quantity,
-                            'price': str(product.price)}
-    request.session['cart'] = cart
-    print(request.session['cart'])
     return redirect(redirect_path)
