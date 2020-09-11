@@ -9,6 +9,8 @@ from .forms import CartAddProductForm
 def view_cart(request):
     """View to return the shopping cart"""
     cart = Cart(request)
+    for item in cart:
+        item['update_quantity_form'] = CartAddProductForm(initial={'quantity': item['quantity'], 'overwrite': True})
     context = {
         'cart': cart,
     }
