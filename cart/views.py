@@ -8,12 +8,12 @@ from .forms import CartAddProductForm
 
 def view_cart(request):
     """View to return the shopping cart"""
-    categories = Category.objects.all()
+    cart = Cart(request)
     context = {
-        'categories': categories,
-
+        'cart': cart,
     }
     return render(request, 'cart/cart.html', context)
+
 
 @require_POST
 def add_to_cart(request, product_id):
@@ -25,3 +25,11 @@ def add_to_cart(request, product_id):
         cart.add(product=product, quantity=cd['quantity'], overwrite_quantity=cd['overwrite'])
     redirect_path = request.POST.get('redirect_path')
     return redirect(redirect_path)
+
+
+@require_POST
+def remove_from_cart(request, product_id):
+    cart = Cart(request)
+    product = get_object_or_404(Product, id=product_id)
+    cart.remove(product)
+    return redirect('view_cart')
