@@ -19,4 +19,10 @@ def create_order(request):
             return render(request, 'orders/order_complete.html', {'order': order})
     else:
         form = CreateOrderForm()
-    return render(request, 'orders/create_order.html', {'cart': cart, 'form': form})
+        context = {
+            'cart': cart,
+            'form': form,
+            'stripe_public_key': "pk_test_51HTReHJApFJ5JC2dtbCYysmWfbJicF98ZxPtQ5sFsRLsCkD10WQU7soWW7mBOdx2ttR0IIkYYQFtPLnPN1fz5kTr00ERsZXurp",
+            'client_secret': 'test',
+        }
+    return render(request, 'orders/create_order.html', context)
