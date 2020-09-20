@@ -19,11 +19,12 @@
                 <p>Total: ${{ cart.get_total_price }}</p>
             </div>
             <div class="col-md-6">
-                <form method="post" class="order-form">
+                <form method="POST" class="order-form" id="payment-form">
                     {% csrf_token %}
                     {{ form.as_p }}
                     <div id="card-element"></div>
-                    <p><input type="submit" value="Place order"></p>
+                    <div id="card-errors"></div>
+                    <p><input id="submit-button" type="submit" value="Place order"></p>
                 </form>
             </div>
         </div>
