@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
     <div class="container">
         <h1>Checkout</h1>
@@ -21,9 +22,17 @@
                 <form method="post" class="order-form">
                     {% csrf_token %}
                     {{ form.as_p }}
+                    <div id="card-element"></div>
                     <p><input type="submit" value="Place order"></p>
                 </form>
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    {{ stripe_public_key|json_script:"id_stripe_public_key"}}
+    {{ client_secret|json_script:"id_client_secret"}}
+    <script src="{% static 'orders/js/stripe_elements.js' %}"></script>
 {% endblock %}
