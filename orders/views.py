@@ -4,6 +4,8 @@ from .forms import CreateOrderForm
 from cart.cart import Cart
 from django.conf import settings
 
+from profiles.models import UserProfile
+
 import stripe
 
 
@@ -20,6 +22,10 @@ def create_order(request):
                                          product=item['product'],
                                          price=item['price'],
                                          quantity=item['quantity'])
+            if request.user.is_authenticated:
+                user_profile = UserProfile.objects.get(user=request.user)
+                order.user_profile = user_profile
+                order.save()
             cart.clear()
             return render(request, 'orders/order_complete.html', {'order': order})
     else:
