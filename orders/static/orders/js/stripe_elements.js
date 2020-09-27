@@ -52,6 +52,7 @@ form.addEventListener('submit', function(ev) {
                     line1: $.trim(form.address_line1.value),
                     line2: $.trim(form.address_line2.value),
                     city: $.trim(form.town_or_city.value),
+                    country: $.trim(form.country.value),
                 }
             }
         }
