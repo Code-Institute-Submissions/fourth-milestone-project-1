@@ -1,10 +1,14 @@
 from django.db import models
 from shop.models import Product
+from profiles.models import UserProfile
 
 from django_countries.fields import CountryField
 
 
 class Order(models.Model):
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
+                                     null=True, blank=True,
+                                     related_name='orders')
     first_name = models.CharField(max_length=50, null=False, blank=False)
     last_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.EmailField(max_length=250, null=False, blank=False)
