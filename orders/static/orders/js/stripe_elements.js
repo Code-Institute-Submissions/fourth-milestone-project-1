@@ -42,20 +42,16 @@ form.addEventListener('submit', function(ev) {
     ev.preventDefault();
     card.update({ 'disabled': true});
     $('#submit-button').attr('disabled', true);
-    var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
     stripe.confirmCardPayment(clientSecret, {
         payment_method: {
             card: card,
-            billing_info: {
-                first_name: $.trim(form.first_name.value),
-                last_name: $.trim(form.last_name.value),
+            billing_details: {
+                name: $.trim(form.name_on_card.value),
                 email: $.trim(form.email.value),
                 address:{
-                    address_line1: $.trim(form.address_line1.value),
-                    address_line2: $.trim(form.address_line2.value),
-                    town_or_city: $.trim(form.town_or_city.value),
-                    postcode: $.trim(form.postcode.value),
-                    country: $.trim(form.country.value),
+                    line1: $.trim(form.address_line1.value),
+                    line2: $.trim(form.address_line2.value),
+                    city: $.trim(form.town_or_city.value),
                 }
             }
         }
@@ -75,5 +71,5 @@ form.addEventListener('submit', function(ev) {
                 form.submit();
             }
         }
-    });
-});
+    })
+})
