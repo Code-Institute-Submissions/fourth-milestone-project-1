@@ -1,6 +1,8 @@
 from django.db import models
 from shop.models import Product
 
+from django_countries.fields import CountryField
+
 
 class Order(models.Model):
     first_name = models.CharField(max_length=50, null=False, blank=False)
@@ -10,7 +12,7 @@ class Order(models.Model):
     address_line2 = models.CharField(max_length=100, blank=True)
     town_or_city = models.CharField(max_length=40, null=False, blank=False)
     postcode = models.CharField(max_length=20, null=False, blank=False)
-    country = models.CharField(max_length=40, null=False, blank=False)
+    country = CountryField(blank_label='Select a country', null=False, blank=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
