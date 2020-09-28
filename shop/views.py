@@ -50,7 +50,13 @@ def product_details(request, id, slug):
 
 
 def add_new_product(request):
-    form = ProductForm()
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('add_product'))
+    else:
+        form = ProductForm()
     context = {
         'form': form,
     }
