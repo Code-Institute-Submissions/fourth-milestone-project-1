@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
 from .models import Product, Category
+from .forms import ProductForm
 from cart.forms import CartAddProductForm
 
 # Create your views here.
@@ -46,3 +47,11 @@ def product_details(request, id, slug):
         'cart_product_form': cart_product_form,
     }
     return render(request, 'shop/product_details.html', context)
+
+
+def add_new_product(request):
+    form = ProductForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'shop/add_product.html', context)
