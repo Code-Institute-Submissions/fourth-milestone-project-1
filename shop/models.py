@@ -45,3 +45,7 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse('product_details',
                        args=[self.id, self.slug])
+
+    def get_edit_product_url(self):
+        return reverse('edit_product',
+                       args=[self.id, self.slug])
