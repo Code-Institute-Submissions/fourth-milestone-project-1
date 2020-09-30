@@ -61,3 +61,20 @@ def add_new_product(request):
         'form': form,
     }
     return render(request, 'shop/add_product.html', context)
+
+
+def edit_product(request, id, slug):
+    product = get_object_or_404(Product, id=id, slug=slug)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('product_details',
+                            args=[product.id, product.slug]))
+    else:
+        form = ProductForm(instance=product)
+    context = {
+        'product': product,
+        'form': form,
+    }
+    return render(request, 'shop/edit_product.html', context)
