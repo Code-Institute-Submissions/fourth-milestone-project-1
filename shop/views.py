@@ -53,8 +53,8 @@ def add_new_product(request):
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return redirect(reverse('add_product'))
+            product = form.save()
+            return redirect(reverse('product_details', args=[product.id, product.slug]))
     else:
         form = ProductForm()
     context = {
@@ -78,3 +78,9 @@ def edit_product(request, id, slug):
         'form': form,
     }
     return render(request, 'shop/edit_product.html', context)
+
+
+def delete_product(request, id, slug):
+    product = get_object_or_404(Product, id=id, slug=slug)
+    product.delete()
+    return redirect(reverse('shop'))
