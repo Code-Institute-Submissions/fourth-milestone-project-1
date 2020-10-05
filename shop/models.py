@@ -49,3 +49,7 @@ class Product(models.Model):
     def get_edit_product_url(self):
         return reverse('edit_product',
                        args=[self.id, self.slug])
+
+    def get_delete_product_url(self):
+        return reverse('delete_product',
+                       args=[self.id, self.slug])
