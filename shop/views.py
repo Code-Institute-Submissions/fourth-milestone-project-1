@@ -6,6 +6,8 @@ from .models import Product, Category
 from .forms import ProductForm
 from cart.forms import CartAddProductForm
 
+from reviews.models import ProductReview
+
 # Create your views here.
 
 
@@ -42,10 +44,12 @@ def product_details(request, id, slug):
     categories = Category.objects.all()
     product = get_object_or_404(Product, id=id, slug=slug)
     cart_product_form = CartAddProductForm()
+    reviews = product.product_reviews.all()
     context = {
         'product': product,
         'categories': categories,
         'cart_product_form': cart_product_form,
+        'reviews': reviews,
     }
     return render(request, 'shop/product_details.html', context)
 
