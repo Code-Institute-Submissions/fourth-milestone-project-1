@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Category, Product
+from reviews.admin import ProductReviewInline
 
 # Register your models here.
 @admin.register(Category)
@@ -9,6 +10,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
+    inlines = [ProductReviewInline]
     list_display = ['name', 'price', 'available', 'stock', 'created', 'updated']
     list_filter = ['available', 'created', 'updated']
     list_editable = ['price', 'available', 'stock']
