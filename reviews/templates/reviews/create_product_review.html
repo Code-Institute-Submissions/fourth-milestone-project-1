@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col text-center">
+            <h2>Write Review</h2>
+            <h3>Reviewing {{ product.name }}</h3>
+            <form method="POST" action="{{ product.get_create_review_url }}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Submit">
+            </form>   
+        </div>
+    </div>
+</div>
+
+{% endblock %}
