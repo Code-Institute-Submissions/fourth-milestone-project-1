@@ -53,3 +53,7 @@ class Product(models.Model):
     def get_delete_product_url(self):
         return reverse('delete_product',
                        args=[self.id, self.slug])
+
+    def get_create_review_url(self):
+        return reverse('create_product_review',
+                       args=[self.id, self.slug])
