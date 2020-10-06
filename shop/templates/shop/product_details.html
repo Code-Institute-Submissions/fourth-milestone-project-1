@@ -35,6 +35,42 @@
         </div>
     </div>
 </div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h3>Reviews</h3>
+            {% if reviews %}
+                {% for review in reviews %}
+                    {% if review.user.user == request.user %}
+                        <div>
+                            <h4>Your Review</h4>
+                            <p>{{ review.title }}</p>
+                            <p>Rating {{review.rating }}</p>
+                            <p>{{ review.body }}</p>
+                            <button>Edit Review</button>
+                            <button>Delete Review</button>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                {% for review in reviews %}
+                    {% if review.user.user != request.user %}
+                        <div>
+                            <p>{{ review.title }}</p>
+                            <p>By {{ review.user.user }}</p>
+                            <p>Rating {{review.rating }}</p>
+                            <p>{{ review.body }}</p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <p>There are no reviews</p>
+                {% if request.user.is_authenticated %}
+                    <button>Create a review</button>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</div>
   
 
 
