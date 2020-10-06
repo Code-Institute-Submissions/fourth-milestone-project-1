@@ -65,7 +65,7 @@
             {% else %}
                 <p>There are no reviews</p>
                 {% if request.user.is_authenticated %}
-                    <button>Create a review</button>
+                    <a href="{{ product.get_create_review_url }}" type="button">Create a Review</a>
                 {% endif %}
             {% endif %}
         </div>
