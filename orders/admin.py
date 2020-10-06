@@ -7,6 +7,10 @@ class OrderItemInline(admin.TabularInline):
     raw_id_fields = ['product']
 
 
+class OrderInline(admin.TabularInline):
+    model = Order
+
+
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     inlines = [OrderItemInline]
