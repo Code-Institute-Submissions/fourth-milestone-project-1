@@ -10,7 +10,12 @@ from profiles.models import UserProfile
 
 @login_required
 def create_product_review(request, id, slug):
+    user = UserProfile.objects.get(user=request.user)
     product = get_object_or_404(Product, id=id, slug=slug)
+    reviews = ProductReview.objects.filter(user=user, product=product)
+    if reviews:
+        return redirect(reverse('edit_product_review',
+                                args=[product.id, product.slug]))
     if request.method == 'POST':
         form = ProductReviewForm(request.POST)
         if form.is_valid():
@@ -31,9 +36,14 @@ def create_product_review(request, id, slug):
 
 @login_required
 def edit_product_review(request, id, slug):
-    product = get_object_or_404(Product, id=id, slug=slug)
     user = UserProfile.objects.get(user=request.user)
-    review = get_object_or_404(ProductReview, user=user, product=product)
+    product = get_object_or_404(Product, id=id, slug=slug)
+    reviews = ProductReview.objects.filter(user=user, product=product)
+    if not reviews:
+        return redirect(reverse('create_product_review',
+                                args=[product.id, product.slug]))
+    else:
+        review = reviews[0]
     if request.method == 'POST':
         form = ProductReviewForm(request.POST, instance=review)
         if form.is_valid():
