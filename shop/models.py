@@ -58,6 +58,10 @@ class Product(models.Model):
         return reverse('create_product_review',
                        args=[self.id, self.slug])
 
+    def get_edit_review_url(self):
+        return reverse('edit_product_review',
+                       args=[self.id, self.slug])
+
     def calculate_rating(self):
         product_rating = 0
         if self.product_reviews:
