@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row mt-5">
+        <div class="col-md-6 col-lg-4 offset-lg-2">
+            <div>
+                {% if recipe.image %}
+                        <img src="{{ product.image.url }}" class="card-img-top img-fluid" alt="...">
+                    {% else %}
+                        <img src="{% static 'images/noimage.png' %}" class="card-img-top img-fluid" alt="...">
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div>
+                <h2>{{ recipe.name }}</h2>
+                <p>Created by {{ recipe.user }}</p>
+                <p>{{ recipe.score }} votes</p>
+                <p>{{ recipe.description }}</p>
+                <p>{{ recipe.ingredients }}</p>
+                <p>{{ recipe.instructions }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
