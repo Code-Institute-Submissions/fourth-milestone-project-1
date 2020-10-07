@@ -16,3 +16,8 @@ def user_profile(request):
         'orders': orders,
     }
     return render(request, 'profiles/profile.html', context)
+
+
+@login_required
+def website_admin(request):
+    return render(request, 'profiles/website_admin.html')
