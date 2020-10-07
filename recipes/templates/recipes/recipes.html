@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <ul>
+            {% for recipe in recipes %}
+                <li>{{ recipe.name }}</li>
+                <li>By {{ recipe.name }}</li>
+                <li>{{ recipe.description }}</li>
+                <li><a href="">Link to Recipe</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+
+{% endblock %}
