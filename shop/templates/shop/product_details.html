@@ -49,7 +49,7 @@
                             <p>Rating {{review.rating }}</p>
                             <p>{{ review.body }}</p>
                             <a href="{{ product.get_edit_review_url }}" type="button">Edit Review</a>
-                            <button>Delete Review</button>
+                            <a href="{{ product.get_delete_review_url }}" type="button">Delete Review</a>
                         </div>
                     {% endif %}
                 {% endfor %}
