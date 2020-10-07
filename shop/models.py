@@ -57,3 +57,16 @@ class Product(models.Model):
     def get_create_review_url(self):
         return reverse('create_product_review',
                        args=[self.id, self.slug])
+
+    def calculate_rating(self):
+        product_rating = 0
+        if self.product_reviews:
+            reviews = self.product_reviews.all()
+            total_of_ratings = sum(review.rating for review in reviews)
+            number_of_reviews = reviews.__len__()
+            product_rating = total_of_ratings / number_of_reviews
+            self.rating = product_rating
+            self.save()
+            return self.rating
+        return product_rating
+
