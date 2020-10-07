@@ -19,6 +19,7 @@ def create_product_review(request, id, slug):
             user = UserProfile.objects.get(user=request.user)
             review.user = user
             review.save()
+            product.calculate_rating()
             return redirect(reverse('product_details', args=[product.id, product.slug]))
     form = ProductReviewForm()
     context = {
