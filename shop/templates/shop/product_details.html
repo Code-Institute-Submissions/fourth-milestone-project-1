@@ -48,7 +48,7 @@
                             <p>{{ review.title }}</p>
                             <p>Rating {{review.rating }}</p>
                             <p>{{ review.body }}</p>
-                            <button>Edit Review</button>
+                            <a href="{{ product.get_edit_review_url }}" type="button">Edit Review</a>
                             <button>Delete Review</button>
                         </div>
                     {% endif %}
