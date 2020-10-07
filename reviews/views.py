@@ -58,3 +58,18 @@ def edit_product_review(request, id, slug):
         'form': form,
     }
     return render(request, 'reviews/edit_product_review.html', context)
+
+
+@login_required
+def delete_product_review(request, id, slug):
+    user = UserProfile.objects.get(user=request.user)
+    product = get_object_or_404(Product, id=id, slug=slug)
+    reviews = ProductReview.objects.filter(user=user, product=product)
+    if not reviews:
+        return redirect(reverse('product_details',
+                                args=[product.id, product.slug]))
+    else:
+        reviews.delete()
+        product.calculate_rating()
+    return redirect(reverse('product_details',
+                            args=[product.id, product.slug]))
