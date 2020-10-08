@@ -58,3 +58,11 @@ def edit_recipe(request, id):
         'form': form,
     }
     return render(request, 'recipes/edit_recipe.html', context)
+
+
+@login_required
+def delete_recipe(request, id):
+    user = UserProfile.objects.get(user=request.user)
+    recipe = get_object_or_404(Recipe, id=id, user=user)
+    recipe.delete()
+    return redirect(reverse('recipes'))
