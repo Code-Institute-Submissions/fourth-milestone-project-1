@@ -14,4 +14,4 @@ class Recipe(models.Model):
     is_approved = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.title
+        return self.name
