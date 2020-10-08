@@ -8,9 +8,9 @@
         <ul>
             {% for recipe in recipes %}
                 <li>{{ recipe.name }}</li>
-                <li>By {{ recipe.name }}</li>
+                <li>By {{ recipe.user }}</li>
                 <li>{{ recipe.description }}</li>
-                <li><a href="">Link to Recipe</a></li>
+                <li><a href="{% url 'recipe_details' recipe.id %}">Link to Recipe</a></li>
             {% endfor %}
         </ul>
     </div>
