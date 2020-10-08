@@ -18,6 +18,9 @@
             <div>
                 <h2>{{ recipe.name }}</h2>
                 <p>Created by {{ recipe.user }}</p>
+                {% if recipe.user.user == request.user %}
+                    <p><a href="{% url 'edit_recipe' recipe.id %}">Edit Recipe</a></p>
+                {% endif %}
                 <p>{{ recipe.score }} votes</p>
                 <p>{{ recipe.description }}</p>
                 <p>{{ recipe.ingredients|linebreaks }}</p>
