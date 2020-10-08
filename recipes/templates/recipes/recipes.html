@@ -3,16 +3,37 @@
 
 {% block content %}
 
-<div class="container-fluid">
+<div class="container-fluid mt-5">
     <div class="row">
-        <ul>
-            {% for recipe in recipes %}
-                <li>{{ recipe.name }}</li>
-                <li>By {{ recipe.user }}</li>
-                <li>{{ recipe.description }}</li>
-                <li><a href="{% url 'recipe_details' recipe.id %}">Link to Recipe</a></li>
-            {% endfor %}
-        </ul>
+        <a href="">Add a recipe</a>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h2>Showcase</h2>
+            <ul>
+                {% for recipe in recipes %}
+                    {% if recipe.is_approved and recipe.is_showcased %}
+                        <li>{{ recipe.name }}</li>
+                        <li>By {{ recipe.user }}</li>
+                        <li>{{ recipe.description }}</li>
+                        <li><a href="{% url 'recipe_details' recipe.id %}">Link to Recipe</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col">
+            <h2>Recipes</h2>
+            <ul>
+                {% for recipe in recipes %}
+                    {% if recipe.is_approved and not recipe.is_showcased %}
+                        <li>{{ recipe.name }}</li>
+                        <li>By {{ recipe.user }}</li>
+                        <li>{{ recipe.description }}</li>
+                        <li><a href="{% url 'recipe_details' recipe.id %}">Link to Recipe</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 </div>
 
