@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col text-center">
+            <h2>Edit recipe</h2>
+            <form method="POST" action="{% url 'edit_recipe' recipe.id %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Save changes">
+            </form>   
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
