@@ -18,10 +18,14 @@ def create_order(request):
         if form.is_valid():
             order = form.save()
             for item in cart:
+                quantity = item['quantity']
+                product = item['product']
                 OrderItem.objects.create(order=order,
-                                         product=item['product'],
+                                         product=product,
                                          price=item['price'],
-                                         quantity=item['quantity'])
+                                         quantity=quantity)
+                product.stock -= quantity
+                product.save()
             if request.user.is_authenticated:
                 user_profile = UserProfile.objects.get(user=request.user)
                 order.user_profile = user_profile
