@@ -28,5 +28,7 @@ urlpatterns = [
     path('profile/', include('profiles.urls')),
     path('review/', include('reviews.urls')),
     path('recipes/', include('recipes.urls')),
+    path('gallery/', include('gallery.urls')),
+    path('videos/', include('videos.urls')),
     path('', include('home.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
