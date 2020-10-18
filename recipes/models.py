@@ -12,6 +12,7 @@ class Recipe(models.Model):
     instructions = models.TextField(blank=False)
     is_showcased = models.BooleanField(default=False)
     is_approved = models.BooleanField(default=False)
+    saved_by_users = models.ManyToManyField(UserProfile)
 
     def __str__(self):
         return self.name
