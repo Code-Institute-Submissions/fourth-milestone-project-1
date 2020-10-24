@@ -32,3 +32,22 @@ def add_image(request):
         'form': form,
     }
     return render(request, 'gallery/add_image.html', context)
+
+
+@login_required
+def edit_image(request, id):
+    if not request.user.is_superuser:
+        return redirect(reverse('gallery'))
+    image = get_object_or_404(GalleryImage, id=id)
+    if request.method == 'POST':
+        form = UploadImageForm(request.POST, instance=image)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('gallery'))
+    else:
+        form = UploadImageForm(instance=image)
+    context = {
+        'form': form,
+        'image': image,
+    }
+    return render(request, 'gallery/edit_image.html', context)
