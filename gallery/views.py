@@ -51,3 +51,12 @@ def edit_image(request, id):
         'image': image,
     }
     return render(request, 'gallery/edit_image.html', context)
+
+
+@login_required
+def delete_image(request, id):
+    if not request.user.is_superuser:
+        return redirect(reverse('gallery'))
+    image = get_object_or_404(GalleryImage, id=id)
+    image.delete()
+    return redirect(reverse('gallery'))
