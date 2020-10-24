@@ -21,6 +21,10 @@ class Cart(object):
             self.cart[product_id]['quantity'] = quantity
         else:
             self.cart[product_id]['quantity'] += quantity
+            cart_quantity = self.cart[product_id]['quantity']
+            stock = product.stock
+            if cart_quantity > stock:
+                self.cart[product_id]['quantity'] = stock
         self.save()
 
     def save(self):
