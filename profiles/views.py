@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
 from .models import UserProfile
@@ -20,4 +20,7 @@ def user_profile(request):
 
 @login_required
 def website_admin(request):
-    return render(request, 'profiles/website_admin.html')
+    if not request.user.is_superuser:
+        return redirect(reverse('home'))
+    else:
+        return render(request, 'profiles/website_admin.html')
