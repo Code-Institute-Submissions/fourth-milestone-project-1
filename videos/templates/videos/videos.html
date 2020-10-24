@@ -7,13 +7,16 @@
         <div class="col">
             <h1>Videos</h1>
             {% for video in videos %}
-                <div>
+                {% if video.is_shown %}
                     <div>
-                        <h2>{{ video.name }}</h2>
-                        <a href="{% url 'edit_video' video.id %}">Edit Video</a>
+                        <div>
+                            <h2>{{ video.name }}</h2>
+                            <a href="{% url 'edit_video' video.id %}">Edit Video</a>
+                            <a href="{% url 'delete_video' video.id %}">Delete Video</a>
+                        </div>
+                        <div>Video here</div>
                     </div>
-                    <div>Video here</div>
-                </div>
+                {% endif %}
             {% endfor %}
         </div>
     </div>
