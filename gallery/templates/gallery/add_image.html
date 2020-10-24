@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col text-center">
+            <h2>Upload image to gallery</h2>
+            <form method="POST" action="{% url 'add_image' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Upload">
+            </form>
+            
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
