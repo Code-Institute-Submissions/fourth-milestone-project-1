@@ -14,6 +14,8 @@ def videos(request):
 
 @login_required
 def add_video(request):
+    if not request.user.is_superuser:
+        return redirect(reverse('videos'))
     if request.method == 'POST':
         form = AddVideoForm(request.POST)
         if form.is_valid():
@@ -29,6 +31,8 @@ def add_video(request):
 
 @login_required
 def edit_video(request, id):
+    if not request.user.is_superuser:
+        return redirect(reverse('videos'))
     video = get_object_or_404(Video, id=id)
     if request.method == 'POST':
         form = AddVideoForm(request.POST, instance=video)
@@ -46,6 +50,8 @@ def edit_video(request, id):
 
 @login_required
 def delete_video(request, id):
+    if not request.user.is_superuser:
+        return redirect(reverse('videos'))
     video = get_object_or_404(Video, id=id)
     video.delete()
     return redirect(reverse('videos'))
