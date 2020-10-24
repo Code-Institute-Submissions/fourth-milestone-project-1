@@ -42,3 +42,10 @@ def edit_video(request, id):
         'video': video,
     }
     return render(request, 'videos/edit_video.html', context)
+
+
+@login_required
+def delete_video(request, id):
+    video = get_object_or_404(Video, id=id)
+    video.delete()
+    return redirect(reverse('videos'))
