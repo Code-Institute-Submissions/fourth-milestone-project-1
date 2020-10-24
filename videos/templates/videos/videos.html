@@ -11,6 +11,8 @@
                     <div>
                         <div>
                             <h2>{{ video.name }}</h2>
+                            <iframe width="560" height="315" src="{{ video.url }}" frameborder="0" 
+                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             <a href="{% url 'edit_video' video.id %}">Edit Video</a>
                             <a href="{% url 'delete_video' video.id %}">Delete Video</a>
                         </div>
