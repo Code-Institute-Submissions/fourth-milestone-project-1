@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col text-center">
+            <h2>Edit Video</h2>
+            <form method="POST" action="{% url 'edit_video' video.id %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Submit">
+            </form>
+            
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
