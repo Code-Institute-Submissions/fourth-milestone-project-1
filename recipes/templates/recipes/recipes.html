@@ -21,6 +21,7 @@
                         <li>By {{ recipe.user }}</li>
                         <li>{{ recipe.description }}</li>
                         <li><a href="{% url 'recipe_details' recipe.id %}">Link to Recipe</a></li>
+                        <li><a href="{% url 'save_recipe' recipe.id %}">Save Recipe</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
@@ -34,6 +35,7 @@
                         <li>By {{ recipe.user }}</li>
                         <li>{{ recipe.description }}</li>
                         <li><a href="{% url 'recipe_details' recipe.id %}">Link to Recipe</a></li>
+                        <li><a href="{% url 'save_recipe' recipe.id %}">Save Recipe</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
