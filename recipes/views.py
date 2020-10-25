@@ -11,6 +11,7 @@ from profiles.models import UserProfile
 def recipes(request):
     recipes = Recipe.objects.all()
     query = None
+    user_profile = None
     if request.GET:
         if 'search' in request.GET:
             query = request.GET['search']
@@ -19,8 +20,11 @@ def recipes(request):
                 return redirect(reverse('recipes'))
             queries = Q(name__icontains=query) | Q(description__icontains=query) | Q(ingredients__icontains=query) | Q(instructions__icontains=query)
             recipes = recipes.filter(queries)
+    if request.user.is_authenticated:
+        user_profile = UserProfile.objects.get(user=request.user)
     context = {
-        'recipes': recipes
+        'recipes': recipes,
+        'user_profile': user_profile
     }
     return render(request, 'recipes/recipes.html', context)
 
@@ -88,3 +92,12 @@ def save_recipe(request, id):
     recipe.save()
     return redirect(reverse('recipes'))
 
+
+@login_required
+def remove_recipe(request, id):
+    user = UserProfile.objects.get(user=request.user)
+    recipe = get_object_or_404(Recipe, id=id)
+    recipe.saved_by_users.remove(user)
+    recipe.score -= 1
+    recipe.save()
+    return redirect(reverse('recipes'))
