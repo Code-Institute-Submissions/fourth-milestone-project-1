@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container-fluid mt-5">
+    <div class="row">
+        <a href="{% url 'add_recipe' %}">Add a recipe</a>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h2>My Recipes</h2>
+            <ul>
+                {% for recipe in user_recipes %}
+                        <li>{{ recipe.name }}</li>
+                        <li>Saved {{ recipe.score }} time{{ recipe.score|pluralize }}</li>
+                        <li>{{ recipe.description }}</li>
+                        <li><a href="{% url 'recipe_details' recipe.id %}">Link to Recipe</a></li>
+                        {% if user_profile %}
+                            {% if user_profile in recipe.saved_by_users.all %}
+                                    <form action="{% url 'remove_recipe' recipe.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
+                                        <input type="submit" value="Unsave Recipe">
+                                    </form>
+                            {% else %}
+                                    <form action="{% url 'save_recipe' recipe.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
+                                        <input type="submit" value="Save Recipe">
+                                    </form>
+                            {% endif %}
+                        {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col">
+            <h2>Saved Recipes</h2>
+            <ul>
+                {% for recipe in saved_recipes %}
+                    {% if recipe.is_approved %}
+                        <li>{{ recipe.name }}</li>
+                        <li>By {{ recipe.user }}</li>
+                        <li>Saved {{ recipe.score }} time{{ recipe.score|pluralize }}</li>
+                        <li>{{ recipe.description }}</li>
+                        <li><a href="{% url 'recipe_details' recipe.id %}">Link to Recipe</a></li>
+                        {% if user_profile %}
+                            {% if user_profile in recipe.saved_by_users.all %}
+                                    <form action="{% url 'remove_recipe' recipe.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
+                                        <input type="submit" value="Unsave Recipe">
+                                    </form>
+                            {% else %}
+                                    <form action="{% url 'save_recipe' recipe.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
+                                        <input type="submit" value="Save Recipe">
+                                    </form>
+                            {% endif %}
+                        {% endif %}  
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
