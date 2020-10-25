@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 from django.db.models import Q
 from .models import Recipe
 from .forms import AddRecipeForm
@@ -31,6 +32,15 @@ def recipes(request):
 
 def recipe_details(request, id):
     recipe = get_object_or_404(Recipe, id=id)
+    if not recipe.is_approved:
+        if request.user:
+            user = UserProfile.objects.get(user=request.user)
+            if recipe.user == user:
+                context = {
+                    'recipe': recipe
+                }
+                return render(request, 'recipes/recipe_details.html', context)
+        return redirect(reverse('recipes'))
     context = {
         'recipe': recipe
     }
@@ -84,20 +94,24 @@ def delete_recipe(request, id):
 
 
 @login_required
+@require_POST
 def save_recipe(request, id):
     user = UserProfile.objects.get(user=request.user)
     recipe = get_object_or_404(Recipe, id=id)
     recipe.saved_by_users.add(user)
     recipe.score += 1
     recipe.save()
-    return redirect(reverse('recipes'))
+    redirect_path = request.POST.get('redirect_path')
+    return redirect(redirect_path)
 
 
 @login_required
+@require_POST
 def remove_recipe(request, id):
     user = UserProfile.objects.get(user=request.user)
     recipe = get_object_or_404(Recipe, id=id)
     recipe.saved_by_users.remove(user)
     recipe.score -= 1
     recipe.save()
-    return redirect(reverse('recipes'))
+    redirect_path = request.POST.get('redirect_path')
+    return redirect(redirect_path)
