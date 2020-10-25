@@ -77,3 +77,14 @@ def delete_recipe(request, id):
     recipe = get_object_or_404(Recipe, id=id, user=user)
     recipe.delete()
     return redirect(reverse('recipes'))
+
+
+@login_required
+def save_recipe(request, id):
+    user = UserProfile.objects.get(user=request.user)
+    recipe = get_object_or_404(Recipe, id=id)
+    recipe.saved_by_users.add(user)
+    recipe.score += 1
+    recipe.save()
+    return redirect(reverse('recipes'))
+
