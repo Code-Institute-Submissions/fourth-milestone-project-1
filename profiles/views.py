@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import login_required
 from .models import UserProfile
 from .forms import UserOrderDetailsForm
 
+from recipes.models import Recipe
+
 
 @login_required
 def user_profile(request):
@@ -24,3 +26,16 @@ def website_admin(request):
         return redirect(reverse('home'))
     else:
         return render(request, 'profiles/website_admin.html')
+
+
+@login_required
+def profile_recipes(request):
+    user_profile = get_object_or_404(UserProfile, user=request.user)
+    user_recipes = Recipe.objects.filter(user=user_profile)
+    saved_recipes = Recipe.objects.filter(saved_by_users=user_profile)
+    context = {
+        'user_profile': user_profile,
+        'user_recipes': user_recipes,
+        'saved_recipes': saved_recipes,
+    }
+    return render(request, 'profiles/profile_recipes.html', context)
