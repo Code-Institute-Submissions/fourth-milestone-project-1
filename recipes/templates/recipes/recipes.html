@@ -24,9 +24,17 @@
                         <li><a href="{% url 'recipe_details' recipe.id %}">Link to Recipe</a></li>
                         {% if user_profile %}
                             {% if user_profile in recipe.saved_by_users.all %}
-                                    <li><a href="{% url 'remove_recipe' recipe.id %}">Unsave Recipe</a></li>
+                                    <form action="{% url 'remove_recipe' recipe.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
+                                        <input type="submit" value="Unsave Recipe">
+                                    </form>
                             {% else %}
-                                    <li><a href="{% url 'save_recipe' recipe.id %}">Save Recipe</a></li>
+                                    <form action="{% url 'save_recipe' recipe.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
+                                        <input type="submit" value="Save Recipe">
+                                    </form>
                             {% endif %}
                         {% endif %}
                     {% endif %}
@@ -45,9 +53,17 @@
                         <li><a href="{% url 'recipe_details' recipe.id %}">Link to Recipe</a></li>
                         {% if user_profile %}
                             {% if user_profile in recipe.saved_by_users.all %}
-                                    <li><a href="{% url 'remove_recipe' recipe.id %}">Unsave Recipe</a></li>
+                                    <form action="{% url 'remove_recipe' recipe.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
+                                        <input type="submit" value="Unsave Recipe">
+                                    </form>
                             {% else %}
-                                    <li><a href="{% url 'save_recipe' recipe.id %}">Save Recipe</a></li>
+                                    <form action="{% url 'save_recipe' recipe.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
+                                        <input type="submit" value="Save Recipe">
+                                    </form>
                             {% endif %}
                         {% endif %}  
                     {% endif %}
