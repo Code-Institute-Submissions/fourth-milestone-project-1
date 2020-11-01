@@ -23,6 +23,7 @@ def shop(request):
         if 'category' in request.GET:
             filter_categories = request.GET['category'].split(',')
             products = products.filter(category__slug__in=filter_categories)
+            filter_categories = request.GET['category']
         if 'search' in request.GET:
             query = request.GET['search']
             if not query:
