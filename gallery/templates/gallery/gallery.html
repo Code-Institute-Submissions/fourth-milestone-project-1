@@ -35,6 +35,45 @@
             {% endif %}
         {% endfor %}
     </div>
+    <nav aria-label="product images pagination">
+        {% if products.has_other_pages %}
+            <ul class="pagination justify-content-center">
+            {% if products.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page1={{ products.previous_page_number }}">&laquo;</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                        <span>&laquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+            {% for i in products.paginator.page_range %}
+                {% if products.number == i %}
+                    <li class="page-item active">
+                        <a class="page-link" href="?page1={{ i }}">
+                            <span>{{ i }} <span class="sr-only">(current)</span></span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="?page1={{ i }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if products.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page1={{ products.next_page_number }}">&raquo;</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                        <span>&raquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+            </ul>
+        {% endif %}
+    </nav>
     <div class="row">
         {% for image in images %}
             {% if image.is_shown %}
@@ -44,6 +83,45 @@
             {% endif %}
         {% endfor %}
     </div>
+    <nav aria-label="gallery images pagination">
+        {% if images.has_other_pages %}
+            <ul class="pagination justify-content-center">
+            {% if images.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page2={{ images.previous_page_number }}">&laquo;</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                        <span>&laquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+            {% for i in images.paginator.page_range %}
+                {% if images.number == i %}
+                    <li class="page-item active">
+                        <a class="page-link" href="?page2={{ i }}">
+                            <span>{{ i }} <span class="sr-only">(current)</span></span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="?page2={{ i }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if images.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page2={{ images.next_page_number }}">&raquo;</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                        <span>&raquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+            </ul>
+        {% endif %}
+    </nav>
 </div>
 
 
