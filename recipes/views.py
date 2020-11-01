@@ -11,7 +11,8 @@ from profiles.models import UserProfile
 
 
 def recipes(request):
-    recipes = Recipe.objects.all()
+    recipes = Recipe.objects.filter(is_approved=True, is_showcased=False)
+    showcased_recipes = Recipe.objects.filter(is_approved=True, is_showcased=True)
     page = request.GET.get('page', 1)
     query = None
     user_profile = None
@@ -34,6 +35,7 @@ def recipes(request):
         recipes = paginator.page(paginator.num_pages)
     context = {
         'recipes': recipes,
+        'showcased_recipes': showcased_recipes,
         'user_profile': user_profile,
         'search_text': query,
     }
