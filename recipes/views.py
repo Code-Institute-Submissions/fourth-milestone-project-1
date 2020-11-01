@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from .models import Recipe
 from .forms import AddRecipeForm
@@ -11,6 +12,7 @@ from profiles.models import UserProfile
 
 def recipes(request):
     recipes = Recipe.objects.all()
+    page = request.GET.get('page', 1)
     query = None
     user_profile = None
     if request.GET:
@@ -23,9 +25,17 @@ def recipes(request):
             recipes = recipes.filter(queries)
     if request.user.is_authenticated:
         user_profile = UserProfile.objects.get(user=request.user)
+    paginator = Paginator(recipes, 1)
+    try:
+        recipes = paginator.page(page)
+    except PageNotAnInteger:
+        recipes = paginator.page(1)
+    except EmptyPage:
+        recipes = paginator.page(paginator.num_pages)
     context = {
         'recipes': recipes,
-        'user_profile': user_profile
+        'user_profile': user_profile,
+        'search_text': query,
     }
     return render(request, 'recipes/recipes.html', context)
 
