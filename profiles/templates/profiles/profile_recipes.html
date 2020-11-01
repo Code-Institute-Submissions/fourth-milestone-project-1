@@ -33,35 +33,111 @@
                         {% endif %}
                 {% endfor %}
             </ul>
+            <nav aria-label="user recipes pagination">
+            {% if user_recipes.has_other_pages %}
+                <ul class="pagination justify-content-center">
+                {% if user_recipes.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page1={{ user_recipes.previous_page_number }}">&laquo;</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                            <span>&laquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+                {% for i in user_recipes.paginator.page_range %}
+                    {% if user_recipes.number == i %}
+                        <li class="page-item active">
+                            <a class="page-link" href="?page1={{ i }}">
+                                <span>{{ i }} <span class="sr-only">(current)</span></span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="?page1={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if user_recipes.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page1={{ user_recipes.next_page_number }}">&raquo;</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                            <span>&raquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+                </ul>
+            {% endif %}
+            </nav>
         </div>
         <div class="col">
             <h2>Saved Recipes</h2>
             <ul>
                 {% for recipe in saved_recipes %}
-                    {% if recipe.is_approved %}
-                        <li>{{ recipe.name }}</li>
-                        <li>By {{ recipe.user }}</li>
-                        <li>Saved {{ recipe.score }} time{{ recipe.score|pluralize }}</li>
-                        <li>{{ recipe.description }}</li>
-                        <li><a href="{% url 'recipe_details' recipe.id %}">Link to Recipe</a></li>
-                        {% if user_profile %}
-                            {% if user_profile in recipe.saved_by_users.all %}
-                                    <form action="{% url 'remove_recipe' recipe.id %}" method="POST">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
-                                        <input type="submit" value="Unsave Recipe">
-                                    </form>
-                            {% else %}
-                                    <form action="{% url 'save_recipe' recipe.id %}" method="POST">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
-                                        <input type="submit" value="Save Recipe">
-                                    </form>
-                            {% endif %}
-                        {% endif %}  
+                    <li>{{ recipe.name }}</li>
+                    <li>By {{ recipe.user }}</li>
+                    <li>Saved {{ recipe.score }} time{{ recipe.score|pluralize }}</li>
+                    <li>{{ recipe.description }}</li>
+                    <li><a href="{% url 'recipe_details' recipe.id %}">Link to Recipe</a></li>
+                    {% if user_profile %}
+                        {% if user_profile in recipe.saved_by_users.all %}
+                                <form action="{% url 'remove_recipe' recipe.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
+                                    <input type="submit" value="Unsave Recipe">
+                                </form>
+                        {% else %}
+                                <form action="{% url 'save_recipe' recipe.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
+                                    <input type="submit" value="Save Recipe">
+                                </form>
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
             </ul>
+            <nav aria-label="saved recipes pagination">
+            {% if saved_recipes.has_other_pages %}
+                <ul class="pagination justify-content-center">
+                {% if saved_recipes.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page2={{ saved_recipes.previous_page_number }}">&laquo;</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                            <span>&laquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+                {% for i in saved_recipes.paginator.page_range %}
+                    {% if saved_recipes.number == i %}
+                        <li class="page-item active">
+                            <a class="page-link" href="?page2={{ i }}">
+                                <span>{{ i }} <span class="sr-only">(current)</span></span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="?page2={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if saved_recipes.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page2={{ saved_recipes.next_page_number }}">&raquo;</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                            <span>&raquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+                </ul>
+            {% endif %}
+            </nav>
         </div>
     </div>
 </div>
