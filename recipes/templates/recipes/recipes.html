@@ -71,6 +71,45 @@
             </ul>
         </div>
     </div>
+    <nav aria-label="recipes pagination">
+        {% if recipes.has_other_pages %}
+            <ul class="pagination justify-content-center">
+            {% if recipes.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ recipes.previous_page_number }}{% if search_text %}&search={{ search_text }}{% endif %}">&laquo;</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                        <span>&laquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+            {% for i in recipes.paginator.page_range %}
+                {% if recipes.number == i %}
+                    <li class="page-item active">
+                        <a class="page-link" href="?page={{ i }}{% if search_text %}&search={{ search_text }}{% endif %}">
+                            <span>{{ i }} <span class="sr-only">(current)</span></span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}{% if search_text %}&search={{ search_text }}{% endif %}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if recipes.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ recipes.next_page_number }}{% if search_text %}&search={{ search_text }}{% endif %}">&raquo;</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                        <span>&raquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+            </ul>
+        {% endif %}
+        </nav>
 </div>
 
 
