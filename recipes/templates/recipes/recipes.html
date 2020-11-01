@@ -15,27 +15,25 @@
         <div class="col">
             <h2>Showcase</h2>
             <ul>
-                {% for recipe in recipes %}
-                    {% if recipe.is_approved and recipe.is_showcased %}
-                        <li>{{ recipe.name }}</li>
-                        <li>By {{ recipe.user }}</li>
-                        <li>Saved {{ recipe.score }} time{{ recipe.score|pluralize }}</li>
-                        <li>{{ recipe.description }}</li>
-                        <li><a href="{% url 'recipe_details' recipe.id %}">Link to Recipe</a></li>
-                        {% if user_profile %}
-                            {% if user_profile in recipe.saved_by_users.all %}
-                                    <form action="{% url 'remove_recipe' recipe.id %}" method="POST">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
-                                        <input type="submit" value="Unsave Recipe">
-                                    </form>
-                            {% else %}
-                                    <form action="{% url 'save_recipe' recipe.id %}" method="POST">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
-                                        <input type="submit" value="Save Recipe">
-                                    </form>
-                            {% endif %}
+                {% for recipe in showcased_recipes %}
+                    <li>{{ recipe.name }}</li>
+                    <li>By {{ recipe.user }}</li>
+                    <li>Saved {{ recipe.score }} time{{ recipe.score|pluralize }}</li>
+                    <li>{{ recipe.description }}</li>
+                    <li><a href="{% url 'recipe_details' recipe.id %}">Link to Recipe</a></li>
+                    {% if user_profile %}
+                        {% if user_profile in recipe.saved_by_users.all %}
+                                <form action="{% url 'remove_recipe' recipe.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
+                                    <input type="submit" value="Unsave Recipe">
+                                </form>
+                        {% else %}
+                                <form action="{% url 'save_recipe' recipe.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
+                                    <input type="submit" value="Save Recipe">
+                                </form>
                         {% endif %}
                     {% endif %}
                 {% endfor %}
@@ -45,27 +43,25 @@
             <h2>Recipes</h2>
             <ul>
                 {% for recipe in recipes %}
-                    {% if recipe.is_approved and not recipe.is_showcased %}
-                        <li>{{ recipe.name }}</li>
-                        <li>By {{ recipe.user }}</li>
-                        <li>Saved {{ recipe.score }} time{{ recipe.score|pluralize }}</li>
-                        <li>{{ recipe.description }}</li>
-                        <li><a href="{% url 'recipe_details' recipe.id %}">Link to Recipe</a></li>
-                        {% if user_profile %}
-                            {% if user_profile in recipe.saved_by_users.all %}
-                                    <form action="{% url 'remove_recipe' recipe.id %}" method="POST">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
-                                        <input type="submit" value="Unsave Recipe">
-                                    </form>
-                            {% else %}
-                                    <form action="{% url 'save_recipe' recipe.id %}" method="POST">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
-                                        <input type="submit" value="Save Recipe">
-                                    </form>
-                            {% endif %}
-                        {% endif %}  
+                    <li>{{ recipe.name }}</li>
+                    <li>By {{ recipe.user }}</li>
+                    <li>Saved {{ recipe.score }} time{{ recipe.score|pluralize }}</li>
+                    <li>{{ recipe.description }}</li>
+                    <li><a href="{% url 'recipe_details' recipe.id %}">Link to Recipe</a></li>
+                    {% if user_profile %}
+                        {% if user_profile in recipe.saved_by_users.all %}
+                                <form action="{% url 'remove_recipe' recipe.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
+                                    <input type="submit" value="Unsave Recipe">
+                                </form>
+                        {% else %}
+                                <form action="{% url 'save_recipe' recipe.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
+                                    <input type="submit" value="Save Recipe">
+                                </form>
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
             </ul>
