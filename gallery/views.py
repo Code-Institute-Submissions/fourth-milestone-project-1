@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import GalleryImage
 from .forms import UploadImageForm
 
@@ -7,8 +8,24 @@ from shop.models import Product
 
 
 def gallery(request):
-    products = Product.objects.all()
-    images = GalleryImage.objects.all()
+    products = Product.objects.exclude(image1__exact='')
+    images = GalleryImage.objects.filter(is_shown=True)
+    paginator = Paginator(products, 5)
+    page = request.GET.get('page1')
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        products = paginator.page(1)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)
+    paginator = Paginator(images, 1)
+    page = request.GET.get('page2')
+    try:
+        images = paginator.page(page)
+    except PageNotAnInteger:
+        images = paginator.page(1)
+    except EmptyPage:
+        images = paginator.page(paginator.num_pages)
     context = {
         'products': products,
         'images': images
