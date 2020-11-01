@@ -1,11 +1,20 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Video
 from .forms import AddVideoForm
 
 
 def videos(request):
     videos = Video.objects.all()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(videos, 1)
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        products = paginator.page(1)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)
     context = {
         'videos': videos
     }
