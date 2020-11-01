@@ -52,8 +52,16 @@ def product_details(request, id, slug):
     """ Returns the product details page """
     categories = Category.objects.all()
     product = get_object_or_404(Product, id=id, slug=slug)
+    page = request.GET.get('page', 1)
     cart_product_form = CartAddProductForm()
     reviews = product.product_reviews.all()
+    paginator = Paginator(reviews, 1)
+    try:
+        reviews = paginator.page(page)
+    except PageNotAnInteger:
+        reviews = paginator.page(1)
+    except EmptyPage:
+        reviews = paginator.page(paginator.num_pages)
     context = {
         'product': product,
         'categories': categories,
