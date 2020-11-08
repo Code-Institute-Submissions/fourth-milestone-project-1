@@ -49,6 +49,22 @@ header {
     font-weight: 450;
 }
 
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #7232b8;
+}
+
+.dropdown-menu {
+    border-radius: 0;
+    border: 0;
+    -webkit-box-shadow: 11px 17px 29px -23px rgba(0,0,0,0.75);
+    -moz-box-shadow: 11px 17px 29px -23px rgba(0,0,0,0.75);
+    box-shadow: 11px 17px 29px -23px rgba(0,0,0,0.75);
+}
+
+.dropdown-item:hover {
+    color: #7232b8;
+}
+
 .header-container {
     padding-bottom: 15rem;
 }
@@ -81,6 +97,10 @@ header {
 
 .dropdown {
     display: inline-block;
+}
+
+.page-link, .page-link:hover {
+    color: #7232b8;
 }
 
 .page-item.active .page-link {
