@@ -18,10 +18,11 @@ header {
     background-color: #fff;
     height: 100vh;
     width: 100vw;
-}
-
-.red-content {
-    background-color: red;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    background-attachment: fixed;
 }
 
 .center-nav {
@@ -36,4 +37,20 @@ header {
 
 .dropdown {
     display: inline-block;
+}
+
+#shop-section-home {
+    background-image: url('');
+}
+
+#videos-section-home {
+    background-image: url('/static/images/baking.jpg');
+}
+
+#recipes-section-home {
+    background-image: url('/static/images/cookies-tray.jpg');
+}
+
+#gallery-section-home {
+    background-image: url('/static/images/macarons.jpg');
 }
