@@ -41,6 +41,9 @@
         <div class="col">
             <h3>Reviews</h3>
             {% if reviews %}
+                {% if not user_review %}
+                    <a href="{{ product.get_create_review_url }}" type="button">Create a Review</a>
+                {% endif %}
                 {% for review in reviews %}
                     {% if review.user.user == request.user %}
                         <div>
