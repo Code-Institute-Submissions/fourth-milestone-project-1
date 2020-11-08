@@ -2,10 +2,12 @@
 {% load static %}
 
 {% block content %}
-<div class="container-fluid mt-5">
-    <div class="row">
-        <h1>Gallery</h1>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Gallery</h1>
     </div>
+</div>
+<div class="container-fluid mt-5">
     <div class="row">
         {% for product in products %}
             {% if product.image1 %}
