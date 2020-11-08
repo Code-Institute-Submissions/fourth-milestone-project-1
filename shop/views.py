@@ -54,7 +54,12 @@ def product_details(request, id, slug):
     product = get_object_or_404(Product, id=id, slug=slug)
     page = request.GET.get('page', 1)
     cart_product_form = CartAddProductForm()
+    user_review = False
     reviews = product.product_reviews.all()
+    if reviews:
+        for review in reviews:
+            if request.user == review.user.user:
+                user_review = True
     paginator = Paginator(reviews, 1)
     try:
         reviews = paginator.page(page)
@@ -67,6 +72,7 @@ def product_details(request, id, slug):
         'categories': categories,
         'cart_product_form': cart_product_form,
         'reviews': reviews,
+        'user_review': user_review,
     }
     return render(request, 'shop/product_details.html', context)
 
