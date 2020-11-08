@@ -2,6 +2,15 @@
 {% load static %}
 
 {% block content %}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">All Products</h1>
+        <form class="GET" action="{% url 'shop' %}">
+            <input type="text" name="search" placeholder="Search our products">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</div>
 <div class="container">
     <p>{{ products|length }}
         {% if products|length == 1 %}
