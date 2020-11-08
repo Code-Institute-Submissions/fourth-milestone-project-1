@@ -30,4 +30,7 @@
             </ul>
         </div>
     </div>
+    <a href="{% url 'view_cart' %}">
+                        {{ cart|length }} item{{ cart|length|pluralize }}
+                    </a>
 </nav>
