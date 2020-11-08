@@ -14,6 +14,11 @@ header {
     padding-bottom: 15rem;
 }
 
+.carousel {
+    max-height: calc(100vh - 249px);
+    overflow: hidden;
+}
+
 .home-content {
     background-color: #fff;
     height: 100vh;
@@ -39,8 +44,8 @@ header {
     display: inline-block;
 }
 
-#shop-section-home {
-    background-image: url('');
+#shop-section-home .jumbotron {
+    margin-bottom: 0;
 }
 
 #videos-section-home {
