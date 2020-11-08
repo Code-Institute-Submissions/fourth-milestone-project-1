@@ -4,7 +4,15 @@
 {% block content %}
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <h1 class="display-4">All Products</h1>
+        {% if not filter_categories %}
+            <h1 class="display-4">All Products</h1>
+        {% elif filter_categories == "cakes" %}
+            <h1 class="display-4">Browsing Cakes</h1>
+        {% elif filter_categories == "cookies" %}
+            <h1 class="display-4">Browsing Cookies</h1>
+        {% elif filter_categories == "merchandise" %}
+            <h1 class="display-4">Browsing Merch</h1>
+        {% endif %}
         <form class="GET" action="{% url 'shop' %}">
             <input type="text" name="search" placeholder="Search our products">
             <input type="submit" value="Submit">
