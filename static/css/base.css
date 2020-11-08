@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    background-color: rgb(204, 171, 235);
+    background-color: #fff;
 }
 
 header {
@@ -15,8 +15,9 @@ header {
 }
 
 .home-content {
-    background-color: aquamarine;
+    background-color: #fff;
     height: 100vh;
+    width: 100vw;
 }
 
 .red-content {
