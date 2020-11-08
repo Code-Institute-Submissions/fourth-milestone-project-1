@@ -6,15 +6,15 @@ from .forms import AddVideoForm
 
 
 def videos(request):
-    videos = Video.objects.all()
+    videos = Video.objects.filter(is_shown=True)
     page = request.GET.get('page', 1)
     paginator = Paginator(videos, 1)
     try:
-        products = paginator.page(page)
+        videos = paginator.page(page)
     except PageNotAnInteger:
-        products = paginator.page(1)
+        videos = paginator.page(1)
     except EmptyPage:
-        products = paginator.page(paginator.num_pages)
+        videos = paginator.page(paginator.num_pages)
     context = {
         'videos': videos
     }
