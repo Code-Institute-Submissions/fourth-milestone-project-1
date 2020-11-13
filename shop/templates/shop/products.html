@@ -10,13 +10,17 @@
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
         {% if not filter_categories %}
-            <h1 class="display-4">All Products</h1>
+            {% if not search_text %}
+                <h1 class="display-4">All Products</h1>
+            {% else %}
+                <h1 class="display-4">Search results for "{{ search_text }}"</h1>
+            {% endif %}
         {% elif filter_categories == "cakes" %}
-            <h1 class="display-4">Browsing Cakes</h1>
+            <h1 class="display-4">Cakes</h1>
         {% elif filter_categories == "cookies" %}
-            <h1 class="display-4">Browsing Cookies</h1>
+            <h1 class="display-4">Cookies</h1>
         {% elif filter_categories == "merchandise" %}
-            <h1 class="display-4">Browsing Merch</h1>
+            <h1 class="display-4">Merchandise</h1>
         {% endif %}
         <form class="GET mt-4" action="{% url 'shop' %}">
             <input type="text" name="search" placeholder="Search our products">
@@ -25,9 +29,11 @@
     </div>
 </div>
 <div class="container">
-    <p>Showing {{ products|length }} product{{ products|length|pluralize }} of {{ total_products|length }} total
-        {% if search_text %} found for "{{ search_text }}"{% endif %}
-    </p>
+    {% if products %}
+        <p>Showing {{ products|length }} of {{ total_products|length }} item{{ products|length|pluralize }}</p>
+    {% else %}
+        <p>No items found</p>
+    {% endif %}
     <hr>
 </div>
 <div class="container">
@@ -108,7 +114,6 @@
         </nav>
     </div>
 </div>
-{{ filter_categories }}
 {% endblock %}
 
 {% block postloadjs %}
