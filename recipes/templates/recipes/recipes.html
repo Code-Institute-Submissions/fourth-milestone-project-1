@@ -6,7 +6,7 @@
     <div class="container">
         <h1 class="display-4">Recipes</h1>
         <form class="GET" action="{% url 'recipes' %}">
-            <input type="text" name="search" placeholder="Search recipes">
+            <input type="text" maxlength="50" name="search" placeholder="Search recipes">
             <input type="submit" value="Submit">
         </form>
     </div>
