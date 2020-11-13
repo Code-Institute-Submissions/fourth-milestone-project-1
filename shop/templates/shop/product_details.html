@@ -3,23 +3,22 @@
 
 {% block content %}
 
-<div class="container-fluid">
+<div class="container-fluid mt-5">
     <div class="row mt-5">
         <div class="col-md-6 col-lg-4 offset-lg-2">
             <div>
                 {% if product.image1 %}
-                        <img src="{{ product.image1.url }}" class="card-img-top img-fluid" alt="...">
+                        <img src="{{ product.image1.url }}" class="product-details-img img-fluid" alt="...">
                     {% else %}
-                        <img src="{% static 'images/noimage.png' %}" class="card-img-top img-fluid" alt="...">
+                        <img src="{% static 'images/noimage.png' %}" class="product-details-img img-fluid" alt="...">
                 {% endif %}
             </div>
         </div>
         <div class="col-md-6 col-lg-4">
-            <div>
+            <div class="mt-5">
                 <h2>{{ product.name }}</h2>
                 <p>{{ product.rating }} stars</p>
                 <p>£{{ product.price }}</p>
-                <p>{{ product.description }}</p>
                 {% if request.user.is_superuser %}
                     <a href="{{ product.get_edit_product_url }}">Edit Product</a>
                     <a href="{{ product.get_delete_product_url }}">Delete Product</a>
@@ -33,6 +32,7 @@
                     <input type="submit" value="Add to Cart">
                 </form>
             </div>
+            <p>{{ product.description }}</p>
         </div>
     </div>
 </div>
