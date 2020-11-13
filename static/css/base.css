@@ -102,12 +102,25 @@ header {
     color: #fff;
     background-color: #7232b8;
     border: 1px solid #7232b8;
-    transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.2s ease;
+}
+
+.standard-button {
+    border-radius: 0;
+    color: #7232b8;
+    background-color: #e6e6e6;
+    border: 1px solid #e6e6e6;
+    transition: background-color 0.1s linear;
 }
 
 .submit-button:hover {
     color: #7232b8;
     background-color: #fff;
+}
+
+.standard-button:hover {
+    color: #fff;
+    background-color: #7232b8;
 }
 
 .card-img-top {
