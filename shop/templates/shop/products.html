@@ -39,8 +39,16 @@
                     {% else %}
                         <img src="{% static 'images/noimage.png' %}" class="card-img-top img-fluid" alt="...">
                     {% endif %}
-                    <div class="card-body">
+                    <div class="card-body text-center">
                         <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">
+                            {% if product.rating == None %}
+                            0
+                            {% else %}
+                            {{ product.rating|floatformat }}
+                            {% endif %}
+                            stars
+                            </p>
                         <p class="card-text">£{{ product.price }}</p>
                         <a href="{{ product.get_absolute_url }}" class="btn btn-primary stretched-link">View Item</a>
                     </div>
