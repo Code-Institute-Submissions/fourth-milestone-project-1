@@ -83,23 +83,22 @@
     <div id="reviews-container" class="row">
         {% for review in reviews %}
             {% if review.user.user == request.user %}
-                <div class="review col-md-6">
+                <div class="review col-12">
                     <h4>Your Review</h4>
                     <a href="{{ product.get_edit_review_url }}" type="button">Edit Review</a>
                     <a href="{{ product.get_delete_review_url }}" type="button">Delete Review</a>
                     <h5>{{ review.title }}</h5>
-                    <p>Rating {{ review.rating }}</p>
+                    <p>{{ review.rating }} stars</p>
                     <p>{{ review.body|linebreaks }}</p>
-                    
                 </div>
             {% endif %}
         {% endfor %}
         {% for review in reviews %}
             {% if review.user.user != request.user %}
-                <div class="review col-md-6">
+                <div class="review col-12">
                     <h4>{{ review.user.user|title }}'s Review</h4>
                     <h5>{{ review.title }}</h5>
-                    <p>Rating {{ review.rating }}</p>
+                    <p>{{ review.rating }} stars</p>
                     <p>{{ review.body|linebreaks }}</p>
                 </div>
             {% endif %}
