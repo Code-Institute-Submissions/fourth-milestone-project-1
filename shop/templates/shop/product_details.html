@@ -28,20 +28,30 @@
                 <p class="larger-font">{{ product.rating|floatformat }} stars</p>
                 <p class="much-larger-font">£{{ product.price }}</p>
             </div>
-            <div class="mt-2">
-                <form action="{% url 'add_to_cart' product.id %}" method="POST">
-                    {% csrf_token %}
-                    {{ cart_product_form }}
-                    <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
-                    <input type="submit" id="product-details-submit" class="submit-button product-details-submit" value="Add to Cart">
-                    <button id="loading-button" class="submit-button product-details-submit d-none" type="button" disabled>
-                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                        <span class="sr-only">Loading...</span>
-                    </button>
-                </form>
-            </div>
+                {% if product.stock > 0 %}
+                <div class="mt-2">
+                    <form action="{% url 'add_to_cart' product.id %}" method="POST">
+                        {% csrf_token %}
+                        {{ cart_product_form }}
+                        <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
+                        <input type="submit" id="product-details-submit" class="submit-button product-details-submit" value="Add to Cart">
+                        <button id="loading-button" class="submit-button product-details-submit d-none" type="button" disabled>
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            <span class="sr-only">Loading...</span>
+                        </button>
+                    </form>
+                </div>
+                {% endif %}
+                {% if product.stock > 15 %}
+                    <p class="larger-font mt-4">In Stock</p>
+                {% elif product.stock > 0 %}
+                    <p class="larger-font mt-4">Low Stock</p>
+                {% else %}
+                    <p class="larger-font mt-4">Out of Stock</p>
+                {% endif %}
         </div>
         <div id="description-container" class="col-md-8 offset-lg-2">
+            <h3>Product Description</h3>
             {% if product.description|length > 600 %}
                 <div id="product-description-truncated">
                     <p>{{ product.description|truncatechars:"600"|linebreaks }}</p>
