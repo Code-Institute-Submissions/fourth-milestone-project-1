@@ -24,6 +24,12 @@ header {
     font-size: 1.5rem;
 }
 
+.hide {
+   position: absolute !important;
+   top: -9999px !important;
+   left: -9999px !important;
+}
+
 .scroll > #missPanBrand img {
     position: absolute;
     top: -9999rem;
