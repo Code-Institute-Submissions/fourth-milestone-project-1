@@ -63,7 +63,7 @@ def product_details(request, id, slug):
         for review in reviews:
             if request.user == review.user.user:
                 user_review = True
-    paginator = Paginator(reviews, 1)
+    paginator = Paginator(reviews, 10)
     try:
         reviews = paginator.page(page)
     except PageNotAnInteger:
