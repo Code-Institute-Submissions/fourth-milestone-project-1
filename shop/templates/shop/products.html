@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="{% static 'shop/css/shop.css' %}">
 {% endblock %}
 
+
 {% block content %}
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
@@ -19,7 +20,7 @@
         {% endif %}
         <form class="GET mt-4" action="{% url 'shop' %}">
             <input type="text" name="search" placeholder="Search our products">
-            <input type="submit" value="Submit">
+            <input type="submit" class="submit-button" value="Submit">
         </form>
     </div>
 </div>
@@ -50,13 +51,13 @@
                             stars
                             </p>
                         <p class="card-text">£{{ product.price }}</p>
-                        <div class="mt-2">
+                        <div class="mt-2 product-card-form d-none">
                             <form action="{% url 'add_to_cart' product.id %}" method="POST">
                                 {% csrf_token %}
                                 <input type="hidden" name="quantity" id="quantity" value="1">
                                 <input type="hidden" name="overwrite" id="overwrite" value="False">
                                 <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
-                                <input class="product-card-submit" type="submit" value="Add to Cart">
+                                <input class="product-card-submit submit-button" type="submit" value="Add to Cart">
                             </form>
                         </div>
                         <a href="{{ product.get_absolute_url }}" class="stretched-link"></a>
@@ -108,4 +109,9 @@
     </div>
 </div>
 {{ filter_categories }}
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <script defer src="{% static 'shop/js/shop.js' %}"></script>
 {% endblock %}
