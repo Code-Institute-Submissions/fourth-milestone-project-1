@@ -20,3 +20,8 @@
 .card-text {
     margin-bottom: 0.25rem;
 }
+
+.product-card-submit {
+    z-index: 3;
+    position: relative;
+}
