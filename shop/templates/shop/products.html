@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'shop/css/shop.css' %}">
+{% endblock %}
+
 {% block content %}
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
@@ -13,22 +17,23 @@
         {% elif filter_categories == "merchandise" %}
             <h1 class="display-4">Browsing Merch</h1>
         {% endif %}
-        <form class="GET" action="{% url 'shop' %}">
+        <form class="GET mt-4" action="{% url 'shop' %}">
             <input type="text" name="search" placeholder="Search our products">
             <input type="submit" value="Submit">
         </form>
     </div>
 </div>
-<div class="container-fluid">
+<div class="container">
     <p>Showing {{ products|length }} product{{ products|length|pluralize }} of {{ total_products|length }} total
         {% if search_text %} found for "{{ search_text }}"{% endif %}
     </p>
+    <hr>
 </div>
-<div class="container-fluid">
+<div class="container">
     <div class="row card-deck">
         {% for product in products %}
-            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                <div class="card mt-5">
+            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                <div class="card mt-4 mx-0">
                     {% if product.image1 %}
                         <img src="{{ product.image1.url }}" class="card-img-top img-fluid" alt="...">
                     {% else %}
@@ -43,6 +48,7 @@
             </div>
         {% endfor %}
     </div>
+    <div class="mt-5">
         <nav aria-label="shop products pagination">
         {% if products.has_other_pages %}
             <ul class="pagination justify-content-center">
@@ -82,6 +88,7 @@
             </ul>
         {% endif %}
         </nav>
+    </div>
 </div>
 {{ filter_categories }}
 {% endblock %}
