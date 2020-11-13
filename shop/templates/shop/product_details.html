@@ -43,11 +43,11 @@
             {% if product.description|length > 600 %}
                 <div id="product-description-truncated">
                     <p>{{ product.description|truncatechars:"600"|linebreaks }}</p>
-                    <button id="read-more" class="standard-button">Read more</button>
+                    <button id="read-more" class="standard-button">Read More</button>
                 </div>
                 <div id="product-description-full" class="d-none">
                     <p>{{ product.description|linebreaks }}</p>
-                    <button id="read-less" class="standard-button">Read less</button>
+                    <button id="read-less" class="standard-button">Read Less</button>
                 </div>
             {% else %}
                 <div>
@@ -60,45 +60,46 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <hr>
-            <h3>Reviews</h3>
-            {% if reviews %}
-            <div id="reviews-container">
-                {% if not user_review %}
-                    <a href="{{ product.get_create_review_url }}" type="button">Create a Review</a>
-                {% endif %}
-                {% for review in reviews %}
-                    {% if review.user.user == request.user %}
-                        <div>
-                            <h4>Your Review</h4>
-                            <p>{{ review.title }}</p>
-                            <p>Rating {{review.rating }}</p>
-                            <p>{{ review.body|linebreaks }}</p>
-                            <a href="{{ product.get_edit_review_url }}" type="button">Edit Review</a>
-                            <a href="{{ product.get_delete_review_url }}" type="button">Delete Review</a>
-                        </div>
-                    {% endif %}
-                {% endfor %}
-                {% for review in reviews %}
-                    {% if review.user.user != request.user %}
-                        <div>
-                            <p>{{ review.title }}</p>
-                            <p>By {{ review.user.user }}</p>
-                            <p>Rating {{review.rating }}</p>
-                            <p>{{ review.body|linebreaks }}</p>
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            {% else %}
-                <p>There are no reviews</p>
-                {% if request.user.is_authenticated %}
-                    <a href="{{ product.get_create_review_url }}" type="button">Create a Review</a>
-                {% endif %}
-            </div>
+            <hr class="mt-4">
+            <h3 class="mt-4">Reviews</h3>
+            {% if not user_review %}
+                    <a href="{{ product.get_create_review_url }}" type="button">Write a Review</a>
             {% endif %}
         </div>
     </div>
+    {% if reviews %}
+    <div id="reviews-container" class="row">
+        {% for review in reviews %}
+            {% if review.user.user == request.user %}
+                <div class="review col-md-6">
+                    <h4>Your Review</h4>
+                    <h5>{{ review.title }}</h5>
+                    <p>Rating {{ review.rating }}</p>
+                    <p>{{ review.body|linebreaks }}</p>
+                    <a href="{{ product.get_edit_review_url }}" type="button">Edit Review</a>
+                    <a href="{{ product.get_delete_review_url }}" type="button">Delete Review</a>
+                </div>
+            {% endif %}
+        {% endfor %}
+        {% for review in reviews %}
+            {% if review.user.user != request.user %}
+                <div class="review col-md-6">
+                    <h5>{{ review.title }}</h5>
+                    <p>By {{ review.user.user }}</p>
+                    <p>Rating {{ review.rating }}</p>
+                    <p>{{ review.body|linebreaks }}</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <p>There are no reviews</p>
+        {% if request.user.is_authenticated %}
+            <a href="{{ product.get_create_review_url }}" type="button">Write a Review</a>
+        {% endif %}
+    </div>
+    {% endif %}
 </div>
+    
 <nav aria-label="product reviews pagination">
         {% if reviews.has_other_pages %}
             <ul class="pagination justify-content-center">
