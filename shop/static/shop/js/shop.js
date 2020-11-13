@@ -1,5 +1,5 @@
 $(".card").hover( function() {
-    $(this).find(".product-card-form").toggleClass("d-none")
+    $(this).find(".product-card-form").toggleClass("hide")
 });
 
 $("#read-more").click( function() {
@@ -12,7 +12,12 @@ $("#read-less").click( function() {
     $("#product-description-truncated").toggleClass("d-none")
 });
 
+$(".product-card-submit").click( function() {
+    $(this).toggleClass("d-none")
+    $(this).next(".submit-button").toggleClass("d-none")
+});
+
 $("#product-details-submit").click( function() {
     $("#product-details-submit").toggleClass("d-none")
-    $("#product-details-loading").toggleClass("d-none")
+    $("#loading-button").toggleClass("d-none")
 });
