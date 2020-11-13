@@ -19,13 +19,8 @@
         </form>
     </div>
 </div>
-<div class="container">
-    <p>{{ products|length }}
-        {% if products|length == 1 %}
-        Product
-        {% else %}
-        Products
-        {% endif %}
+<div class="container-fluid">
+    <p>Showing {{ products|length }} product{{ products|length|pluralize }} of {{ total_products|length }} total
         {% if search_text %} found for "{{ search_text }}"{% endif %}
     </p>
 </div>
@@ -33,7 +28,7 @@
     <div class="row card-deck">
         {% for product in products %}
             <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                <div class="card">
+                <div class="card mt-5">
                     {% if product.image1 %}
                         <img src="{{ product.image1.url }}" class="card-img-top img-fluid" alt="...">
                     {% else %}
