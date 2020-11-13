@@ -15,9 +15,9 @@
             </div>
         </div>
         <div class="col-md-6 col-lg-4">
-            <div class="mt-5">
+            <div class="mt-4">
                 <h2>{{ product.name }}</h2>
-                <p>{{ product.rating }} stars</p>
+                <p>{{ product.rating|floatformat }} stars</p>
                 <p>£{{ product.price }}</p>
                 {% if request.user.is_superuser %}
                     <a href="{{ product.get_edit_product_url }}">Edit Product</a>
@@ -32,7 +32,7 @@
                     <input type="submit" value="Add to Cart">
                 </form>
             </div>
-            <p>{{ product.description }}</p>
+            <p>{{ product.description|linebreaks }}</p>
         </div>
     </div>
 </div>
