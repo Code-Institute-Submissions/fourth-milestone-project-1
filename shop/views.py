@@ -16,6 +16,7 @@ def shop(request):
     """ Returns the shop products """
     categories = Category.objects.all()
     products = Product.objects.all()
+    total_products = Product.objects.all()
     page = request.GET.get('page', 1)
     query = None
     filter_categories = None
@@ -23,16 +24,17 @@ def shop(request):
         if 'category' in request.GET:
             filter_categories = request.GET['category'].split(',')
             products = products.filter(category__slug__in=filter_categories)
+            total_products = products.filter(category__slug__in=filter_categories)
             filter_categories = request.GET['category']
         if 'search' in request.GET:
             query = request.GET['search']
             if not query:
                 messages.error(request, "Please enter a search query.")
                 return redirect(reverse('shop'))
-
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
-    paginator = Paginator(products, 1)
+            total_products = products.filter(queries)
+    paginator = Paginator(products, 5)
     try:
         products = paginator.page(page)
     except PageNotAnInteger:
@@ -44,6 +46,7 @@ def shop(request):
         'products': products,
         'search_text': query,
         'filter_categories': filter_categories,
+        'total_products': total_products,
     }
     return render(request, 'shop/products.html', context)
 
