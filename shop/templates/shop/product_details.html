@@ -33,7 +33,11 @@
                     {% csrf_token %}
                     {{ cart_product_form }}
                     <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
-                    <input type="submit" class="submit-button product-details-submit" value="Add to Cart">
+                    <input type="submit" id="product-details-submit" class="submit-button product-details-submit" value="Add to Cart">
+                    <button id="product-details-loading" class="submit-button product-details-submit d-none" type="button" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        <span class="sr-only">Loading...</span>
+                    </button>
                 </form>
             </div>
             {% if product.description|length > 600 %}
