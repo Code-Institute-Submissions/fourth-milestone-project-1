@@ -16,6 +16,14 @@ header {
     box-shadow: 0px 6px 37px 0px rgba(130,130,130,1);
 }
 
+.much-larger-font {
+    font-size: 2rem;
+}
+
+.larger-font {
+    font-size: 1.5rem;
+}
+
 .scroll > #missPanBrand img {
     position: absolute;
     top: -9999rem;
