@@ -20,7 +20,7 @@
         </div>
         <div class="col-md-6 col-lg-4">
             <div class="mt-4">
-                <h2>{{ product.name }}</h2>
+                <h1>{{ product.name }}</h1>
                 {% if request.user.is_superuser %}
                     <a href="{{ product.get_edit_product_url }}">Edit Product</a>
                     <a href="{{ product.get_delete_product_url }}">Delete Product</a>
@@ -40,6 +40,8 @@
                     </button>
                 </form>
             </div>
+        </div>
+        <div id="description-container" class="col-md-8 offset-lg-2">
             {% if product.description|length > 600 %}
                 <div id="product-description-truncated">
                     <p>{{ product.description|truncatechars:"600"|linebreaks }}</p>
@@ -73,19 +75,20 @@
             {% if review.user.user == request.user %}
                 <div class="review col-md-6">
                     <h4>Your Review</h4>
+                    <a href="{{ product.get_edit_review_url }}" type="button">Edit Review</a>
+                    <a href="{{ product.get_delete_review_url }}" type="button">Delete Review</a>
                     <h5>{{ review.title }}</h5>
                     <p>Rating {{ review.rating }}</p>
                     <p>{{ review.body|linebreaks }}</p>
-                    <a href="{{ product.get_edit_review_url }}" type="button">Edit Review</a>
-                    <a href="{{ product.get_delete_review_url }}" type="button">Delete Review</a>
+                    
                 </div>
             {% endif %}
         {% endfor %}
         {% for review in reviews %}
             {% if review.user.user != request.user %}
                 <div class="review col-md-6">
+                    <h4>{{ review.user.user|title }}'s Review</h4>
                     <h5>{{ review.title }}</h5>
-                    <p>By {{ review.user.user }}</p>
                     <p>Rating {{ review.rating }}</p>
                     <p>{{ review.body|linebreaks }}</p>
                 </div>
