@@ -24,4 +24,5 @@
 .product-card-submit {
     z-index: 3;
     position: relative;
+    width: 75%;
 }
