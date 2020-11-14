@@ -26,7 +26,7 @@ def recipes(request):
             recipes = recipes.filter(queries)
     if request.user.is_authenticated:
         user_profile = UserProfile.objects.get(user=request.user)
-    paginator = Paginator(recipes, 1)
+    paginator = Paginator(recipes, 10)
     try:
         recipes = paginator.page(page)
     except PageNotAnInteger:
