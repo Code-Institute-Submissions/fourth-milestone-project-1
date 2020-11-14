@@ -21,9 +21,22 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'videos' %}">Videos</a>
                 </li>
+                {% if request.user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" id="recipe-links" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Recipes
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="recipe-links">
+                        <a href="{% url 'recipes' %}" class="dropdown-item">Browse All</a>
+                        <a href="{% url 'user_recipes' %}" class="dropdown-item">Your Recipes</a>
+                        <a href="{% url 'saved_recipes' %}" class="dropdown-item">Saved Recipes</a>
+                    </div>
+                </li>
+                {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'recipes' %}">Recipes</a>
                 </li>
+                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'gallery' %}">Gallery</a>
                 </li>    
