@@ -47,15 +47,14 @@
                         <img src="{% static 'images/noimage.png' %}" class="card-img-top img-fluid" alt="...">
                     {% endif %}
                     <div class="card-body text-center">
-                        <h5 class="card-title">{{ product.name }}</h5>
+                        <h4 class="card-title">{{ product.name }}</h4>
                         <p class="card-text">
                             {% if product.rating == None %}
-                            0
+                                0<i class="fas fa-star fa-xs"></i>
                             {% else %}
-                            {{ product.rating|floatformat }}
+                                {{ product.rating|floatformat }}<i class="fas fa-star fa-xs"></i>
                             {% endif %}
-                            stars
-                            </p>
+                        </p>
                         <p class="card-text">£{{ product.price }}</p>
                         {% if product.stock == 0 %}
                             <p class="card-text">Out of Stock</p>
