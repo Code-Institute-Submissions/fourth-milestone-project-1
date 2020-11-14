@@ -10,7 +10,7 @@ from shop.models import Product
 def gallery(request):
     products = Product.objects.exclude(image1__exact='')
     images = GalleryImage.objects.filter(is_shown=True)
-    paginator = Paginator(products, 5)
+    paginator = Paginator(products, 48)
     page = request.GET.get('page1')
     try:
         products = paginator.page(page)
@@ -18,7 +18,7 @@ def gallery(request):
         products = paginator.page(1)
     except EmptyPage:
         products = paginator.page(paginator.num_pages)
-    paginator = Paginator(images, 1)
+    paginator = Paginator(images, 48)
     page = request.GET.get('page2')
     try:
         images = paginator.page(page)
