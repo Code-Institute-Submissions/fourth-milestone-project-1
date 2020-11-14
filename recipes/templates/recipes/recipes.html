@@ -22,6 +22,8 @@
     <div class="row">
         <div class="col">
             <h2>Showcase</h2>
+        </div>
+    </div>
         <div class="row">
         {% for recipe in showcased_recipes %}
             <div class="col-md-6 mt-5">
@@ -69,37 +71,65 @@
             </div>
             {% endfor %}
         </div>
+    <hr>
+</div>
         <div class="container">
-        <div class="row">
-        <div class="col">
-            <h2>Recipes</h2>
-            <ul>
+            <div class="row">
+                <div class="col">
+                    <h2>Recipes</h2>
+                </div>
+            </div>
+            <div class="row">
                 {% for recipe in recipes %}
-                    <li>{{ recipe.name }}</li>
-                    <li>By {{ recipe.user }}</li>
-                    <li>Saved {{ recipe.score }} time{{ recipe.score|pluralize }}</li>
-                    <li>{{ recipe.description }}</li>
-                    <li><a href="{% url 'recipe_details' recipe.id %}">Link to Recipe</a></li>
-                    {% if user_profile %}
-                        {% if user_profile in recipe.saved_by_users.all %}
-                                <form action="{% url 'remove_recipe' recipe.id %}" method="POST">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
-                                    <input type="submit" value="Unsave Recipe">
-                                </form>
-                        {% else %}
-                                <form action="{% url 'save_recipe' recipe.id %}" method="POST">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
-                                    <input type="submit" value="Save Recipe">
-                                </form>
-                        {% endif %}
-                    {% endif %}
+                    <div class="col-12 mt-3">
+                        <div class="row">
+                            <div class="col-md-3">
+                                {% if recipe.image %}
+                                    <a href="{% url 'recipe_details' recipe.id %}">
+                                        <img src="{{ recipe.image.url }}" class="card-img-top img-fluid" alt="...">
+                                    </a>
+                                {% else %}
+                                    <a href="{% url 'recipe_details' recipe.id %}">
+                                        <img src="{% static 'images/noimage.png' %}" class="card-img-top img-fluid" alt="...">
+                                    </a>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-7">
+                                <h3><a href="{% url 'recipe_details' recipe.id %}">{{ recipe.name }}</a></h3>
+                                <p>By {{ recipe.user }}</p>
+                                <p>{{ recipe.score }} <i class="fas fa-heart"></i></p>
+                                <p>{{ recipe.description }}</p>
+                            </div>
+                            <div class="col-md-2">
+                            {% if user_profile %}
+                                {% if user_profile in recipe.saved_by_users.all %}
+                                    <form action="{% url 'remove_recipe' recipe.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
+                                        <button type="submit" class="heart-button">
+                                            <i class="fas fa-heart fa-2x"></i>
+                                            <p class="sr-only">Unheart Recipe</p>
+                                        </button>
+                                    </form>
+                                {% else %}
+                                    <form action="{% url 'save_recipe' recipe.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
+                                        <button type="submit" class="heart-button">
+                                            <i class="far fa-heart fa-2x"></i>
+                                            <p class="sr-only">Heart Recipe</p>
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            {% endif %}
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    
                 {% endfor %}
-            </ul>
+           </div>  
         </div>
-    </div>
-    </div></div></div>
     <div class="mt-5">
     <nav aria-label="recipes pagination">
         {% if recipes.has_other_pages %}
