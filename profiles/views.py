@@ -30,20 +30,31 @@ def website_admin(request):
 
 
 @login_required
-def profile_recipes(request):
+def user_recipes(request):
     user_profile = get_object_or_404(UserProfile, user=request.user)
     user_recipes = Recipe.objects.filter(user=user_profile)
     saved_recipes = Recipe.objects.filter(saved_by_users=user_profile, is_approved=True)
     paginator = Paginator(user_recipes, 1)
-    page = request.GET.get('page1')
+    page = request.GET.get('page', 1)
     try:
         user_recipes = paginator.page(page)
     except PageNotAnInteger:
         user_recipes = paginator.page(1)
     except EmptyPage:
         user_recipes = paginator.page(paginator.num_pages)
+    context = {
+        'user_profile': user_profile,
+        'user_recipes': user_recipes,
+    }
+    return render(request, 'profiles/user_recipes.html', context)
+
+
+@login_required
+def saved_recipes(request):
+    user_profile = get_object_or_404(UserProfile, user=request.user)
+    saved_recipes = Recipe.objects.filter(saved_by_users=user_profile, is_approved=True)
     paginator = Paginator(saved_recipes, 1)
-    page = request.GET.get('page2')
+    page = request.GET.get('page', 1)
     try:
         saved_recipes = paginator.page(page)
     except PageNotAnInteger:
@@ -52,7 +63,6 @@ def profile_recipes(request):
         saved_recipes = paginator.page(paginator.num_pages)
     context = {
         'user_profile': user_profile,
-        'user_recipes': user_recipes,
         'saved_recipes': saved_recipes,
     }
-    return render(request, 'profiles/profile_recipes.html', context)
+    return render(request, 'profiles/saved_recipes.html', context)
