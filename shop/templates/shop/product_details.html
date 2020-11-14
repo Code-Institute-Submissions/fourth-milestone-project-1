@@ -25,7 +25,7 @@
                     <a href="{{ product.get_edit_product_url }}">Edit Product</a>
                     <a href="{{ product.get_delete_product_url }}">Delete Product</a>
                 {% endif %}
-                <p class="larger-font">{{ product.rating|floatformat }} stars</p>
+                <p class="larger-font">{{ product.rating|floatformat }}<i class="fas fa-star fa-xs"></i></p>
                 <p class="much-larger-font">£{{ product.price }}</p>
             </div>
                 {% if product.stock > 0 %}
@@ -89,12 +89,24 @@
         {% for review in reviews %}
             {% if review.user.user == request.user %}
                 <div class="review col-12">
-                    <h4>Your Review</h4>
-                    <a href="{{ product.get_edit_review_url }}" type="button">Edit Review</a>
-                    <a href="{{ product.get_delete_review_url }}" type="button">Delete Review</a>
-                    <h5>{{ review.title }}</h5>
-                    <p>{{ review.rating }} stars</p>
-                    <p>{{ review.body|linebreaks }}</p>
+                    <div class="row pt-2 justify-content-between">
+                        <div class="col-md-8 ">
+                            <h4 class="pl-3">Your Review</h4>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <a href="{{ product.get_edit_review_url }}" type="button">Edit Review</a>
+                            <a href="{{ product.get_delete_review_url }}" type="button">Delete Review</a>
+                        </div>
+                    </div>   
+                    <div class="row">
+                        <div class="col-md-2">
+                            <p class="much-larger-font text-center pt-3">{{ review.rating }}<i class="fas fa-star fa-xs"></i></p>
+                        </div>
+                        <div class="col-md-10">
+                            <h5>{{ review.title }}</h5>
+                            <p>{{ review.body|linebreaks }}</p>
+                        </div> 
+                    </div>
                 </div>
             {% endif %}
         {% endfor %}
