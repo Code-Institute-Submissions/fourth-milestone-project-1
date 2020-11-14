@@ -10,29 +10,61 @@
     <div class="row">
         <div class="col">
             <h2>My Recipes</h2>
-            <ul>
-                {% for recipe in user_recipes %}
-                        <li>{{ recipe.name }}</li>
-                        <li>Saved {{ recipe.score }} time{{ recipe.score|pluralize }}</li>
-                        <li>{{ recipe.description }}</li>
-                        <li><a href="{% url 'recipe_details' recipe.id %}">Link to Recipe</a></li>
-                        {% if user_profile %}
-                            {% if user_profile in recipe.saved_by_users.all %}
-                                    <form action="{% url 'remove_recipe' recipe.id %}" method="POST">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
-                                        <input type="submit" value="Unsave Recipe">
-                                    </form>
-                            {% else %}
-                                    <form action="{% url 'save_recipe' recipe.id %}" method="POST">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
-                                        <input type="submit" value="Save Recipe">
-                                    </form>
-                            {% endif %}
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row mb-5">
+        {% for recipe in user_recipes %}
+            <div class="col-md-6 mt-5">
+                <a href="{% url 'recipe_details' recipe.id %}"></a>
+                <div class="row">
+                    <div class="col-md-5">
+                        {% if recipe.image %}
+                            <a href="{% url 'recipe_details' recipe.id %}">
+                                <img src="{{ recipe.image.url }}" class="card-img-top img-fluid" alt="...">
+                            </a>
+                        {% else %}
+                            <a href="{% url 'recipe_details' recipe.id %}">
+                                <img src="{% static 'images/noimage.png' %}" class="card-img-top img-fluid" alt="...">
+                            </a>
                         {% endif %}
-                {% endfor %}
-            </ul>
+                    </div>
+                    <div class="col-md-5">
+                        <h3><a href="{% url 'recipe_details' recipe.id %}">{{ recipe.name }}</a></h3>
+                        <p>By {{ recipe.user }}</p>
+                        <p>{{ recipe.score }} <i class="fas fa-heart"></i></p>
+                        <p>{{ recipe.description }}</p>
+                    </div>
+                    {% if user_profile %}
+                    <div class="col-md-2">
+                        {% if user_profile in recipe.saved_by_users.all %}
+                                <form action="{% url 'remove_recipe' recipe.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
+                                    <button type="submit" class="heart-button">
+                                        <i class="fas fa-heart fa-2x"></i>
+                                        <p class="sr-only">Unheart Recipe</p>
+                                    </button>
+                                </form>
+                        {% else %}
+                                <form action="{% url 'save_recipe' recipe.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
+                                    <button type="submit" class="heart-button">
+                                        <i class="far fa-heart fa-2x"></i>
+                                        <p class="sr-only">Heart Recipe</p>
+                                    </button>
+                                </form>
+                        {% endif %}
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    <hr>
+</div>
             <nav aria-label="user recipes pagination">
             {% if user_recipes.has_other_pages %}
                 <ul class="pagination justify-content-center">
@@ -75,29 +107,58 @@
         </div>
         <div class="col">
             <h2>Saved Recipes</h2>
-            <ul>
-                {% for recipe in saved_recipes %}
-                    <li>{{ recipe.name }}</li>
-                    <li>By {{ recipe.user }}</li>
-                    <li>Saved {{ recipe.score }} time{{ recipe.score|pluralize }}</li>
-                    <li>{{ recipe.description }}</li>
-                    <li><a href="{% url 'recipe_details' recipe.id %}">Link to Recipe</a></li>
+            <div class="container-fluid">
+    <div class="row mb-5">
+        {% for recipe in saved_recipes %}
+            <div class="col-md-6 mt-5">
+                <a href="{% url 'recipe_details' recipe.id %}"></a>
+                <div class="row">
+                    <div class="col-md-5">
+                        {% if recipe.image %}
+                            <a href="{% url 'recipe_details' recipe.id %}">
+                                <img src="{{ recipe.image.url }}" class="card-img-top img-fluid" alt="...">
+                            </a>
+                        {% else %}
+                            <a href="{% url 'recipe_details' recipe.id %}">
+                                <img src="{% static 'images/noimage.png' %}" class="card-img-top img-fluid" alt="...">
+                            </a>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-5">
+                        <h3><a href="{% url 'recipe_details' recipe.id %}">{{ recipe.name }}</a></h3>
+                        <p>By {{ recipe.user }}</p>
+                        <p>{{ recipe.score }} <i class="fas fa-heart"></i></p>
+                        <p>{{ recipe.description }}</p>
+                    </div>
                     {% if user_profile %}
+                    <div class="col-md-2">
                         {% if user_profile in recipe.saved_by_users.all %}
                                 <form action="{% url 'remove_recipe' recipe.id %}" method="POST">
                                     {% csrf_token %}
                                     <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
-                                    <input type="submit" value="Unsave Recipe">
+                                    <button type="submit" class="heart-button">
+                                        <i class="fas fa-heart fa-2x"></i>
+                                        <p class="sr-only">Unheart Recipe</p>
+                                    </button>
                                 </form>
                         {% else %}
                                 <form action="{% url 'save_recipe' recipe.id %}" method="POST">
                                     {% csrf_token %}
                                     <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
-                                    <input type="submit" value="Save Recipe">
+                                    <button type="submit" class="heart-button">
+                                        <i class="far fa-heart fa-2x"></i>
+                                        <p class="sr-only">Heart Recipe</p>
+                                    </button>
                                 </form>
                         {% endif %}
                     {% endif %}
-                {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    <hr>
+</div>
             </ul>
             <nav aria-label="saved recipes pagination">
             {% if saved_recipes.has_other_pages %}
