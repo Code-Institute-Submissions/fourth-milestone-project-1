@@ -141,3 +141,8 @@
 
 
 {% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <script defer src="{% static 'gallery/js/gallery.js' %}"></script>
+{% endblock %}
