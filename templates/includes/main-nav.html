@@ -30,7 +30,7 @@
             </ul>
         </div>
     </div>
-    <a href="{% url 'view_cart' %}">
-                        {{ cart|length }} item{{ cart|length|pluralize }}
-                    </a>
+    <div id="shopping-cart-link">
+        <a href="{% url 'view_cart' %}">{{ cart|length }}<i class="fas fa-shopping-cart"></i></a>
+    </div>
 </nav>
