@@ -33,8 +33,7 @@ def website_admin(request):
 def user_recipes(request):
     user_profile = get_object_or_404(UserProfile, user=request.user)
     user_recipes = Recipe.objects.filter(user=user_profile)
-    saved_recipes = Recipe.objects.filter(saved_by_users=user_profile, is_approved=True)
-    paginator = Paginator(user_recipes, 1)
+    paginator = Paginator(user_recipes, 10)
     page = request.GET.get('page', 1)
     try:
         user_recipes = paginator.page(page)
@@ -53,7 +52,7 @@ def user_recipes(request):
 def saved_recipes(request):
     user_profile = get_object_or_404(UserProfile, user=request.user)
     saved_recipes = Recipe.objects.filter(saved_by_users=user_profile, is_approved=True)
-    paginator = Paginator(saved_recipes, 1)
+    paginator = Paginator(saved_recipes, 10)
     page = request.GET.get('page', 1)
     try:
         saved_recipes = paginator.page(page)
