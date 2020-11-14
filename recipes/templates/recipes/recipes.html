@@ -41,20 +41,26 @@
                     <div class="col-md-6">
                         <h3><a href="{% url 'recipe_details' recipe.id %}">{{ recipe.name }}</a></h3>
                         <p>By {{ recipe.user }}</p>
-                        <p>Saved {{ recipe.score }} time{{ recipe.score|pluralize }}</p>
+                        <p>{{ recipe.score }} <i class="fas fa-heart"></i></p>
                         <p>{{ recipe.description }}</p>
                     {% if user_profile %}
                         {% if user_profile in recipe.saved_by_users.all %}
                                 <form action="{% url 'remove_recipe' recipe.id %}" method="POST">
                                     {% csrf_token %}
                                     <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
-                                    <input type="submit" value="Unsave Recipe">
+                                    <button type="submit" class="heart-button">
+                                        <i class="fas fa-heart fa-2x"></i>
+                                        <p class="sr-only">Unheart Recipe</p>
+                                    </button>
                                 </form>
                         {% else %}
                                 <form action="{% url 'save_recipe' recipe.id %}" method="POST">
                                     {% csrf_token %}
                                     <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
-                                    <input type="submit" value="Save Recipe">
+                                    <button type="submit" class="heart-button">
+                                        <i class="far fa-heart fa-2x"></i>
+                                        <p class="sr-only">Heart Recipe</p>
+                                    </button>
                                 </form>
                         {% endif %}
                     {% endif %}
