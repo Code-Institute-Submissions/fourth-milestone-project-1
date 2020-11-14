@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block content %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'gallery/css/gallery.css' %}">
+{% endblock %}
 
+{% block content %}
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
         <h1 class="display-4">Gallery</h1>
