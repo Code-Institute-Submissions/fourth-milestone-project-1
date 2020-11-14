@@ -67,9 +67,6 @@
                         <a href="{% url 'account_login' %}">Login</a>
                         <a href="{% url 'account_signup' %}">Register</a>
                     {% endif %}
-                    <a href="{% url 'view_cart' %}">
-                        {{ cart|length }} item{{ cart|length|pluralize }}
-                    </a>
                 </div> 
             </div>
             {% include 'includes/main-nav.html' %}
