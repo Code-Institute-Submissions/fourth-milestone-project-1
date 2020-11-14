@@ -1,5 +1,13 @@
 .heart-button {
     border: 0;
-    background-color: #fff;
+    background-color: transparent;
     color: #b80d0d;
+}
+
+.showcase {
+    background-color: rgba(237, 209, 126, 0.2);
+}
+
+.jumbotron {
+    margin-bottom: 0;
 }
