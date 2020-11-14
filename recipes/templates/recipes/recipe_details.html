@@ -8,9 +8,9 @@
         <div class="col-md-6 col-lg-4 offset-lg-2">
             <div>
                 {% if recipe.image %}
-                        <img src="{{ recipe.image.url }}" class="card-img-top img-fluid" alt="...">
+                        <img src="{{ recipe.image.url }}" class="recipe-details-img img-fluid" alt="...">
                     {% else %}
-                        <img src="{% static 'images/noimage.png' %}" class="card-img-top img-fluid" alt="...">
+                        <img src="{% static 'images/noimage.png' %}" class="recipe-details-img img-fluid" alt="...">
                 {% endif %}
             </div>
         </div>
@@ -22,11 +22,15 @@
                     <p><a href="{% url 'edit_recipe' recipe.id %}">Edit Recipe</a></p>
                     <p><a href="{% url 'delete_recipe' recipe.id %}">Delete Recipe</a></p>
                 {% endif %}
-                <p>{{ recipe.score }} votes</p>
+                <p>{{ recipe.score }} <i class="fas fa-heart"></i></p>
                 <p>{{ recipe.description }}</p>
                 <p>{{ recipe.ingredients|linebreaks }}</p>
-                <p>{{ recipe.instructions|linebreaks }}</p>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 offset-lg-2">
+            <p>{{ recipe.instructions|linebreaks }}</p>
         </div>
     </div>
 </div>
