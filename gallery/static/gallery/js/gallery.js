@@ -17,3 +17,10 @@ $("#photo-gallery-button").click( function() {
 ScrollReveal().reveal('.gallery-image', { duration: 900 });
 
 ScrollReveal().reveal('.product-image', { duration: 900 });
+
+if ($(window).width() >= 541) {
+    $(".gallery-image").click( function() {
+        $(this).find(".overlay").toggleClass("d-none")
+        $(this).find(".large-image").toggleClass("d-none")
+    })
+}
