@@ -9,23 +9,32 @@
             <input type="text" maxlength="50" name="search" placeholder="Search recipes">
             <input type="submit" value="Submit">
         </form>
+        <div class="row">
+            <a href="{% url 'add_recipe' %}">Add a recipe</a>
+        </div>
     </div>
 </div>
 <div class="container-fluid mt-5">
     <div class="row">
-        <a href="{% url 'add_recipe' %}">Add a recipe</a>
-        
-    </div>
-    <div class="row">
         <div class="col">
             <h2>Showcase</h2>
-            <ul>
-                {% for recipe in showcased_recipes %}
-                    <li>{{ recipe.name }}</li>
-                    <li>By {{ recipe.user }}</li>
-                    <li>Saved {{ recipe.score }} time{{ recipe.score|pluralize }}</li>
-                    <li>{{ recipe.description }}</li>
-                    <li><a href="{% url 'recipe_details' recipe.id %}">Link to Recipe</a></li>
+        <div class="row">
+        {% for recipe in showcased_recipes %}
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        {% if recipe.image %}
+                            <img src="{{ recipe.image.url }}" class="card-img-top img-fluid" alt="...">
+                        {% else %}
+                            <img src="{% static 'images/noimage.png' %}" class="card-img-top img-fluid" alt="...">
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6">
+                        <h3>{{ recipe.name }}</h3>
+                        <p>By {{ recipe.user }}</p>
+                        <p>Saved {{ recipe.score }} time{{ recipe.score|pluralize }}</p>
+                        <p>{{ recipe.description }}</p>
+                        <p><a href="{% url 'recipe_details' recipe.id %}">Link to Recipe</a></p>
                     {% if user_profile %}
                         {% if user_profile in recipe.saved_by_users.all %}
                                 <form action="{% url 'remove_recipe' recipe.id %}" method="POST">
@@ -41,9 +50,13 @@
                                 </form>
                         {% endif %}
                     {% endif %}
-                {% endfor %}
-            </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
         </div>
+        <div class="container">
+        <div class="row">
         <div class="col">
             <h2>Recipes</h2>
             <ul>
@@ -72,6 +85,7 @@
             </ul>
         </div>
     </div>
+    </div></div>
     <nav aria-label="recipes pagination">
         {% if recipes.has_other_pages %}
             <ul class="pagination justify-content-center">
