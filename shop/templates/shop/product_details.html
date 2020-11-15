@@ -22,10 +22,10 @@
             <div class="mt-4">
                 <h1>{{ product.name }}</h1>
                 {% if request.user.is_superuser %}
-                    <a href="{{ product.get_edit_product_url }}">Edit Product</a>
-                    <a href="{{ product.get_delete_product_url }}">Delete Product</a>
+                    <a href="{{ product.get_edit_product_url }}" class="edit-button mr-2">Edit Product</a>
+                    <a href="{{ product.get_delete_product_url }}" class="warning-button">Delete Product</a>
                 {% endif %}
-                <p class="larger-font">{{ product.rating|floatformat }}<i class="fas fa-star fa-xs"></i></p>
+                <p class="larger-font mt-2">{{ product.rating|floatformat }}<i class="fas fa-star fa-xs"></i></p>
                 <p class="much-larger-font">£{{ product.price }}</p>
             </div>
                 {% if product.stock > 0 %}
@@ -73,13 +73,17 @@
     </div>
 </div>
 <div class="container">
-    <div class="row">
-        <div class="col">
-            <hr class="mt-4">
+    <hr class="mt-4">
+    <div class="row justify-content-between">
+        <div class="col-md-8">
             <h3 class="my-4">Reviews</h3>
+        </div>
+        <div class="col-md-2">
             {% if not user_review %}
                 {% if request.user.is_authenticated %}
-                    <a href="{{ product.get_create_review_url }}" type="button">Write a Review</a>
+                <div class="my-4">
+                    <a href="{{ product.get_create_review_url }}" class="edit-button">Write a Review</a>
+                </div>
                 {% endif %}
             {% endif %}
         </div>
@@ -94,8 +98,8 @@
                             <h4 class="pl-3">Your Review</h4>
                         </div>
                         <div class="col-md-3 text-center">
-                            <a href="{{ product.get_edit_review_url }}" type="button">Edit Review</a>
-                            <a href="{{ product.get_delete_review_url }}" type="button">Delete Review</a>
+                            <a href="{{ product.get_edit_review_url }}" class="edit-button">Edit Review</a>
+                            <a href="{{ product.get_delete_review_url }}" class="warning-button">Delete Review</a>
                         </div>
                     </div>   
                     <div class="row">
