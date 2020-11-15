@@ -32,9 +32,10 @@
                 </p>
             </div>   
         </div>
+        <hr>
         <div class="row mt-5">
-            <div class="col">
-                <h2>Recipe Approval</h2>
+            <div class="col mb-3">
+                <h2>Recipes Pending Approval</h2>
             </div>
             {% for recipe in unapproved_recipes %}
                     <div class="col-12 mt-3">
@@ -60,6 +61,47 @@
                     </div>
             {% endfor %}
         </div>
+        <div class="mt-5">
+    <nav aria-label="unapproved recipes pagination">
+        {% if unapproved_recipes.has_other_pages %}
+            <ul class="pagination justify-content-center">
+            {% if unapproved_recipes.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ unapproved_recipes.previous_page_number }}">&laquo;</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                        <span>&laquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+            {% for i in unapproved_recipes.paginator.page_range %}
+                {% if unapproved_recipes.number == i %}
+                    <li class="page-item active">
+                        <a class="page-link" href="?page={{ i }}">
+                            <span>{{ i }} <span class="sr-only">(current)</span></span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if unapproved_recipes.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ unapproved_recipes.next_page_number }}">&raquo;</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                        <span>&raquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+            </ul>
+        {% endif %}
+        </nav>
+</div>
     </div>
     
 {% endblock %}
