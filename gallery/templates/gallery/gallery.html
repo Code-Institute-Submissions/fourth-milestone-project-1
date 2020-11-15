@@ -9,9 +9,9 @@
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
         <h1 class="display-4">Gallery</h1>
-        <button id="product-gallery-button">Switch to Products</button>
-        <button id="photo-gallery-button" class="hide">Switch to Photos</button>
-        <a href="{% url 'add_image' %}">Upload gallery image</a>
+        <button id="product-gallery-button" class="submit-button">Switch to Products</button>
+        <button id="photo-gallery-button" class="submit-button hide">Switch to Photos</button>
+        <a href="{% url 'add_image' %}" class="ml-3 edit-button">Upload gallery image</a>
     </div>
 </div>
 <div id="product-gallery" class="container-fluid mt-5 hide">
