@@ -9,29 +9,39 @@
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
         <h1 class="display-4">Videos</h1>
+        {% if request.user.is_superuser %}
+            <a href="{% url 'add_video' %}" class="edit-button">Add video</a>
+        {% endif %}
     </div>
 </div>
 <div class="container mt-5">
-    <div class="row">
-        <div class="col">
-            {% for video in videos %}
-                {% if video.is_shown %}
-                    <div>
+    {% for video in videos %}
+        {% if video.is_shown %}
+            <div class="row justify-content-between">
+                <div class="col-md-6">
+                    <div class="mb-4">
                         <h2>{{ video.name }}</h2>
                     </div>
-                    <div class="video-container embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="{{ video.url }}" frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
+                </div>
+            {% if request.user.is_superuser %}
+                <div class="col-md-3">
                     <div>
-                        <a href="{% url 'edit_video' video.id %}">Edit Video</a>
-                        <a href="{% url 'delete_video' video.id %}">Delete Video</a>
+                        <a href="{% url 'edit_video' video.id %}" class="edit-button mr-3">Edit Video</a>
+                        <a href="{% url 'delete_video' video.id %}" class="warning-button">Delete Video</a>
                     </div>
-                {% endif %}
-            {% endfor %}
-        </div>
-    </div>
-
+                </div>
+            {% endif %}
+            </div>
+            <div class="row">
+                <div class="video-container embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="{{ video.url }}" frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>  
+        {% endif %}
+    {% endfor %}
+</div>
+    <div class="mt-5">
     <nav aria-label="videos pagination">
         {% if videos.has_other_pages %}
             <ul class="pagination justify-content-center">
@@ -71,6 +81,6 @@
             </ul>
         {% endif %}
     </nav>
-</div>
+    </div>
 
 {% endblock %}
