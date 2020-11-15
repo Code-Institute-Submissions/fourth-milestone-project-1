@@ -15,8 +15,8 @@ from reviews.models import ProductReview
 def shop(request):
     """ Returns the shop products """
     categories = Category.objects.all()
-    products = Product.objects.all()
-    total_products = Product.objects.all()
+    products = Product.objects.filter(available=True)
+    total_products = Product.objects.filter(available=True)
     page = request.GET.get('page', 1)
     query = None
     filter_categories = None
