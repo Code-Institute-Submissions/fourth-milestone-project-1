@@ -52,9 +52,10 @@
                 </table>
              </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <a href="{% url 'create_order' %}" class="submit-button">Proceed to Checkout</a>
+        <div class="row mt-4">
+            <div class="col d-flex justify-content-end">
+                <a href="{% url 'shop' %}" class="standard-button checkout-button">Continue Shopping</a>
+                <a href="{% url 'create_order' %}" class="submit-button checkout-button">Proceed to Checkout</a>
             </div>
         </div>
     {% else %}
