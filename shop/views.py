@@ -55,6 +55,8 @@ def product_details(request, id, slug):
     """ Returns the product details page """
     categories = Category.objects.all()
     product = get_object_or_404(Product, id=id, slug=slug)
+    if product.available is False and not request.user.is_superuser:
+        return redirect(reverse('shop'))
     page = request.GET.get('page', 1)
     cart_product_form = CartAddProductForm()
     user_review = False
