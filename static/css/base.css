@@ -214,3 +214,15 @@ select {
 #shopping-cart-link a:hover {
     color: #7232b8;
 }
+
+#page-container {
+    position: relative;
+    min-height: 100%;
+}
+
+.footer {
+    background-color: #e6e6e6;
+    height: 120px;
+    width: 100%;
+    line-height: 120px;
+}
