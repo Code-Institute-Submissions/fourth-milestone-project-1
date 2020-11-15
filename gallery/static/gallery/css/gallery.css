@@ -34,3 +34,7 @@ html.sr .product-image {
 .gallery-image {
     padding: 0;
 }
+
+.jumbotron {
+    margin-bottom: 0;
+}
