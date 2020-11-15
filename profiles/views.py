@@ -26,7 +26,19 @@ def website_admin(request):
     if not request.user.is_superuser:
         return redirect(reverse('home'))
     else:
-        return render(request, 'profiles/website_admin.html')
+        unapproved_recipes = Recipe.objects.filter(is_approved=False)
+        page = request.GET.get('page', 1)
+        paginator = Paginator(unapproved_recipes, 5)
+        try:
+            unapproved_recipes = paginator.page(page)
+        except PageNotAnInteger:
+            unapproved_recipes = paginator.page(1)
+        except EmptyPage:
+            unapproved_recipes = paginator.page(paginator.num_pages)
+        context = {
+            'unapproved_recipes': unapproved_recipes,
+        }
+        return render(request, 'profiles/website_admin.html', context)
 
 
 @login_required
