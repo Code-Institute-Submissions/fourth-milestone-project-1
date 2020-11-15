@@ -121,6 +121,11 @@ input {
     justify-content: center;
 }
 
+.home-button {
+    padding: 1rem;
+    font-size: 1.5rem;
+}
+
 .submit-button {
     border-radius: 0;
     color: #fff;
@@ -237,12 +242,26 @@ input {
 
 #page-container {
     position: relative;
-    min-height: 100%;
+    min-height: 100vh;
 }
 
 .footer {
-    background-color: #e6e6e6;
+    background-color: #fff;
     height: 120px;
     width: 100%;
     line-height: 120px;
+}
+
+.jumbotron {
+    background-color: #f0f8ff;
+}
+
+#shop-section-home > .jumbotron {
+    height: 100vh;
+    background-image: url('/static/images/littlecakes.jpg');
+    background-size: cover;
+}
+
+.home-title {
+    font-weight: 400;
 }
