@@ -45,9 +45,9 @@ def recipes(request):
 def recipe_details(request, id):
     recipe = get_object_or_404(Recipe, id=id)
     if not recipe.is_approved:
-        if request.user:
+        if request.user.is_authenticated:
             user = UserProfile.objects.get(user=request.user)
-            if recipe.user == user:
+            if recipe.user == user or request.user.is_superuser:
                 context = {
                     'recipe': recipe
                 }
