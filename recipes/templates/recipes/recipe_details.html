@@ -23,8 +23,10 @@
                 <h2>{{ recipe.name }}</h2>
                 <p>Created by {{ recipe.user }}</p>
                 {% if recipe.user.user == request.user %}
-                    <p><a href="{% url 'edit_recipe' recipe.id %}">Edit Recipe</a></p>
-                    <p><a href="{% url 'delete_recipe' recipe.id %}">Delete Recipe</a></p>
+                <div class="mb-3">
+                    <a href="{% url 'edit_recipe' recipe.id %}" class="edit-button">Edit Recipe</a>
+                    <a href="{% url 'delete_recipe' recipe.id %}" class="warning-button">Delete Recipe</a>
+                </div>
                 {% endif %}
                 <p>{{ recipe.score }} <i class="fas fa-heart"></i></p>
                 <p>{{ recipe.description }}</p>
@@ -32,8 +34,8 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12 offset-lg-2">
+    <div class="row mt-3">
+        <div class="col-8 offset-lg-2">
             <p>{{ recipe.instructions|linebreaks }}</p>
         </div>
     </div>
