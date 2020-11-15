@@ -8,14 +8,24 @@
 {% block content %}
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <h1 class="display-4">Recipes</h1>
-        <form class="GET" action="{% url 'recipes' %}">
-            <input type="text" maxlength="50" name="search" placeholder="Search recipes">
-            <input type="submit" value="Submit">
-        </form>
-        <div>
-            <a href="{% url 'add_recipe' %}">Add a recipe</a>
+        <div class="row">
+            <div class="col-md-8">
+                <h1 class="display-4">Recipes</h1>
+            </div>
+            <div class="col-md-4">
+                <form class="GET mt-4" action="{% url 'recipes' %}">
+                    <input type="text" maxlength="50" name="search" placeholder="Search recipes">
+                    <input type="submit" class="submit-button" value="Submit">
+                </form>
+            </div>
         </div>
+        {% if request.user.is_authenticated %}
+            <div class="row">
+                <div class="col my-5">
+                    <a href="{% url 'add_recipe' %}" class="larger-font edit-button">Add a recipe</a>
+                </div>
+            </div>
+        {% endif %}
     </div>
 </div>
 <div class="container-fluid showcase">
