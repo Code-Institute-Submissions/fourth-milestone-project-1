@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .models import OrderItem
+from django.shortcuts import render, redirect, reverse, get_object_or_404
+from .models import Order, OrderItem
 from .forms import CreateOrderForm
 from cart.cart import Cart
 from django.conf import settings
@@ -31,7 +31,7 @@ def create_order(request):
                 order.user_profile = user_profile
                 order.save()
             cart.clear()
-            return render(request, 'orders/order_complete.html', {'order': order})
+            return redirect(reverse('order_complete', args=[order.id]))
     else:
         form = CreateOrderForm()
         total = cart.get_total_price()
@@ -48,3 +48,11 @@ def create_order(request):
             'client_secret': intent.client_secret,
         }
     return render(request, 'orders/create_order.html', context)
+
+
+def order_complete(request, id):
+    order = get_object_or_404(Order, id=id)
+    context = {
+        'order': order,
+    }
+    return render(request, 'orders/order_complete.html', context)
