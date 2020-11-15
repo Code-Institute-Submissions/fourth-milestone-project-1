@@ -74,11 +74,18 @@
         </header>
         <div id="header-container" class="header-container-normal"></div>
 
+        <div id="page-container">
         {% block content %}
         {% endblock %}
+        </div>
 
+        <footer class="footer">
+            <div class="container">
+            </div>
+        </footer>
         {% block postloadjs %}
         {% endblock %}
 
+        
     </body>
 </html>
