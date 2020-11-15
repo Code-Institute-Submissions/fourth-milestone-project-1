@@ -11,7 +11,9 @@
         <h1 class="display-4">Gallery</h1>
         <button id="product-gallery-button" class="submit-button">Switch to Products</button>
         <button id="photo-gallery-button" class="submit-button hide">Switch to Photos</button>
-        <a href="{% url 'add_image' %}" class="ml-3 edit-button">Upload gallery image</a>
+        {% if request.user.is_superuser %}
+            <a href="{% url 'add_image' %}" class="ml-3 edit-button">Upload gallery image</a>
+        {% endif %}
     </div>
 </div>
 <div id="product-gallery" class="container-fluid mt-5 hide">
