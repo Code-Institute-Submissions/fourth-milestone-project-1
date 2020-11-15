@@ -16,6 +16,11 @@ header {
     box-shadow: 0px 6px 37px 0px rgba(130,130,130,1);
 }
 
+select {
+    border-radius: 0;
+    border: 1px solid #000;
+}
+
 .much-larger-font {
     font-size: 3rem;
 }
@@ -127,14 +132,31 @@ header {
     transition: background-color 0.1s linear;
 }
 
+.warning-button {
+    border-radius: 0;
+    color: #fff;
+    background-color: #dd2c2c;
+    border: 1px solid #dd2c2c;
+    padding: 0.5rem;
+    transition: background-color 0.1s ease-out;
+}
+
 .submit-button:hover {
     color: #7232b8;
     background-color: #fff;
+    text-decoration: none;
 }
 
 .standard-button:hover {
     color: #fff;
     background-color: #7232b8;
+    text-decoration: none;
+}
+
+.warning-button:hover {
+    color: #dd2c2c;
+    background-color: #fff;
+    text-decoration: none;
 }
 
 .card-img-top {
