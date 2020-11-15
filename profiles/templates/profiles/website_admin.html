@@ -1,12 +1,38 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="container">
-        <h1 class="mt-5">Website Admin</h1>
-        <a href="{% url 'admin:index' %}">Django Admin</a>
-        <a href="{% url 'add_product' %}">Create Product</a>
-        <a href="{% url 'add_video' %}">Add video</a>
-        <a href="{% url 'add_image' %}">Upload gallery image</a>
+    <div class="container mt-5">
+        <div class="row">
+            <h1>Website Admin</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p class="mt-5">
+                    <a href="{% url 'admin:index' %}" class="edit-button">Link to Django Admin</a>
+                </p>
+            </div>
+            <div class="col-md-3">
+                <p class="mt-5">
+                    <a href="{% url 'add_product' %}" class="edit-button">Add Product Form</a>
+                </p>
+            </div>
+            <div class="col-md-3">
+                <p class="mt-5">
+                    <a href="{% url 'add_video' %}" class="edit-button">Add Video Form</a>
+                </p>
+            </div>
+            <div class="col-md-3">
+                <p class="mt-5">
+                    <a href="{% url 'add_image' %}" class="edit-button">Upload gallery image</a>
+                </p>
+            </div>   
+        </div>
+        <div class="row mt-5">
+            <div class="col">
+                <h2>Recipe Approval</h2>
+            </div>
+            <div></div>
+        </div>
     </div>
     
 {% endblock %}
