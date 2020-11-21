@@ -14,9 +14,9 @@ $("#photo-gallery-button").click( function() {
     ScrollReveal().sync()
 });
 
-ScrollReveal().reveal('.gallery-image', { duration: 900 });
+ScrollReveal().reveal('.gallery-image', { duration: 700 });
 
-ScrollReveal().reveal('.product-image', { duration: 900 });
+ScrollReveal().reveal('.product-image', { duration: 700 });
 
 if ($(window).width() >= 541) {
     $(".gallery-image").click( function() {
