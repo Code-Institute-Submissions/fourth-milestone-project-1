@@ -85,10 +85,10 @@ TEMPLATES = [
                 'shop.context_processors.get_categories',
                 'cart.context_processors.cart',
             ],
-            'builtins': {
+            'builtins': [
                 'crispy_forms.templatetags.crispy_forms_tags',
                 'crispy_forms.templatetags.crispy_forms_field',
-            }
+            ],
         },
     },
 ]
