@@ -8,7 +8,7 @@
 {% block content %}
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <h1 class="display-4">Videos</h1>
+        <h1 class="display-4 home-title">Videos</h1>
         {% if request.user.is_superuser %}
         <div class="mt-4">
             <a href="{% url 'add_video' %}" class="edit-button">Add video</a>

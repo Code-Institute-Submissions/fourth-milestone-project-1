@@ -11,16 +11,16 @@
     <div class="container">
         {% if not filter_categories %}
             {% if not search_text %}
-                <h1 class="display-4">All Products</h1>
+                <h1 class="display-4 home-title">All Products</h1>
             {% else %}
-                <h1 class="display-4">Search results for "{{ search_text }}"</h1>
+                <h1 class="display-4 home-title">Search results for "{{ search_text }}"</h1>
             {% endif %}
         {% elif filter_categories == "cakes" %}
-            <h1 class="display-4">Cakes</h1>
+            <h1 class="display-4 home-title">Cakes</h1>
         {% elif filter_categories == "cookies" %}
-            <h1 class="display-4">Cookies</h1>
+            <h1 class="display-4 home-title">Cookies</h1>
         {% elif filter_categories == "merchandise" %}
-            <h1 class="display-4">Merchandise</h1>
+            <h1 class="display-4 home-title">Merchandise</h1>
         {% endif %}
         <form class="GET mt-4" action="{% url 'shop' %}">
             <input type="text" maxlength="50" name="search" placeholder="Search our products">
