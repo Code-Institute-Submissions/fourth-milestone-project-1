@@ -60,7 +60,7 @@ def product_details(request, id, slug):
     page = request.GET.get('page', 1)
     cart_product_form = CartAddProductForm()
     user_review = False
-    reviews = product.product_reviews.all()
+    reviews = product.product_reviews.all().order_by('id')
     if reviews:
         for review in reviews:
             if request.user == review.user.user:
