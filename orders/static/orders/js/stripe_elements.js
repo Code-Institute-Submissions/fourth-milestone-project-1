@@ -7,7 +7,7 @@ var style = {
         color: '#000',
         fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
         fontSmoothing: 'antialiased',
-        fontSize: '16px',
+        fontSize: '1.25rem',
         '::placeholder': {
             color: '#aab7c4'
         }
@@ -53,6 +53,7 @@ form.addEventListener('submit', function(ev) {
                     line2: $.trim(form.address_line2.value),
                     city: $.trim(form.town_or_city.value),
                     country: $.trim(form.country.value),
+                    postal_code: $.trim(form.postcode.value),
                 }
             }
         }
