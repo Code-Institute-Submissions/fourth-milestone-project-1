@@ -21,8 +21,9 @@
                     {% endfor %}
                 </ul>
                 <p class="larger-font mt-4">Total: £{{ cart.get_total_price }}</p>
+                <a href="{% url 'view_cart' %}" class="mt-5 px-5 py-1 standard-button">Back to Cart</a>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 mt-5">
                 <form method="POST" class="order-form" id="payment-form">
                     {% csrf_token %}
                     {{ form.first_name | as_crispy_field }}
@@ -36,7 +37,9 @@
                     {{ form.name_on_card | as_crispy_field }}
                     <div class="mt-4" id="card-element"></div>
                     <div class="mt-4" id="card-errors"></div>
-                    <p class="mt-5"><input id="submit-button" type="submit" value="Place Order"></p>
+                    <p class="mt-5 text-center">
+                        <input id="submit-button" class="submit-button larger-font px-3" type="submit" value="Place Order">
+                    </p>
                 </form>
             </div>
         </div>
