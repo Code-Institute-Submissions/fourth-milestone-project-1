@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'django_countries',
+    'crispy_forms',
     'home',
     'shop',
     'cart',
@@ -65,6 +66,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'miss_pans_bakery.urls'
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -82,6 +85,10 @@ TEMPLATES = [
                 'shop.context_processors.get_categories',
                 'cart.context_processors.cart',
             ],
+            'builtins': {
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
+            }
         },
     },
 ]
