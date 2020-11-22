@@ -5,3 +5,8 @@
 .profile-link:hover {
     color: #7232b8;
 }
+
+#default-delivery-form .form-control {
+    border: 1px solid #000;
+    border-radius: 0;
+}
