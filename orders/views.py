@@ -33,7 +33,7 @@ def create_order(request):
             cart.clear()
             return redirect(reverse('order_complete', args=[order.id]))
     else:
-        form = CreateOrderForm()
+        
         total = cart.get_total_price()
         stripe_total = round(total * 100)
         stripe.api_key = stripe_secret_key
@@ -41,6 +41,21 @@ def create_order(request):
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY,
         )
+        if request.user.is_authenticated:
+            try:
+                user_profile = UserProfile.objects.get(user=request.user)
+                form = CreateOrderForm(initial={
+                    'email': user_profile.user.email,
+                    'address_line1': user_profile.default_address_line1,
+                    'address_line2': user_profile.default_address_line2,
+                    'town_or_city': user_profile.default_town_or_city,
+                    'postcode': user_profile.default_postcode,
+                    'country': user_profile.default_country,
+                })
+            except UserProfile.DoesNotExist:
+                form = CreateOrderForm()
+        else:
+            form = CreateOrderForm()       
         context = {
             'cart': cart,
             'form': form,
