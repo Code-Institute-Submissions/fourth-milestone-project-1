@@ -6,18 +6,18 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-md-3">Date Created</div>
-            <div class="col-md-3">Order Number</div>
-            <div class="col-md-3">Items Ordered</div>
-            <div class="col-md-3">Total Cost</div>
+            <div class="col-md-3 text-center">Order Date</div>
+            <div class="col-md-3 text-center">Order Number</div>
+            <div class="col-md-3 text-center">Items Ordered</div>
+            <div class="col-md-3 text-center">Total Cost</div>
         </div>
         <hr>
         {% for order in orders %}
         <div class="row">
             
-                <div class="col-md-3">{{ order.created }}</div>
-                <div class="col-md-3">{{ order.id }}</div>
-                <div class="col-md-3">
+                <div class="col-md-3 text-center py-2">{{ order.created }}</div>
+                <div class="col-md-3 text-center py-2">{{ order.id }}</div>
+                <div class="col-md-3 py-2">
                     <ul>
                     {% for item in order.items.all %}
                         <li>
@@ -26,7 +26,7 @@
                     {% endfor %}
                     </ul>
                 </div>
-                <div class="col-md-3">{{ order.get_total_cost }}</div>             
+                <div class="col-md-3 text-center py-2">£{{ order.get_total_cost }}</div>             
             
         </div>
         <hr>
