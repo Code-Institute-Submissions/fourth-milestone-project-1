@@ -11,6 +11,10 @@ from recipes.models import Recipe
 @login_required
 def user_profile(request):
     user_profile = get_object_or_404(UserProfile, user=request.user)
+    if request.method == 'POST':
+        form = UserOrderDetailsForm(request.POST, instance=user_profile)
+        if form.is_valid():
+            form.save()
     form = UserOrderDetailsForm(instance=user_profile)
     context = {
         'user_profile': user_profile,
