@@ -1,8 +1,20 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'profiles/css/profiles.css' %}">
+{% endblock %}
 
 {% block content %}
     <div class="container">
-        <h1 class="mt-5 mb-5">Your Orders</h1>
+        <div class="row mt-5 mb-5">
+            <div class="col-md-8">
+                <h1>Your Orders</h1>
+            </div>
+            <div class="col-md-4">
+                <a href="{% url 'user_profile' %}" class="standard-button p-2 larger-font">Back to Profile</a>
+            </div>
+        </div>
     </div>
     <div class="container">
         <div class="row">
@@ -17,13 +29,13 @@
             
                 <div class="col-md-3 text-center py-2">{{ order.created }}</div>
                 <div class="col-md-3 text-center py-2">
-                    <a href="{% url 'order_complete' order.id %}">{{ order.id }}</a>
+                    <a href="{% url 'order_complete' order.id %}" class="profile-link">{{ order.id }}</a>
                 </div>
                 <div class="col-md-3 py-2">
                     <ul>
                     {% for item in order.items.all %}
                         <li>
-                            {{ item.quantity }}x <a href="{% url 'product_details' item.product.id item.product.slug %}">{{ item.product.name }}</a>
+                            {{ item.quantity }}x <a href="{% url 'product_details' item.product.id item.product.slug %}" class="profile-link">{{ item.product.name }}</a>
                         </li>
                     {% endfor %}
                     </ul>
