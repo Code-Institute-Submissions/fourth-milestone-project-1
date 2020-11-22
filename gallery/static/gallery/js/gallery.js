@@ -14,6 +14,14 @@ $("#photo-gallery-button").click( function() {
     ScrollReveal().sync()
 });
 
+$(".gallery-image").hover(
+    function() {
+    $(this).find(".image-button").toggleClass("d-none");
+  }, function() {
+    $(this).find(".image-button").toggleClass("d-none")
+  }
+);
+
 ScrollReveal().reveal('.gallery-image', { duration: 700 });
 
 ScrollReveal().reveal('.product-image', { duration: 700 });
