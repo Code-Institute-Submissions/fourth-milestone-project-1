@@ -34,6 +34,12 @@
                     {{ form.town_or_city | as_crispy_field }}
                     {{ form.postcode | as_crispy_field }}
                     {{ form.country | as_crispy_field }}
+                    {% if user.is_authenticated %}
+                    <div class="form-check form-check-inline mt-2 mb-4">
+                        <label class="form-check-label" for="id-update-default">Update my default delivery information:</label>
+                        <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-update-default" name="update-default">
+					</div>
+                    {% endif %}
                     {{ form.name_on_card | as_crispy_field }}
                     <div class="mt-4" id="card-element"></div>
                     <div class="mt-4" id="card-errors"></div>
