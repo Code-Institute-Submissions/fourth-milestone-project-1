@@ -2,42 +2,35 @@
 
 {% block content %}
     <div class="container">
-        <h1 class="mt-5">Your Orders</h1>
+        <h1 class="mt-5 mb-5">Your Orders</h1>
     </div>
     <div class="container">
         <div class="row">
-            <div class="col">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Order #</th>
-                            <th>Items</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for order in orders %}
-                            <tr>
-                                <td>{{ order.created }}</td>
-                                <td>{{ order.id|truncatechars:5 }}</td>
-                                <td>
-                                    <ul>
-                                        {% for item in order.items.all %}
-                                            <li>
-                                                {{ item.quantity }}x {{ item.product.name }}
-                                            </li>
-                                        {% endfor %}
-                                    </ul>
-                                </td>
-                                <td>{{ order.get_total_cost }}</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                
-                </table>
-            </div>
+            <div class="col-md-3">Date Created</div>
+            <div class="col-md-3">Order Number</div>
+            <div class="col-md-3">Items Ordered</div>
+            <div class="col-md-3">Total Cost</div>
         </div>
+        <hr>
+        {% for order in orders %}
+        <div class="row">
+            
+                <div class="col-md-3">{{ order.created }}</div>
+                <div class="col-md-3">{{ order.id }}</div>
+                <div class="col-md-3">
+                    <ul>
+                    {% for item in order.items.all %}
+                        <li>
+                            {{ item.quantity }}x {{ item.product.name }}
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-md-3">{{ order.get_total_cost }}</div>             
+            
+        </div>
+        <hr>
+        {% endfor %}
     </div>
     
 {% endblock %}
