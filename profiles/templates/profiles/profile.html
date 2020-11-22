@@ -2,15 +2,23 @@
 
 {% block content %}
     <div class="container">
-        <h1 class="mt-5">{{ user_profile }}'s Profile</h1>
+        <div class="row mt-5 mb-5">
+            <div class="col">
+                <h1>{{ user_profile }}'s Profile</h1>
+            </div>
+        </div>
     </div>
     <div class="container">
         <div class="row">
             <div class="col-md-6">
                 <h2>Default delivery information</h2>
-                <form action="{% url 'user_profile' %}" method="POST">
+                <form action="{% url 'user_profile' %}" method="POST" id="default-delivery-form">
                     {% csrf_token %}
-                    {{ form.as_p }}
+                    {{ form.default_address_line1 | as_crispy_field }}
+                    {{ form.default_address_line2 | as_crispy_field }}
+                    {{ form.default_town_or_city | as_crispy_field }}
+                    {{ form.default_postcode | as_crispy_field }}
+                    {{ form.default_country | as_crispy_field }}
                     <input type="submit" value="Submit">
                 </form>
             </div>
