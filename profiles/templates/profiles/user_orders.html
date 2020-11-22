@@ -16,12 +16,14 @@
         <div class="row">
             
                 <div class="col-md-3 text-center py-2">{{ order.created }}</div>
-                <div class="col-md-3 text-center py-2">{{ order.id }}</div>
+                <div class="col-md-3 text-center py-2">
+                    <a href="{% url 'order_complete' order.id %}">{{ order.id }}</a>
+                </div>
                 <div class="col-md-3 py-2">
                     <ul>
                     {% for item in order.items.all %}
                         <li>
-                            {{ item.quantity }}x {{ item.product.name }}
+                            {{ item.quantity }}x <a href="{% url 'product_details' item.product.id item.product.slug %}">{{ item.product.name }}</a>
                         </li>
                     {% endfor %}
                     </ul>
