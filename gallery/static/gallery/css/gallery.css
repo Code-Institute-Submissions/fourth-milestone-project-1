@@ -38,3 +38,15 @@ html.sr .product-image {
 .jumbotron {
     margin-bottom: 0;
 }
+
+.edit-image-button {
+    position: absolute;
+    top: 80%;
+    left: 20%;
+}
+
+.delete-image-button {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+}
