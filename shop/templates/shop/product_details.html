@@ -72,7 +72,13 @@
                     <a href="{{ product.get_edit_product_url }}" class="edit-button mr-2">Edit Product</a>
                     <a href="{{ product.get_delete_product_url }}" class="warning-button">Delete Product</a>
                 {% endif %}
-                <p class="larger-font mt-2">{{ product.rating|floatformat }}<i class="fas fa-star fa-xs"></i></p>
+                <p class="larger-font mt-2">
+                    {% if product.rating == None %}
+                        0<i class="fas fa-star fa-xs"></i>
+                    {% else %}
+                        {{ product.rating|floatformat }}<i class="fas fa-star fa-xs"></i>
+                    {% endif %}
+                </p>
                 <p class="much-larger-font">£{{ product.price }}</p>
             </div>
             {% if product.available %}
