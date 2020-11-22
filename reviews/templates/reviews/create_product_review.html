@@ -5,13 +5,20 @@
 
 <div class="container mt-5">
     <div class="row">
+        <div class="col">
+            <a href="{{ product.get_absolute_url }}" class="standard-button p-2"><i class="fas fa-caret-left"></i> Back to Product</a>
+        </div>
+    </div>
+    <div class="row">
         <div class="col text-center">
-            <h2>Write Review</h2>
-            <h3>Reviewing {{ product.name }}</h3>
+            <div class="mb-4 mt-3">
+                <h2>Write Review</h2>
+                <h3>Reviewing {{ product.name }}</h3>
+            </div>
             <form method="POST" action="{{ product.get_create_review_url }}">
                 {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" value="Submit">
+                {{ form|crispy }}
+                <input type="submit" class="submit-button" value="Submit">
             </form>   
         </div>
     </div>
