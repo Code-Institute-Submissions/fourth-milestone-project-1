@@ -12,13 +12,22 @@ from recipes.models import Recipe
 def user_profile(request):
     user_profile = get_object_or_404(UserProfile, user=request.user)
     form = UserOrderDetailsForm(instance=user_profile)
-    orders = user_profile.orders.all()
     context = {
         'user_profile': user_profile,
         'form': form,
-        'orders': orders,
     }
     return render(request, 'profiles/profile.html', context)
+
+
+@login_required
+def user_orders(request):
+    user_profile = get_object_or_404(UserProfile, user=request.user)
+    orders = user_profile.orders.all()
+    context = {
+        'user_profile': user_profile,
+        'orders': orders,
+    }
+    return render(request, 'profiles/user_orders.html', context)
 
 
 @login_required
