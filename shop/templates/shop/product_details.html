@@ -6,9 +6,15 @@
 {% endblock %}
 
 {% block content %}
-
-<div class="container-fluid mt-5">
-    <div class="row mt-5">
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col offset-lg-2">
+            <a href="{% url 'shop' %}" class="standard-button p-2"><i class="fas fa-caret-left"></i> Back to Shop</a>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row mt-4">
         <div class="col-md-6 col-lg-4 offset-lg-2">
             <div id="product-details-image">
                 {% if not product.image1 %}
