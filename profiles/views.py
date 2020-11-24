@@ -27,6 +27,14 @@ def user_profile(request):
 def user_orders(request):
     user_profile = get_object_or_404(UserProfile, user=request.user)
     orders = user_profile.orders.all()
+    paginator = Paginator(orders, 15)
+    page = request.GET.get('page', 1)
+    try:
+        orders = paginator.page(page)
+    except PageNotAnInteger:
+        orders = paginator.page(1)
+    except EmptyPage:
+        orders = paginator.page(paginator.num_pages)
     context = {
         'user_profile': user_profile,
         'orders': orders,
