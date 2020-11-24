@@ -7,7 +7,7 @@
 
 {% block content %}
     <div class="container">
-        <div class="row mt-5 mb-5">
+        <div class="row my-5">
             <div class="col">
                 <h1>{{ user_profile }}'s Profile</h1>
             </div>
@@ -26,18 +26,20 @@
                     {{ form.default_town_or_city | as_crispy_field }}
                     {{ form.default_postcode | as_crispy_field }}
                     {{ form.default_country | as_crispy_field }}
-                    <div class="mt-4 mb-4 text-center">
+                    <div class="mt-4 text-center">
                         <input type="submit" class="submit-button" value="Save Changes">
                     </div>
                 </form>
             </div>
-            <div class="col-md-6 text-center">
-                <div>
-                    <a href="{% url 'user_orders' %}">Go to Your Orders</a>
+            <div class="col-md-6 text-center mt-4">
+                <div class="my-5"> 
+                    <a href="{% url 'user_orders' %}" class="standard-button larger-font p-2 d-flex flex-column"><i class="far fa-list-alt"></i> My Orders</a>
                 </div>
-                    <a href="{% url 'user_recipes' %}">Go to Your Recipes</a>
-                <div>
-                    <a href="{% url 'saved_recipes' %}">Go to Saved Recipes</a>
+                <div class="my-5">
+                    <a href="{% url 'user_recipes' %}" class="standard-button larger-font p-2 d-flex flex-column"><i class="fas fa-cookie-bite"></i> My Recipes</a>
+                </div>
+                <div class="my-5">
+                    <a href="{% url 'saved_recipes' %}" class="standard-button larger-font p-2 d-flex flex-column"><i class="fas fa-heart"></i> Hearted Recipes</a>
                 </div>
             </div>
         </div>
