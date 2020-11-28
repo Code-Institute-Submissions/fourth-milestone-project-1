@@ -6,102 +6,103 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container mt-5">
-        <div class="row">
-            <h1>Website Admin</h1>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <p class="mt-5">
-                    <a href="{% url 'admin:index' %}" class="edit-button">Link to Django Admin</a>
-                </p>
-            </div>
-            <div class="col-md-3">
-                <p class="mt-5">
-                    <a href="{% url 'add_product' %}" class="edit-button">Add Product Form</a>
-                </p>
-            </div>
-            <div class="col-md-3">
-                <p class="mt-5">
-                    <a href="{% url 'add_video' %}" class="edit-button">Add Video Form</a>
-                </p>
-            </div>
-            <div class="col-md-3">
-                <p class="mt-5">
-                    <a href="{% url 'add_image' %}" class="edit-button">Upload gallery image</a>
-                </p>
-            </div>   
-        </div>
-        <hr>
-        <div class="row mt-5">
-            <div class="col mb-3">
-                <h2>Recipes Pending Approval</h2>
-            </div>
-            {% for recipe in unapproved_recipes %}
-                    <div class="col-12 mt-3">
-                        <div class="row">
-                            <div class="col-md-3">
-                                {% if recipe.image %}
-                                    <a href="{% url 'recipe_details' recipe.id %}">
-                                        <img src="{{ recipe.image.url }}" class="card-img-top img-fluid" alt="...">
-                                    </a>
-                                {% else %}
-                                    <a href="{% url 'recipe_details' recipe.id %}">
-                                        <img src="{% static 'images/noimage.png' %}" class="card-img-top img-fluid" alt="...">
-                                    </a>
-                                {% endif %}
-                            </div>
-                            <div class="col-md-7">
-                                <h3><a href="{% url 'recipe_details' recipe.id %}" class="text-link">{{ recipe.name }}</a></h3>
-                                <p>By {{ recipe.user }}</p>
-                                <p>{{ recipe.description }}</p>
-                            </div>
-                        </div>
-                        <hr>
-                    </div>
-            {% endfor %}
-        </div>
-        <div class="mt-5">
-    <nav aria-label="unapproved recipes pagination">
-        {% if unapproved_recipes.has_other_pages %}
-            <ul class="pagination justify-content-center">
-            {% if unapproved_recipes.has_previous %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ unapproved_recipes.previous_page_number }}">&laquo;</a>
-                </li>
-            {% else %}
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-                        <span>&laquo;</span>
-                    </a>
-                </li>
-            {% endif %}
-            {% for i in unapproved_recipes.paginator.page_range %}
-                {% if unapproved_recipes.number == i %}
-                    <li class="page-item active">
-                        <a class="page-link" href="?page={{ i }}">
-                            <span>{{ i }} <span class="sr-only">(current)</span></span>
-                        </a>
-                    </li>
-                {% else %}
-                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-                {% endif %}
-            {% endfor %}
-            {% if unapproved_recipes.has_next %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ unapproved_recipes.next_page_number }}">&raquo;</a>
-                </li>
-            {% else %}
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-                        <span>&raquo;</span>
-                    </a>
-                </li>
-            {% endif %}
-            </ul>
-        {% endif %}
-        </nav>
-</div>
+<div class="container mt-5">
+    <div class="row">
+        <h1>Website Admin</h1>
     </div>
-    
+    <div class="row">
+        <div class="col-md-3">
+            <p class="mt-5">
+                <a href="{% url 'admin:index' %}" class="edit-button">Link to Django Admin</a>
+            </p>
+        </div>
+        <div class="col-md-3">
+            <p class="mt-5">
+                <a href="{% url 'add_product' %}" class="edit-button">Add Product Form</a>
+            </p>
+        </div>
+        <div class="col-md-3">
+            <p class="mt-5">
+                <a href="{% url 'add_video' %}" class="edit-button">Add Video Form</a>
+            </p>
+        </div>
+        <div class="col-md-3">
+            <p class="mt-5">
+                <a href="{% url 'add_image' %}" class="edit-button">Upload gallery image</a>
+            </p>
+        </div>   
+    </div>
+    <hr>
+    <div class="row mt-5">
+        <div class="col mb-3">
+            <h2>Recipes Pending Approval</h2>
+        </div>
+        {% for recipe in unapproved_recipes %}
+            <div class="col-12 mt-3">
+                <div class="row">
+                    <div class="col-md-3">
+                        {% if recipe.image %}
+                            <a href="{% url 'recipe_details' recipe.id %}">
+                                <img src="{{ recipe.image.url }}" class="card-img-top img-fluid" alt="...">
+                            </a>
+                        {% else %}
+                            <a href="{% url 'recipe_details' recipe.id %}">
+                                <img src="{% static 'images/noimage.png' %}" class="card-img-top img-fluid" alt="...">
+                            </a>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-7">
+                        <h3>
+                            <a href="{% url 'recipe_details' recipe.id %}" class="text-link">{{ recipe.name }}</a>
+                        </h3>
+                        <p>By {{ recipe.user }}</p>
+                        <p>{{ recipe.description }}</p>
+                    </div>
+                </div>
+                <hr>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="mt-5">
+        <nav aria-label="unapproved recipes pagination">
+            {% if unapproved_recipes.has_other_pages %}
+                <ul class="pagination justify-content-center">
+                    {% if unapproved_recipes.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ unapproved_recipes.previous_page_number }}">&laquo;</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                                <span>&laquo;</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% for i in unapproved_recipes.paginator.page_range %}
+                        {% if unapproved_recipes.number == i %}
+                            <li class="page-item active">
+                                <a class="page-link" href="?page={{ i }}">
+                                    <span>{{ i }} <span class="sr-only">(current)</span></span>
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if unapproved_recipes.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ unapproved_recipes.next_page_number }}">&raquo;</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                                <span>&raquo;</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </nav>
+    </div>
+</div>
 {% endblock %}

@@ -6,7 +6,6 @@
 {% endblock %}
 
 {% block content %}
-
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
         <div class="row">
@@ -42,44 +41,46 @@
                         {% endif %}
                     </div>
                     <div class="col-md-5">
-                        <h3><a href="{% url 'recipe_details' recipe.id %}" class="text-link">{{ recipe.name }}</a></h3>
+                        <h3>
+                            <a href="{% url 'recipe_details' recipe.id %}" class="text-link">{{ recipe.name }}</a>
+                        </h3>
                         <p>By {{ recipe.user }}</p>
                         <p>{{ recipe.score }} <i class="fas fa-heart"></i></p>
                         <p>{{ recipe.description }}</p>
                     </div>
                     {% if user_profile %}
-                    <div class="col-md-2">
-                        {% if user_profile in recipe.saved_by_users.all %}
-                                <form action="{% url 'remove_recipe' recipe.id %}" method="POST">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
-                                    <button type="submit" class="heart-button">
-                                        <i class="fas fa-heart fa-2x"></i>
-                                        <p class="sr-only">Unheart Recipe</p>
-                                    </button>
-                                </form>
-                        {% else %}
-                                <form action="{% url 'save_recipe' recipe.id %}" method="POST">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
-                                    <button type="submit" class="heart-button">
-                                        <i class="far fa-heart fa-2x"></i>
-                                        <p class="sr-only">Heart Recipe</p>
-                                    </button>
-                                </form>
-                        {% endif %}
-                    {% endif %}
-                    </div>
+                        <div class="col-md-2">
+                            {% if user_profile in recipe.saved_by_users.all %}
+                                    <form action="{% url 'remove_recipe' recipe.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
+                                        <button type="submit" class="heart-button">
+                                            <i class="fas fa-heart fa-2x"></i>
+                                            <p class="sr-only">Unheart Recipe</p>
+                                        </button>
+                                    </form>
+                            {% else %}
+                                    <form action="{% url 'save_recipe' recipe.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
+                                        <button type="submit" class="heart-button">
+                                            <i class="far fa-heart fa-2x"></i>
+                                            <p class="sr-only">Heart Recipe</p>
+                                        </button>
+                                    </form>
+                            {% endif %}
+                        </div>
+                    {% endif %}    
                 </div>
             </div>
-            {% endfor %}
-        </div>
+        {% endfor %}
+    </div>
     <hr>
 </div>
-            
-            <nav aria-label="saved recipes pagination">
-            {% if saved_recipes.has_other_pages %}
-                <ul class="pagination justify-content-center">
+<div class="container">    
+    <nav aria-label="saved recipes pagination">
+        {% if saved_recipes.has_other_pages %}
+            <ul class="pagination justify-content-center">
                 {% if saved_recipes.has_previous %}
                     <li class="page-item">
                         <a class="page-link" href="?page={{ saved_recipes.previous_page_number }}">&laquo;</a>
@@ -113,9 +114,8 @@
                         </a>
                     </li>
                 {% endif %}
-                </ul>
-            {% endif %}
-            </nav>
-  
-
+            </ul>
+        {% endif %}
+    </nav>
+</div>
 {% endblock %}

@@ -6,19 +6,19 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="row mt-5 mb-5">
-            <div class="col-md-8">
-                <h1>Your Orders</h1>
-            </div>
-            <div class="col-md-4">
-                <a href="{% url 'user_profile' %}" class="standard-button p-2 larger-font">Back to Profile</a>
-            </div>
+<div class="container">
+    <div class="row mt-5 mb-5">
+        <div class="col-md-8">
+            <h1>Your Orders</h1>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'user_profile' %}" class="standard-button p-2 larger-font">Back to Profile</a>
         </div>
     </div>
-    {% if orders %}
+</div>
+{% if orders %}
     <div class="container">
-        <div class="row">
+        <div class="row d-none d-md-flex">
             <div class="col-md-3 text-center">Order Date</div>
             <div class="col-md-3 text-center">Order Number</div>
             <div class="col-md-3 text-center">Items Ordered</div>
@@ -26,8 +26,7 @@
         </div>
         <hr>
         {% for order in orders %}
-        <div class="row">
-            
+            <div class="row">
                 <div class="col-md-3 text-center py-2">{{ order.created }}</div>
                 <div class="col-md-3 text-center py-2">
                     <a href="{% url 'order_complete' order.id %}" class="text-link">{{ order.id }}</a>
@@ -42,12 +41,11 @@
                     </ul>
                 </div>
                 <div class="col-md-3 text-center py-2">£{{ order.get_total_cost }}</div>             
-            
-        </div>
-        <hr>
+            </div>
+            <hr>
         {% endfor %}
     </div>
-    {% else %}
+{% else %}
     <div class="container">
         <div class="row">
             <div class="col">
@@ -55,10 +53,11 @@
             </div>
         </div>
     </div>
-    {% endif %}
+{% endif %}
+<div class="mt-5">
     <nav aria-label="orders pagination">
-            {% if orders.has_other_pages %}
-                <ul class="pagination justify-content-center">
+        {% if orders.has_other_pages %}
+            <ul class="pagination justify-content-center">
                 {% if orders.has_previous %}
                     <li class="page-item">
                         <a class="page-link" href="?page={{ orders.previous_page_number }}">&laquo;</a>
@@ -92,7 +91,8 @@
                         </a>
                     </li>
                 {% endif %}
-                </ul>
-            {% endif %}
-            </nav>
+            </ul>
+        {% endif %}
+    </nav>
+</div>
 {% endblock %}
