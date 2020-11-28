@@ -262,3 +262,11 @@ input {
 .home-title {
     font-weight: 400;
 }
+
+.text-link {
+    color: #000;
+}
+
+.text-link:hover {
+    color: #7232b8;
+}
