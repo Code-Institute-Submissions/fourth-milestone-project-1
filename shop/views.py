@@ -7,10 +7,6 @@ from .models import Product, Category
 from .forms import ProductForm
 from cart.forms import CartAddProductForm
 
-from reviews.models import ProductReview
-
-# Create your views here.
-
 
 def shop(request):
     """ Returns the shop products """
@@ -24,14 +20,16 @@ def shop(request):
         if 'category' in request.GET:
             filter_categories = request.GET['category'].split(',')
             products = products.filter(category__slug__in=filter_categories)
-            total_products = products.filter(category__slug__in=filter_categories)
+            total_products = products.filter(
+                category__slug__in=filter_categories)
             filter_categories = request.GET['category']
         if 'search' in request.GET:
             query = request.GET['search']
             if not query:
                 messages.error(request, "Please enter a search query.")
                 return redirect(reverse('shop'))
-            queries = Q(name__icontains=query) | Q(description__icontains=query)
+            queries = Q(
+                name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
             total_products = products.filter(queries)
     paginator = Paginator(products, 5)
@@ -90,7 +88,8 @@ def add_new_product(request):
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             product = form.save()
-            return redirect(reverse('product_details', args=[product.id, product.slug]))
+            return redirect(reverse('product_details',
+                                    args=[product.id, product.slug]))
     else:
         form = ProductForm()
     context = {
