@@ -1,3 +1,6 @@
+label {
+    margin-right: 1rem;
+}
 
 .card {
     border-radius: 0;
@@ -22,10 +25,6 @@
     font-size: 1.5rem;
 }
 
-#description-container {
-    padding: 1rem;
-}
-
 .product-card-submit {
     z-index: 3;
     position: relative;
@@ -38,15 +37,16 @@
     margin-top: 1rem;
 }
 
-label {
-    margin-right: 1rem;
-}
-
 .product-details-img {
     width: 100%;
     height: 30vw;
     object-fit: cover;
     border-radius: 0;
+    border: 1px solid #e6e6e6;
+}
+
+.review {
+    padding: 1rem;
     border: 1px solid #e6e6e6;
 }
 
@@ -56,11 +56,9 @@ label {
     margin-right: 1rem;
 }
 
-.review {
+#description-container {
     padding: 1rem;
-    border: 1px solid #e6e6e6;
 }
-
 
 @media (max-width:1366px) {
     .product-details-img {

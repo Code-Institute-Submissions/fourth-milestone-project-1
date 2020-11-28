@@ -20,49 +20,49 @@
                 {% if not product.image1 %}
                     <img src="{% static 'images/noimage.png' %}" class="product-details-img img-fluid" alt="...">
             </div>
-                    {% elif not product.image2 %}
-                        <img src="{{ product.image1.url }}" class="product-details-img img-fluid" alt="...">
+                {% elif not product.image2 %}
+                    <img src="{{ product.image1.url }}" class="product-details-img img-fluid" alt="...">
             </div>
-                    {% else %}
-            <div id="carouselProductDetails" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#carouselProductDetails" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselProductDetails" data-slide-to="1"></li>
-                    {% if product.image3 %}
-                    <li data-target="#carouselProductDetails" data-slide-to="2"></li>
-                    {% endif %}
-                    {% if product.image4 %}
-                    <li data-target="#carouselProductDetails" data-slide-to="3"></li>
-                    {% endif %}
-                </ol>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                            <img src="{{ product.image1.url }}" class="product-details-img img-fluid" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ product.image2.url }}" class="product-details-img img-fluid" alt="...">
-                    </div>
-                    {% if product.image3 %}
-                        <div class="carousel-item">
-                            <img src="{{ product.image3.url }}" class="product-details-img img-fluid" alt="...">
+                {% else %}
+                    <div id="carouselProductDetails" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselProductDetails" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselProductDetails" data-slide-to="1"></li>
+                            {% if product.image3 %}
+                                <li data-target="#carouselProductDetails" data-slide-to="2"></li>
+                            {% endif %}
+                            {% if product.image4 %}
+                                <li data-target="#carouselProductDetails" data-slide-to="3"></li>
+                            {% endif %}
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                    <img src="{{ product.image1.url }}" class="product-details-img img-fluid" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{{ product.image2.url }}" class="product-details-img img-fluid" alt="...">
+                            </div>
+                            {% if product.image3 %}
+                                <div class="carousel-item">
+                                    <img src="{{ product.image3.url }}" class="product-details-img img-fluid" alt="...">
+                                </div>
+                            {% endif %}
+                            {% if product.image4 %}
+                                <div class="carousel-item">
+                                    <img src="{{ product.image4.url }}" class="product-details-img img-fluid" alt="...">
+                                </div>
+                            {% endif %}
                         </div>
-                    {% endif %}
-                    {% if product.image4 %}
-                        <div class="carousel-item">
-                            <img src="{{ product.image4.url }}" class="product-details-img img-fluid" alt="...">
-                        </div>
-                    {% endif %}
+                        <a class="carousel-control-prev" href="#carouselProductDetails" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselProductDetails" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
                 </div>
-                <a class="carousel-control-prev" href="#carouselProductDetails" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselProductDetails" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-        </div>
             {% endif %}
         </div>
         <div class="col-md-6 col-lg-4">
@@ -83,18 +83,18 @@
             </div>
             {% if product.available %}
                 {% if product.stock > 0 %}
-                <div class="mt-2">
-                    <form action="{% url 'add_to_cart' product.id %}" method="POST">
-                        {% csrf_token %}
-                        {{ cart_product_form }}
-                        <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
-                        <input type="submit" id="product-details-submit" class="submit-button product-details-submit" value="Add to Cart">
-                        <button id="loading-button" class="submit-button product-details-submit d-none" type="button" disabled>
-                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                            <span class="sr-only">Loading...</span>
-                        </button>
-                    </form>
-                </div>
+                    <div class="mt-2">
+                        <form action="{% url 'add_to_cart' product.id %}" method="POST">
+                            {% csrf_token %}
+                            {{ cart_product_form }}
+                            <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
+                            <input type="submit" id="product-details-submit" class="submit-button product-details-submit" value="Add to Cart">
+                            <button id="loading-button" class="submit-button product-details-submit d-none" type="button" disabled>
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                <span class="sr-only">Loading...</span>
+                            </button>
+                        </form>
+                    </div>
                 {% endif %}
                 {% if product.stock > 15 %}
                     <p class="larger-font mt-4">In Stock</p>
@@ -108,24 +108,23 @@
             {% endif %}
         </div>
         {% if product.description %}
-        <div id="description-container" class="col-md-8 offset-lg-2"> 
-            <h3>Product Description</h3>
-            
-            {% if product.description|length > 600 %}
-                <div id="product-description-truncated">
-                    <p>{{ product.description|truncatechars:"600"|linebreaks }}</p>
-                    <button id="read-more" class="standard-button">Read More</button>
-                </div>
-                <div id="product-description-full" class="d-none">
-                    <p>{{ product.description|linebreaks }}</p>
-                    <button id="read-less" class="standard-button">Read Less</button>
-                </div>
-            {% else %}
-                <div>
-                    <p>{{ product.description|linebreaks }}</p>
-                </div>
-            {% endif %}
-        </div>
+            <div id="description-container" class="col-md-8 offset-lg-2"> 
+                <h3>Product Description</h3>
+                {% if product.description|length > 600 %}
+                    <div id="product-description-truncated">
+                        <p>{{ product.description|truncatechars:"600"|linebreaks }}</p>
+                        <button id="read-more" class="standard-button">Read More</button>
+                    </div>
+                    <div id="product-description-full" class="d-none">
+                        <p>{{ product.description|linebreaks }}</p>
+                        <button id="read-less" class="standard-button">Read Less</button>
+                    </div>
+                {% else %}
+                    <div>
+                        <p>{{ product.description|linebreaks }}</p>
+                    </div>
+                {% endif %}
+            </div>
         {% endif %}
     </div>
 </div>
@@ -138,104 +137,104 @@
         <div class="col-md-2">
             {% if not user_review %}
                 {% if request.user.is_authenticated %}
-                <div class="my-4">
-                    <a href="{{ product.get_create_review_url }}" class="edit-button">Write a Review</a>
-                </div>
+                    <div class="my-4">
+                        <a href="{{ product.get_create_review_url }}" class="edit-button">Write a Review</a>
+                    </div>
                 {% endif %}
             {% endif %}
         </div>
     </div>
     {% if reviews %}
-    <div id="reviews-container" class="row">
-        {% for review in reviews %}
-            {% if review.user.user == request.user %}
-                <div class="review col-12">
-                    <div class="row pt-2 justify-content-between">
-                        <div class="col-md-8 ">
-                            <h4 class="pl-3">Your Review</h4>
+        <div id="reviews-container" class="row">
+            {% for review in reviews %}
+                {% if review.user.user == request.user %}
+                    <div class="review col-12">
+                        <div class="row pt-2 justify-content-between">
+                            <div class="col-md-8 ">
+                                <h4 class="pl-3">Your Review</h4>
+                            </div>
+                            <div class="col-md-3 text-center">
+                                <a href="{{ product.get_edit_review_url }}" class="edit-button">Edit Review</a>
+                                <a href="{{ product.get_delete_review_url }}" class="warning-button">Delete Review</a>
+                            </div>
+                        </div>   
+                        <div class="row">
+                            <div class="col-md-2">
+                                <p class="much-larger-font text-center pt-3">{{ review.rating }}<i class="fas fa-star fa-xs"></i></p>
+                            </div>
+                            <div class="col-md-10">
+                                <h5>{{ review.title }}</h5>
+                                <p>{{ review.body|linebreaks }}</p>
+                            </div> 
                         </div>
-                        <div class="col-md-3 text-center">
-                            <a href="{{ product.get_edit_review_url }}" class="edit-button">Edit Review</a>
-                            <a href="{{ product.get_delete_review_url }}" class="warning-button">Delete Review</a>
-                        </div>
-                    </div>   
-                    <div class="row">
-                        <div class="col-md-2">
-                            <p class="much-larger-font text-center pt-3">{{ review.rating }}<i class="fas fa-star fa-xs"></i></p>
-                        </div>
-                        <div class="col-md-10">
-                            <h5>{{ review.title }}</h5>
-                            <p>{{ review.body|linebreaks }}</p>
-                        </div> 
                     </div>
-                </div>
-            {% endif %}
-        {% endfor %}
-        {% for review in reviews %}
-            {% if review.user.user != request.user %}
-                <div class="review col-12">
-                    <div class="row pt-2 justify-content-between">
-                        <div class="col-md-12 ">
-                            <h4 >{{ review.user.user }}'s Review</h4>
+                {% endif %}
+            {% endfor %}
+            {% for review in reviews %}
+                {% if review.user.user != request.user %}
+                    <div class="review col-12">
+                        <div class="row pt-2 justify-content-between">
+                            <div class="col-md-12 ">
+                                <h4 >{{ review.user.user }}'s Review</h4>
+                            </div>
+                        </div>   
+                        <div class="row">
+                            <div class="col-md-2">
+                                <p class="much-larger-font text-center pt-3">{{ review.rating }}<i class="fas fa-star fa-xs"></i></p>
+                            </div>
+                            <div class="col-md-10">
+                                <h5>{{ review.title }}</h5>
+                                <p>{{ review.body|linebreaks }}</p>
+                            </div> 
                         </div>
-                    </div>   
-                    <div class="row">
-                        <div class="col-md-2">
-                            <p class="much-larger-font text-center pt-3">{{ review.rating }}<i class="fas fa-star fa-xs"></i></p>
-                        </div>
-                        <div class="col-md-10">
-                            <h5>{{ review.title }}</h5>
-                            <p>{{ review.body|linebreaks }}</p>
-                        </div> 
                     </div>
-                </div>
-            {% endif %}
-        {% endfor %}
+                {% endif %}
+            {% endfor %}
     {% else %}
-        <p>There are no reviews</p>
-    </div>
+            <p>There are no reviews</p>
+        </div>
     {% endif %}
 </div>
 <div class="mt-5">
-<nav aria-label="product reviews pagination">
+    <nav aria-label="product reviews pagination">
         {% if reviews.has_other_pages %}
             <ul class="pagination justify-content-center">
-            {% if reviews.has_previous %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ reviews.previous_page_number }}">&laquo;</a>
-                </li>
-            {% else %}
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-                        <span>&laquo;</span>
-                    </a>
-                </li>
-            {% endif %}
-            {% for i in reviews.paginator.page_range %}
-                {% if reviews.number == i %}
-                    <li class="page-item active">
-                        <a class="page-link" href="?page={{ i }}">
-                            <span>{{ i }} <span class="sr-only">(current)</span></span>
-                        </a>
+                {% if reviews.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ reviews.previous_page_number }}">&laquo;</a>
                     </li>
                 {% else %}
-                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                            <span>&laquo;</span>
+                        </a>
+                    </li>
                 {% endif %}
-            {% endfor %}
-            {% if reviews.has_next %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ reviews.next_page_number }}">&raquo;</a>
-                </li>
-            {% else %}
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-                        <span>&raquo;</span>
-                    </a>
-                </li>
-            {% endif %}
+                {% for i in reviews.paginator.page_range %}
+                    {% if reviews.number == i %}
+                        <li class="page-item active">
+                            <a class="page-link" href="?page={{ i }}">
+                                <span>{{ i }} <span class="sr-only">(current)</span></span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if reviews.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ reviews.next_page_number }}">&raquo;</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                            <span>&raquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
             </ul>
         {% endif %}
-</nav>
+    </nav>
 </div>
 {% endblock %}
 
