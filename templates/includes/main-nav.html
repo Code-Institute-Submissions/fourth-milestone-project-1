@@ -34,7 +34,22 @@
                 {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'gallery' %}">Gallery</a>
-                </li>    
+                </li>
+                {% if request.user.is_authenticated %}
+                <li class="nav-item dropdown d-block d-lg-none">
+                    <a class="nav-link" href="#" id="account-links" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        My Account
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="account-links">
+                        {% if request.user.is_superuser %}
+                            <a class="dropdown-item" href="{% url 'website_admin' %}">Website Admin</a>
+                        {% endif %}
+                        <a href="{% url 'user_profile' %}" class="dropdown-item">My Profile</a>
+                        <a href="{% url 'user_orders' %}" class="dropdown-item">My Orders</a>
+                        <a href="{% url 'account_logout' %}" class="dropdown-item">Sign out</a>
+                    </div>
+                </li>
+                {% endif %}
             </ul>
         </div>
     </div>
