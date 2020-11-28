@@ -19,3 +19,16 @@
     border-radius: 0;
     border: 1px solid #e6e6e6;
 }
+
+
+@media (max-width:1366px) {
+    .recipe-details-img {
+        height: 40vw;
+    }
+}
+
+@media (max-width:1023px) {
+    .recipe-details-img {
+        height: 70vw;
+    }
+}
