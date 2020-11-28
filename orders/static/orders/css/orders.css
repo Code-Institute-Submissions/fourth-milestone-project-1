@@ -1,3 +1,11 @@
+.order-link {
+    color: #000;
+}
+
+.order-link:hover {
+    color: #7232b8;
+}
+
 .StripeElement,
 .stripe-style-input {
     box-sizing: border-box;
