@@ -270,3 +270,19 @@ input {
 .text-link:hover {
     color: #7232b8;
 }
+
+@media (max-width:1024px) {
+
+    .navbar {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .header-container-normal {
+        padding-bottom: 3.5rem;
+    }
+
+    .header-container-scroll {
+        padding-bottom: 3.5rem;
+    }
+}
