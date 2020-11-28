@@ -4,8 +4,11 @@ from profiles.models import UserProfile
 
 
 class ProductReview(models.Model):
-    user = models.ForeignKey(UserProfile, related_name='user_reviews', null=True, blank=True, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, related_name='product_reviews', null=True, blank=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserProfile, related_name='user_reviews',
+                             null=True, blank=True, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name='product_reviews',
+                                null=True, blank=True,
+                                on_delete=models.CASCADE)
     title = models.CharField(max_length=100, null=False, blank=False)
     RATING_CHOICES = [
         (0, '0 Stars'),
