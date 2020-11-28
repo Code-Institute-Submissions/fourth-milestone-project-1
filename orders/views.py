@@ -40,7 +40,8 @@ def create_order(request):
                         'default_postcode': order.postcode,
                         'default_country': order.country,
                     }
-                    form = UserOrderDetailsForm(new_default, instance=user_profile)
+                    form = UserOrderDetailsForm(new_default,
+                                                instance=user_profile)
                     if form.is_valid():
                         form.save()
             cart.clear()
