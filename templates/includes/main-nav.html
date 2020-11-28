@@ -1,9 +1,4 @@
 
-
-<nav class="navbar navbar-expand-lg navbar-light">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
     <div class="collapse navbar-collapse center-nav" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <ul class="navbar-nav">
@@ -43,7 +38,6 @@
             </ul>
         </div>
     </div>
-    <div id="shopping-cart-link">
+    <div id="shopping-cart-link" class="d-none d-lg-block">
         <a href="{% url 'view_cart' %}">{{ cart|length }}<i class="fas fa-shopping-cart"></i></a>
     </div>
-</nav>
