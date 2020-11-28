@@ -19,12 +19,19 @@ class Cart(object):
                                      'price': str(product.price)}
         if overwrite_quantity:
             self.cart[product_id]['quantity'] = quantity
+            cart_quantity = self.cart[product_id]['quantity']
+            stock = product.stock
+            if cart_quantity > stock:
+                self.cart[product_id]['quantity'] = stock
         else:
             self.cart[product_id]['quantity'] += quantity
             cart_quantity = self.cart[product_id]['quantity']
             stock = product.stock
             if cart_quantity > stock:
                 self.cart[product_id]['quantity'] = stock
+                cart_quantity = self.cart[product_id]['quantity']
+            if cart_quantity > 10:
+                self.cart[product_id]['quantity'] = 10
         self.save()
 
     def save(self):
