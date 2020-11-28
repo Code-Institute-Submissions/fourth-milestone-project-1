@@ -84,7 +84,8 @@ def user_recipes(request):
 @login_required
 def saved_recipes(request):
     user_profile = get_object_or_404(UserProfile, user=request.user)
-    saved_recipes = Recipe.objects.filter(saved_by_users=user_profile, is_approved=True)
+    saved_recipes = Recipe.objects.filter(saved_by_users=user_profile,
+                                          is_approved=True)
     paginator = Paginator(saved_recipes, 10)
     page = request.GET.get('page', 1)
     try:
