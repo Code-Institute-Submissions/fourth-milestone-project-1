@@ -8,6 +8,12 @@
 {% block content %}
 <div class="container mt-5">
     {% if cart|length > 0 %}
+        <div class="row mt-5 mb-5">
+            <div class="col-md-8">
+                <h1>Shopping Cart</h1>
+                <p>The quantity of a product cannot be more than 10 per order, or more than its remaining stock.</p>
+            </div>
+        </div>
         <div class="row">
             <div class="col table-responsive">
                 <table class="cart">
