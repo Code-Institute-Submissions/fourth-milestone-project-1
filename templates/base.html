@@ -1,50 +1,51 @@
 {% load static %}
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
-    {% block meta %}
-    <!-- Required meta tags -->
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    {% endblock %}
+        {% block meta %}
+        <!-- Required meta tags -->
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        {% endblock %}
 
-    {% block extra_meta %}
-    {% endblock %}
+        {% block extra_meta %}
+        {% endblock %}
 
-    {% block corecss %}
-    <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    {% endblock %}
+        {% block corecss %}
+        <!-- Bootstrap CSS -->
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+            <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        {% endblock %}
 
-    {% block extra_css %}
-    {% endblock %}
-    
-    {% block corejs %}
-    <script src="https://unpkg.com/scrollreveal"></script>
-    <!-- FontAwesome -->
-    <script src="https://kit.fontawesome.com/fc12a1cf87.js" crossorigin="anonymous"></script>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-        <script src="https://js.stripe.com/v3/"></script>
-        <script src="{% static 'js/scripts.js' %}"></script>
-    {% endblock %}
+        {% block extra_css %}
+        {% endblock %}
+        
+        {% block corejs %}
+        <!-- ScrollReveal -->
+            <script src="https://unpkg.com/scrollreveal"></script>
+        <!-- FontAwesome -->
+            <script src="https://kit.fontawesome.com/fc12a1cf87.js" crossorigin="anonymous"></script>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+            <script src="https://js.stripe.com/v3/"></script>
+        <!-- Core JS -->
+            <script src="{% static 'js/scripts.js' %}"></script>
+        {% endblock %}
 
-    {% block extra_js %}
-    {% endblock %}
-    
+        {% block extra_js %}
+        {% endblock %}
+        
         <title>Miss Pan's Bakery {% block extra_title %}{% endblock %}</title>
     </head>
     <body>
         <header class="container-fluid fixed-top">
             <div class="row d-none d-lg-flex">
-                <div class="col-lg-4 py-1">
-                </div>
+                <div class="col-lg-4 py-1"></div>
                 <div id="brand" class="col-lg-4 py-1 text-center">
                     <a href="{% url 'home' %}" id="missPanBrand"><img src="{% static 'images/misspansbakerytitle.png' %}"></a>
                     <a href="{% url 'home' %}" id="missPanBrandSmall"><img src="{% static 'images/misspansbakerytitle-small.png' %}"></a>
@@ -76,23 +77,20 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-            {% include 'includes/mobile-nav.html' %}
-            {% include 'includes/main-nav.html' %}
+                {% include 'includes/mobile-nav.html' %}
+                {% include 'includes/main-nav.html' %}
             </nav>
         </header>
         <div id="header-container" class="header-container-normal"></div>
-
         <div id="page-container">
-        {% block content %}
-        {% endblock %}
+            {% block content %}
+            {% endblock %}
         </div>
-
         <footer class="footer">
             <div class="container">
             </div>
         </footer>
         {% block postloadjs %}
         {% endblock %}
-
     </body>
 </html>
