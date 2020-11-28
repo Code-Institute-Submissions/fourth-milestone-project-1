@@ -12,14 +12,6 @@
     margin-bottom: 0;
 }
 
-.recipe-title {
-    color: black;
-}
-
-.recipe-title:hover {
-    color: #7232b8;
-}
-
 .recipe-details-img {
     width: 100%;
     height: 30vw;
