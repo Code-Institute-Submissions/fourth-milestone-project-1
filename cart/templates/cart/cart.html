@@ -9,14 +9,14 @@
 <div class="container mt-5">
     {% if cart|length > 0 %}
         <div class="row mt-5 mb-5">
-            <div class="col-md-8">
+            <div class="col-md-8"> <!-- CART HEADING -->
                 <h1>Shopping Cart</h1>
                 <p>The quantity of a product cannot be more than 10 per order, or more than its available stock.</p>
             </div>
         </div>
-        <div class="row  d-none d-lg-block">
+        <div class="row d-none d-lg-block">
             <div class="col table-responsive">
-                <table class="cart">
+                <table class="cart"> <!-- DESKTOP CART VIEW -->
                     <thead>
                         <tr>
                             <th>Product</th>
@@ -29,14 +29,18 @@
                     <tbody>
                         {% for item in cart %}
                             <tr>
-                                <td><h5><a href="{{ item.product.get_absolute_url }}" class="text-link">{{ item.product.name }}</a></h5></td>
+                                <td>
+                                    <h5>
+                                        <a href="{{ item.product.get_absolute_url }}" class="text-link">{{ item.product.name }}</a>
+                                    </h5>
+                                </td>
                                 <td>
                                     <form action="{% url 'add_to_cart' item.product.id %}" method="POST">
                                         {% csrf_token %}
                                         {{ item.update_quantity_form.quantity }}
                                         {{ item.update_quantity_form.overwrite }}
                                         <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
-                                    <input class="standard-button" type="submit" value="Update">
+                                        <input class="standard-button" type="submit" value="Update">
                                     </form>
                                 </td>
                                 <td>
@@ -49,56 +53,56 @@
                                 <td>£{{ item.total_price }}</td>
                             </tr>
                         {% endfor %}
-                            <tr class="total">
-                                <td>Total</td>
-                                <td colspan="3"></td>
-                                <td class="total-price">£{{ cart.get_total_price }}</td>
-                            </tr>
+                        <tr class="total">
+                            <td>Total</td>
+                            <td colspan="3"></td>
+                            <td class="total-price">£{{ cart.get_total_price }}</td>
+                        </tr>
                     </tbody>
                 </table>
              </div>
         </div>
-
-        <div class="container d-block d-lg-none">
-        {% for item in cart %}
-        <div class="row">
-            <div class="col-md-3 text-center">
-                <h5><a href="{{ item.product.get_absolute_url }}" class="text-link">{{ item.product.name }}</a></h5>
+        <div class="container d-block d-lg-none"> <!-- MOBILE CART VIEW -->
+            {% for item in cart %}
+                <div class="row">
+                    <div class="col-md-3 text-center">
+                        <h5>
+                            <a href="{{ item.product.get_absolute_url }}" class="text-link">{{ item.product.name }}</a>
+                        </h5>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <form action="{% url 'add_to_cart' item.product.id %}" method="POST">
+                            {% csrf_token %}
+                            {{ item.update_quantity_form.quantity }}
+                            {{ item.update_quantity_form.overwrite }}
+                            <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
+                            <input class="standard-button" type="submit" value="Update">
+                        </form>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <form action="{% url 'remove_from_cart' item.product.id %}" method="post">
+                            {% csrf_token %}
+                            <button class="standard-button" type="submit" >X Remove</button>
+                        </form>
+                    </div>
+                    <div class="col-md-2 text-center py-2">Unit Price: £{{ item.price }}</div>
+                    <div class="col-md-2 text-center py-2">Total Price: £{{ item.total_price }}</div>
+                </div>
+                <hr>
+            {% endfor %}
+            <div class="row justify-content-between">
+                <div class="col-md-3 text-center py-2">Total</div>  
+                <div class="col-md-2 text-center py-2 total-price">£{{ cart.get_total_price }}</div> 
             </div>
-            <div class="col-md-3 text-center">
-                <form action="{% url 'add_to_cart' item.product.id %}" method="POST">
-                    {% csrf_token %}
-                    {{ item.update_quantity_form.quantity }}
-                    {{ item.update_quantity_form.overwrite }}
-                    <input type="hidden" name="redirect_path" id="redirect_path" value="{{ request.path }}">
-                    <input class="standard-button" type="submit" value="Update">
-                </form>
-            </div>
-            <div class="col-md-2 text-center">
-                <form action="{% url 'remove_from_cart' item.product.id %}" method="post">
-                    {% csrf_token %}
-                    <button class="standard-button" type="submit" >X Remove</button>
-                </form>
-            </div>
-            <div class="col-md-2 text-center py-2"> Unit Price: £{{ item.price }}</div>
-            <div class="col-md-2 text-center py-2">Total Price: £{{ item.total_price }}</div>
         </div>
-        <hr>
-        {% endfor %}
-        <div class="row justify-content-between">
-            <div class="col-md-3 text-center py-2">Total</div>  
-            <div class="col-md-2 text-center py-2 total-price">£{{ cart.get_total_price }}</div> 
-        </div>
-        </div>
-        
-        <div class="row mt-4">
+        <div class="row mt-4"> <!-- CART BUTTONS -->
             <div class="col d-flex justify-content-end">
                 <a href="{% url 'shop' %}" class="standard-button checkout-button">Continue Shopping</a>
                 <a href="{% url 'create_order' %}" class="submit-button checkout-button">Proceed to Checkout</a>
             </div>
         </div>
     {% else %}
-        <div id="empty-cart">
+        <div id="empty-cart"> <!-- EMPTY CART VIEW -->
             <p class="larger-font">Your cart is empty.</p>
             <a href="{% url 'shop' %}" class="submit-button d-flex justify-content-center mt-4">Back to Shop</a>
         </div>
