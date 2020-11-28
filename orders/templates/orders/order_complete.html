@@ -31,7 +31,7 @@
                 </div>
                 {% endif %}
                 <div class="col-md-3 py-2 text-center">
-                    <a href="{% url 'product_details' item.product.id item.product.slug %}" class="order-link">{{ item.product.name }}</a>
+                    <a href="{% url 'product_details' item.product.id item.product.slug %}" class="text-link">{{ item.product.name }}</a>
                 </div>
                 <div class="col-md-3 text-center py-2">x{{ item.quantity }}</div>  
                 <div class="col-md-3 text-center py-2">£{{ item.get_cost }}</div>             

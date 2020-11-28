@@ -29,13 +29,13 @@
             
                 <div class="col-md-3 text-center py-2">{{ order.created }}</div>
                 <div class="col-md-3 text-center py-2">
-                    <a href="{% url 'order_complete' order.id %}" class="profile-link">{{ order.id }}</a>
+                    <a href="{% url 'order_complete' order.id %}" class="text-link">{{ order.id }}</a>
                 </div>
                 <div class="col-md-3 py-2">
                     <ul>
                     {% for item in order.items.all %}
                         <li>
-                            {{ item.quantity }}x <a href="{% url 'product_details' item.product.id item.product.slug %}" class="profile-link">{{ item.product.name }}</a>
+                            {{ item.quantity }}x <a href="{% url 'product_details' item.product.id item.product.slug %}" class="text-link">{{ item.product.name }}</a>
                         </li>
                     {% endfor %}
                     </ul>

@@ -23,7 +23,7 @@
                     <tbody>
                         {% for item in cart %}
                             <tr>
-                                <td><h5><a href="{{ item.product.get_absolute_url }}" class="cart-link">{{ item.product.name }}</a></h5></td>
+                                <td><h5><a href="{{ item.product.get_absolute_url }}" class="text-link">{{ item.product.name }}</a></h5></td>
                                 <td>
                                     <form action="{% url 'add_to_cart' item.product.id %}" method="POST">
                                         {% csrf_token %}
