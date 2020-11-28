@@ -1,6 +1,3 @@
-$(".card").hover( function() {
-    $(this).find(".product-card-form").toggleClass("hide")
-});
 
 $("#read-more").click( function() {
     $("#product-description-truncated").toggleClass("d-none")
