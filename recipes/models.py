@@ -3,7 +3,8 @@ from profiles.models import UserProfile
 
 
 class Recipe(models.Model):
-    user = models.ForeignKey(UserProfile, related_name='user_recipe', null=True, blank=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserProfile, related_name='user_recipe',
+                             null=True, blank=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, null=False, blank=False)
     description = models.TextField(blank=False)
     image = models.ImageField(upload_to='recipes/%Y/%m/%d', blank=True)

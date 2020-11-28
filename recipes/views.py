@@ -12,7 +12,8 @@ from profiles.models import UserProfile
 
 def recipes(request):
     recipes = Recipe.objects.filter(is_approved=True, is_showcased=False)
-    showcased_recipes = Recipe.objects.filter(is_approved=True, is_showcased=True)
+    showcased_recipes = Recipe.objects.filter(is_approved=True,
+                                              is_showcased=True)
     page = request.GET.get('page', 1)
     query = None
     user_profile = None
