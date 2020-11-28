@@ -271,8 +271,19 @@ input {
     color: #7232b8;
 }
 
-@media (max-width:1024px) {
+@media (max-width:1900px) {
+    .card-img-top {
+        height: 20vw;
+    }
+}
 
+@media (max-width:1366px) {
+    .card-img-top {
+        height: 30vw;
+    }
+}
+
+@media (max-width:1023px) {
     .navbar {
         padding-left: 0;
         padding-right: 0;
@@ -284,5 +295,9 @@ input {
 
     .header-container-scroll {
         padding-bottom: 3.5rem;
+    }
+
+    .card-img-top {
+        height: 60vw;
     }
 }
