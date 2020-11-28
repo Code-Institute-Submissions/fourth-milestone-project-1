@@ -1,9 +1,13 @@
-
 html.sr .gallery-image {
     visibility: hidden;
 }
+
 html.sr .product-image {
     visibility: hidden;
+}
+
+.jumbotron {
+    margin-bottom: 0;
 }
 
 .overlay {
@@ -33,10 +37,6 @@ html.sr .product-image {
 
 .gallery-image {
     padding: 0;
-}
-
-.jumbotron {
-    margin-bottom: 0;
 }
 
 .edit-image-button {

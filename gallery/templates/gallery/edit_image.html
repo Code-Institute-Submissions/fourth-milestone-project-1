@@ -2,27 +2,23 @@
 {% load static %}
 
 {% block content %}
-
 <div class="container mt-5">
-    <div class="row">
+    <div class="row"> <!-- BACK BUTTONS -->
         <div class="col">
             <a href="{% url 'gallery' %}" class="standard-button p-2"><i class="fas fa-caret-left"></i> Back to Gallery</a>
         </div>
     </div>
-    <div class="row">
+    <div class="row"> <!-- EDIT IMAGE FORM -->
         <div class="col text-center">
             <div class="mt-4 mb-3">
                 <h2>Edit Image</h2>
             </div>
             <form method="POST" action="{% url 'edit_image' image.id %}" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ form.as_p }}
+                {{ form|crispy }}
                 <input type="submit" class="submit-button" value="Submit">
             </form>
-            
         </div>
     </div>
 </div>
-
-
 {% endblock %}

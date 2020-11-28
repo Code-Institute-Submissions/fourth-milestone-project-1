@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid"> <!-- JUMBOTRON  -->
     <div class="container">
         <h1 class="display-4 home-title">Gallery</h1>
         <div class="mt-4">
@@ -18,86 +18,85 @@
         </div>
     </div>
 </div>
-<div id="product-gallery" class="container-fluid hide">
+<div id="product-gallery" class="container-fluid hide"> <!-- PRODUCT GALLERY -->
     <div class="row">
         {% for product in products %}
             {% if product.image1 %}
-            <div class="col-md-3 product-image">
-                <a href="{{ product.get_absolute_url }}"><img src="{{ product.image1.url }}" class="card-img-top img-fluid" alt="..."></a>
-            </div>
+                <div class="col-md-3 product-image">
+                    <a href="{{ product.get_absolute_url }}"><img src="{{ product.image1.url }}" class="card-img-top img-fluid" alt="..."></a>
+                </div>
             {% endif %}
             {% if product.image2 %}
-            <div class="col-md-3 product-image">
-                <a href="{{ product.get_absolute_url }}"><img src="{{ product.image2.url }}" class="card-img-top img-fluid" alt="..."></a>
-            </div>
+                <div class="col-md-3 product-image">
+                    <a href="{{ product.get_absolute_url }}"><img src="{{ product.image2.url }}" class="card-img-top img-fluid" alt="..."></a>
+                </div>
             {% endif %}
             {% if product.image3 %}
-            <div class="col-md-3 product-image">
-                <a href="{{ product.get_absolute_url }}"><img src="{{ product.image3.url }}" class="card-img-top img-fluid" alt="..."></a>
-            </div>
+                <div class="col-md-3 product-image">
+                    <a href="{{ product.get_absolute_url }}"><img src="{{ product.image3.url }}" class="card-img-top img-fluid" alt="..."></a>
+                </div>
             {% endif %}
             {% if product.image4 %}
-            <div class="col-md-3 product-image">
-                <a href="{{ product.get_absolute_url }}"><img src="{{ product.image4 }}" class="card-img-top img-fluid" alt="..."></a>
-            </div>
+                <div class="col-md-3 product-image">
+                    <a href="{{ product.get_absolute_url }}"><img src="{{ product.image4 }}" class="card-img-top img-fluid" alt="..."></a>
+                </div>
             {% endif %}
             {% if product.image5 %}
-            <div class="col-md-3 product-image">
-                <a href="{{ product.get_absolute_url }}"><img src="{{ product.image5 }}" class="card-img-top img-fluid" alt="..."></a>
-            </div>
+                <div class="col-md-3 product-image">
+                    <a href="{{ product.get_absolute_url }}"><img src="{{ product.image5 }}" class="card-img-top img-fluid" alt="..."></a>
+                </div>
             {% endif %}
         {% endfor %}
     </div>
-    <div class="row">
-    <nav aria-label="product images pagination">
-        {% if products.has_other_pages %}
-            <ul class="pagination justify-content-center">
-            {% if products.has_previous %}
-                <li class="page-item">
-                    <a class="page-link" href="?page1={{ products.previous_page_number }}">&laquo;</a>
-                </li>
-            {% else %}
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-                        <span>&laquo;</span>
-                    </a>
-                </li>
+    <div class="row"> <!-- PRODUCT GALLERY PAGINATION -->
+        <nav aria-label="product images pagination">
+            {% if products.has_other_pages %}
+                <ul class="pagination justify-content-center">
+                    {% if products.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page1={{ products.previous_page_number }}">&laquo;</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                                <span>&laquo;</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% for i in products.paginator.page_range %}
+                        {% if products.number == i %}
+                            <li class="page-item active">
+                                <a class="page-link" href="?page1={{ i }}">
+                                    <span>{{ i }} <span class="sr-only">(current)</span></span>
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item"><a class="page-link" href="?page1={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if products.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page1={{ products.next_page_number }}">&raquo;</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                                <span>&raquo;</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
             {% endif %}
-            {% for i in products.paginator.page_range %}
-                {% if products.number == i %}
-                    <li class="page-item active">
-                        <a class="page-link" href="?page1={{ i }}">
-                            <span>{{ i }} <span class="sr-only">(current)</span></span>
-                        </a>
-                    </li>
-                {% else %}
-                    <li class="page-item"><a class="page-link" href="?page1={{ i }}">{{ i }}</a></li>
-                {% endif %}
-            {% endfor %}
-            {% if products.has_next %}
-                <li class="page-item">
-                    <a class="page-link" href="?page1={{ products.next_page_number }}">&raquo;</a>
-                </li>
-            {% else %}
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-                        <span>&raquo;</span>
-                    </a>
-                </li>
-            {% endif %}
-            </ul>
-        {% endif %}
-    </nav>
+        </nav>
     </div>
 </div>
-<div id="photo-gallery" class="container-fluid">
+<div id="photo-gallery" class="container-fluid"> <!-- PHOTO GALLERY -->
     <div class="row">
         {% for image in images %}
             {% if image.is_shown %}
                 <div class="col-md-3 gallery-image">
                     <img src="{{ image.image.url }}" class="card-img-top img-fluid" alt="...">
-                    <div class="overlay d-none">
-                    </div>
+                    <div class="overlay d-none"></div>
                     <img src="{{ image.image.url }}" class="large-image d-none" alt="...">
                     {% if request.user.is_superuser %}
                         <a href="{% url 'edit_image' image.id %}" class="edit-button mr-2 image-button edit-image-button d-none">Edit Image</a>
@@ -107,50 +106,48 @@
             {% endif %}
         {% endfor %}
     </div>
-    <div class="row">
-    <nav aria-label="gallery images pagination">
-        {% if images.has_other_pages %}
-            <ul class="pagination justify-content-center">
-            {% if images.has_previous %}
-                <li class="page-item">
-                    <a class="page-link" href="?page2={{ images.previous_page_number }}">&laquo;</a>
-                </li>
-            {% else %}
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-                        <span>&laquo;</span>
-                    </a>
-                </li>
+    <div class="row"> <!-- PHOTO GALLERY PAGINATION -->
+        <nav aria-label="gallery images pagination">
+            {% if images.has_other_pages %}
+                <ul class="pagination justify-content-center">
+                    {% if images.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page2={{ images.previous_page_number }}">&laquo;</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                                <span>&laquo;</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% for i in images.paginator.page_range %}
+                        {% if images.number == i %}
+                            <li class="page-item active">
+                                <a class="page-link" href="?page2={{ i }}">
+                                    <span>{{ i }} <span class="sr-only">(current)</span></span>
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item"><a class="page-link" href="?page2={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if images.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page2={{ images.next_page_number }}">&raquo;</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                                <span>&raquo;</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
             {% endif %}
-            {% for i in images.paginator.page_range %}
-                {% if images.number == i %}
-                    <li class="page-item active">
-                        <a class="page-link" href="?page2={{ i }}">
-                            <span>{{ i }} <span class="sr-only">(current)</span></span>
-                        </a>
-                    </li>
-                {% else %}
-                    <li class="page-item"><a class="page-link" href="?page2={{ i }}">{{ i }}</a></li>
-                {% endif %}
-            {% endfor %}
-            {% if images.has_next %}
-                <li class="page-item">
-                    <a class="page-link" href="?page2={{ images.next_page_number }}">&raquo;</a>
-                </li>
-            {% else %}
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-                        <span>&raquo;</span>
-                    </a>
-                </li>
-            {% endif %}
-            </ul>
-        {% endif %}
-    </nav>
+        </nav>
     </div>
 </div>
-
-
 {% endblock %}
 
 {% block postloadjs %}
