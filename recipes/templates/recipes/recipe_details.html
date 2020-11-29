@@ -7,15 +7,15 @@
 
 {% block content %}
 <div class="container-fluid mt-4">
-    <div class="row">
-        <div class="col offset-lg-2">
+    <div class="row"> <!-- BACK BUTTON  -->
+        <div class="col offset-lg-2"> 
             <a href="{% url 'recipes' %}" class="standard-button p-2"><i class="fas fa-caret-left"></i> Back to Recipes</a>
         </div>
     </div>
 </div>
 <div class="container-fluid">
     <div class="row mt-4">
-        <div class="col-md-6 col-lg-4 offset-lg-2">
+        <div class="col-md-6 col-lg-4 offset-lg-2"> <!-- RECIPE IMAGE  -->
             <div>
                 {% if recipe.image %}
                     <img src="{{ recipe.image.url }}" class="recipe-details-img img-fluid" alt="...">
@@ -24,7 +24,7 @@
                 {% endif %}
             </div>
         </div>
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4"> <!-- RECIPE DETAILS  -->
             <div class="mt-4">
                 <h2>{{ recipe.name }}</h2>
                 <p>Created by {{ recipe.user }}</p>

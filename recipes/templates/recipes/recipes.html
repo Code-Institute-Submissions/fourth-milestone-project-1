@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid"> <!-- JUMBOTRON  -->
     <div class="container">
         <div class="row">
             <div class="col-md-8">
@@ -17,7 +17,7 @@
                     <a href="{% url 'recipes' %}" class="larger-font submit-button p-2">Browse All</a>
                 {% endif %}
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4"> <!-- RECIPE SEARCH  -->
                 <form class="GET mt-4" action="{% url 'recipes' %}">
                     <input type="text" maxlength="50" name="search" placeholder="Search recipes">
                     <input type="submit" class="submit-button" value="Submit">
@@ -43,7 +43,7 @@
             {% endif %}
     </div>
 </div>
-<div class="container-fluid showcase">
+<div class="container-fluid showcase"> <!-- SHOWCASED RECIPES  -->
     <hr>
     <div class="row mb-5">
         {% for recipe in showcased_recipes %}
@@ -96,12 +96,12 @@
     </div>
     <hr>
 </div>
-<div class="container mt-4">
+<div class="container mt-4"> <!-- RECIPE LIST  -->
     <div class="row">
         {% for recipe in recipes %}
             <div class="col-12 mt-3">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-3"> <!-- RECIPE IMAGE -->
                         {% if recipe.image %}
                             <a href="{% url 'recipe_details' recipe.id %}">
                                 <img src="{{ recipe.image.url }}" class="card-img-top img-fluid" alt="...">
@@ -112,13 +112,13 @@
                             </a>
                         {% endif %}
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-7"> <!-- RECIPE SUMMARY  -->
                         <h3><a href="{% url 'recipe_details' recipe.id %}" class="text-link">{{ recipe.name }}</a></h3>
                         <p>By {{ recipe.user }}</p>
                         <p>{{ recipe.score }} <i class="fas fa-heart"></i></p>
                         <p>{{ recipe.description }}</p>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2"> <!-- HEART BUTTON  -->
                         {% if user_profile %}
                             {% if user_profile in recipe.saved_by_users.all %}
                                 <form action="{% url 'remove_recipe' recipe.id %}" method="POST">
@@ -147,7 +147,7 @@
         {% endfor %}
     </div>  
 </div>
-<div class="mt-5">
+<div class="mt-5"> <!-- RECIPE PAGINATION  -->
     <nav aria-label="recipes pagination">
         {% if recipes.has_other_pages %}
             <ul class="pagination justify-content-center">
