@@ -68,6 +68,8 @@ form.addEventListener('submit', function(ev) {
                 </span>
                 <span>${result.error.message}</span>`;
             $(errorDiv).html(html);
+            $('#submit-button').toggleClass('d-none');
+            $('#loading-button').toggleClass('d-none');
             card.update({ 'disabled': false});
             $('#submit-button').attr('disabled', false);
         } else {
