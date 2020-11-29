@@ -1,39 +1,85 @@
-<img src="https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png" style="margin: 0;">
+# Miss Pan's Bakery - Full Stack Frameworks with Django Milestone Project
+<https://miss-pans-bakery.herokuapp.com/>
+## Overview
+text here
 
-Welcome harclemadscam,
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project.
+## UX
+My full UX documentation can be found in the ux-design folder, which can be found [here](ux-design).
+This includes documents detailing my thoughts on the strategy and scope planes of this project, plus the basic structure and my skeleton wireframes.
 
-## Gitpod Reminders
+### User Stories
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+* First
+* Second
+* Third
 
-`python3 -m http.server`
+## Features
+### Existing Features
 
-A blue button should appear to click: *Make Public*,
+* First
+* Second
+* Third
 
-Another blue button should appear to click: *Open Browser*.
+### Future Features
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+* First
+* Second
+* Third
 
-A blue button should appear to click: *Make Public*,
+## Technologies Used
+* [HTML5](https://www.w3.org/TR/2017/REC-html52-20171214/)
 
-Another blue button should appear to click: *Open Browser*.
+  * html
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the backend lessons.
+* [CSS3](https://www.w3.org/Style/CSS/)
 
-## Updates Since The Instructional Video
+  * css
 
-We continually tweak and adjust this template to help give you the best experience. Here are the updates since the original video was made:
+* [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+  * js
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+* [Git](https://git-scm.com/)
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+  * Used for version control and committing changes to GitHub.
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+* [GitHub](https://github.com/)
 
---------
+  * Used to host and publish my project files.
 
-Happy coding!
+* [Google Chrome/Developer Tools](https://www.google.com/intl/en_uk/chrome/)
+
+  * My internet browser. 
+  The Developer Tools were used to troubleshoot, edit the layout, and preview changes, as well as test the responsiveness of the page.
+
+* [GitPod IDE](https://gitpod.io/)
+
+  * The application I used to develop the project - the production environment.
+
+* [Font Awesome](https://fontawesome.com/)
+
+  * font awesome
+
+* [Google Fonts](https://fonts.google.com/)
+  
+  * Used to provide the Josefin Sans font.
+
+## Testing
+My full testing documentation can be found in the testing folder, which can be found [here](testing).
+
+## Deployment
+
+
+## Credits
+### Content
+text
+### Media
+images
+
+### Acknowledgements
+inspiration etc
+
+I made frequent use of [Stack Overflow](https://stackoverflow.com/)  
+
+To create the background gradient, text shadow, and box shadow effects, I used the following online tools: [Here](https://cssgradient.io/), [Here](https://html-css-js.com/css/generator/text-shadow/) and [Here](https://www.cssmatic.com/box-shadow).
