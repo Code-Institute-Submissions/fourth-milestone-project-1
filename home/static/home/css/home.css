@@ -1,0 +1,32 @@
+.home-content {
+    background-color: #fff;
+    height: 100vh;
+    width: 100vw;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    background-attachment: fixed;
+}
+
+#shop-section-home > .jumbotron {
+    height: 100vh;
+    background-image: url('/static/images/littlecakes.jpg');
+    background-size: cover;
+}
+
+#shop-section-home .jumbotron {
+    margin-bottom: 0;
+}
+
+#videos-section-home {
+    background-image: url('/static/images/baking.jpg');
+}
+
+#recipes-section-home {
+    background-image: url('/static/images/cookies-tray.jpg');
+}
+
+#gallery-section-home {
+    background-image: url('/static/images/macarons.jpg');
+}
