@@ -5,9 +5,8 @@
     <link rel="stylesheet" href="{% static 'shop/css/shop.css' %}">
 {% endblock %}
 
-
 {% block content %}
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid"> <!-- JUMBOTRON  -->
     <div class="container">
         {% if not filter_categories %}
             {% if not search_text %}
@@ -22,7 +21,7 @@
         {% elif filter_categories == "merchandise" %}
             <h1 class="display-4 home-title">Merchandise</h1>
         {% endif %}
-        <form class="GET mt-4" action="{% url 'shop' %}">
+        <form class="GET mt-4" action="{% url 'shop' %}"> <!-- PRODUCT SEARCH  -->
             <input type="text" maxlength="50" name="search" placeholder="Search our products">
             <input type="submit" class="submit-button" value="Submit">
         </form>
@@ -37,7 +36,7 @@
     <hr>
 </div>
 <div class="container">
-    <div class="row card-deck mb-5">
+    <div class="row card-deck mb-5"> <!-- PRODUCTS  -->
         {% for product in products %}
             <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
                 <div class="card mt-4 mx-0">
@@ -81,7 +80,7 @@
             </div>
         {% endfor %}
     </div>
-    <div class="mt-5">
+    <div class="mt-5"> <!-- PRODUCT PAGINATION  -->
         <nav aria-label="shop products pagination">
             {% if products.has_other_pages %}
                 <ul class="pagination justify-content-center">

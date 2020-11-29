@@ -7,7 +7,7 @@
 
 {% block content %}
 <div class="container-fluid mt-4">
-    <div class="row">
+    <div class="row"> <!-- BACK BUTTON  -->
         <div class="col offset-lg-2">
             <a href="{% url 'shop' %}" class="standard-button p-2"><i class="fas fa-caret-left"></i> Back to Shop</a>
         </div>
@@ -15,7 +15,7 @@
 </div>
 <div class="container-fluid">
     <div class="row mt-4">
-        <div class="col-md-6 col-lg-4 offset-lg-2">
+        <div class="col-md-6 col-lg-4 offset-lg-2"> <!-- PRODUCT IMAGE  -->
             <div id="product-details-image">
                 {% if not product.image1 %}
                     <img src="{% static 'images/noimage.png' %}" class="product-details-img img-fluid" alt="...">
@@ -65,7 +65,7 @@
                 </div>
             {% endif %}
         </div>
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4"> <!-- PRODUCT DETAILS  -->
             <div class="mt-4">
                 <h1>{{ product.name }}</h1>
                 {% if request.user.is_superuser %}
@@ -83,7 +83,7 @@
             </div>
             {% if product.available %}
                 {% if product.stock > 0 %}
-                    <div class="mt-2">
+                    <div class="mt-2"> <!-- ADD TO CART FORM  -->
                         <form action="{% url 'add_to_cart' product.id %}" method="POST">
                             {% csrf_token %}
                             {{ cart_product_form }}
@@ -130,7 +130,7 @@
 </div>
 <div class="container">
     <hr class="mt-4">
-    <div class="row justify-content-between">
+    <div class="row justify-content-between"> <!-- PRODUCT REVIEWS  -->
         <div class="col-md-8">
             <h3 class="my-4">Reviews</h3>
         </div>
@@ -145,10 +145,10 @@
         </div>
     </div>
     {% if reviews %}
-        <div id="reviews-container" class="row">
+        <div id="reviews-container" class="row"> 
             {% for review in reviews %}
                 {% if review.user.user == request.user %}
-                    <div class="review col-12">
+                    <div class="review col-12"> <!-- YOUR REVIEW -->
                         <div class="row pt-2 justify-content-between">
                             <div class="col-md-8 ">
                                 <h4 class="pl-3">Your Review</h4>
@@ -172,7 +172,7 @@
             {% endfor %}
             {% for review in reviews %}
                 {% if review.user.user != request.user %}
-                    <div class="review col-12">
+                    <div class="review col-12"> <!-- REVIEW  -->
                         <div class="row pt-2 justify-content-between">
                             <div class="col-md-12 ">
                                 <h4 >{{ review.user.user }}'s Review</h4>
@@ -195,7 +195,7 @@
         </div>
     {% endif %}
 </div>
-<div class="mt-5">
+<div class="mt-5"> <!-- REVIEW PAGINATION -->
     <nav aria-label="product reviews pagination">
         {% if reviews.has_other_pages %}
             <ul class="pagination justify-content-center">
