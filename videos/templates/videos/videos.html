@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid"> <!-- JUMBOTRON  -->
     <div class="container">
         <h1 class="display-4 home-title">Videos</h1>
         {% if request.user.is_superuser %}
@@ -16,7 +16,7 @@
         {% endif %}
     </div>
 </div>
-<div class="container mt-5">
+<div class="container mt-5"> <!-- VIDEOS  -->
     {% for video in videos %}
         {% if video.is_shown %}
             <div class="row justify-content-between">
@@ -26,7 +26,7 @@
                     </div>
                 </div>
             {% if request.user.is_superuser %}
-                <div class="col-md-3 mb-4">
+                <div class="col-md-3 mb-4"> <!-- VIDEO ADMIN  -->
                     <div>
                         <a href="{% url 'edit_video' video.id %}" class="edit-button mr-3">Edit Video</a>
                         <a href="{% url 'delete_video' video.id %}" class="warning-button">Delete Video</a>
@@ -43,8 +43,8 @@
         {% endif %}
     {% endfor %}
 </div>
-<div class="mt-5">
-    <nav aria-label="videos pagination">
+<div class="mt-5"> <!-- VIDEO PAGINATION  -->
+    <nav aria-label="videos pagination"> 
         {% if videos.has_other_pages %}
             <ul class="pagination justify-content-center">
                 {% if videos.has_previous %}
