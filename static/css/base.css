@@ -142,14 +142,13 @@ input {
     color: #7232b8;
 }
 
-/* SHOPPING CART LINK */
-#shopping-cart-link a {
+.icon-link a {
     text-decoration: none;
     font-size: 1.5rem;
     color: #000;
 }
 
-#shopping-cart-link a:hover {
+.icon-link a:hover {
     color: #7232b8;
 }
 
