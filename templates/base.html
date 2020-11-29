@@ -47,8 +47,12 @@
             <div class="row d-none d-lg-flex">
                 <div class="col-lg-4 py-1"></div>
                 <div id="brand" class="col-lg-4 py-1 text-center"> <!-- BRAND  -->
-                    <a href="{% url 'home' %}" id="missPanBrand"><img src="{% static 'images/misspansbakerytitle.png' %}"></a>
-                    <a href="{% url 'home' %}" id="missPanBrandSmall"><img src="{% static 'images/misspansbakerytitle-small.png' %}"></a>
+                    <a href="{% url 'home' %}" id="missPanBrand">
+                        <img src="{% static 'images/misspansbakerytitle.png' %}" alt="Miss Pan's logo">
+                    </a>
+                    <a href="{% url 'home' %}" id="missPanBrandSmall">
+                        <img src="{% static 'images/misspansbakerytitle-small.png' %}" alt="Miss Pan's small logo">
+                    </a>
                 </div>
                 <div class="col-lg-4 py-1 text-right"> <!-- ACCOUNT NAV  -->
                     {% if request.user.is_authenticated %}
