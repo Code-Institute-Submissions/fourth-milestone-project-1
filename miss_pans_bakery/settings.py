@@ -179,6 +179,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 CART_SESSION_ID = 'cart'
 
 if 'USE_AWS' in os.environ:
+    # Cache control
+    AWS_S3_OBJECT_PARAMETERS = {
+        'Expires': 'Thu, 31 Dec 2099 23:00:00 GMT',
+        'CacheControl': 'max-age=94608000',
+    }
+
     # AWS Bucket
     AWS_STORAGE_BUCKET_NAME = 'miss-pans-bakery'
     AWS_S3_REGION_NAME = 'eu-west-2'
