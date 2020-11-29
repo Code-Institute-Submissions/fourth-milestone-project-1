@@ -60,6 +60,7 @@ label {
     padding: 1rem;
 }
 
+/* MEDIA QUERIES */
 @media (max-width:1366px) {
     .product-details-img {
         height: 40vw;

@@ -20,6 +20,7 @@
     border: 1px solid #e6e6e6;
 }
 
+/* MEDIA QUERIES */
 @media (max-width:1366px) {
     .recipe-details-img {
         height: 40vw;
