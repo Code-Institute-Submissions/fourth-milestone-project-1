@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container"> <!-- HEADING  -->
     <div class="row mt-5 mb-5">
         <div class="col-md-8">
             <h1>Your Orders</h1>
@@ -17,7 +17,7 @@
     </div>
 </div>
 {% if orders %}
-    <div class="container">
+    <div class="container"> <!-- ORDERS LIST  -->
         <div class="row d-none d-md-flex">
             <div class="col-md-3 text-center">Order Date</div>
             <div class="col-md-3 text-center">Order Number</div>
@@ -54,7 +54,7 @@
         </div>
     </div>
 {% endif %}
-<div class="mt-5">
+<div class="mt-5"> <!-- ORDERS PAGINATION  -->
     <nav aria-label="orders pagination">
         {% if orders.has_other_pages %}
             <ul class="pagination justify-content-center">

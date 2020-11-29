@@ -6,14 +6,14 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
+    <div class="container"> <!-- HEADING  -->
         <div class="row my-5">
             <div class="col">
                 <h1>{{ user_profile }}'s Profile</h1>
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container"> <!-- DEFAULT DELIVERY INFO FORM  -->
         <div class="row">
             <div class="col-md-6">
                 <div class="mb-4">
@@ -31,7 +31,7 @@
                     </div>
                 </form>
             </div>
-            <div class="col-md-6 text-center mt-4">
+            <div class="col-md-6 text-center mt-4"> <!-- PROFILE NAV LINKS  -->
                 <div class="my-5"> 
                     <a href="{% url 'user_orders' %}" class="standard-button larger-font p-2 d-flex flex-column"><i class="far fa-list-alt"></i> My Orders</a>
                 </div>

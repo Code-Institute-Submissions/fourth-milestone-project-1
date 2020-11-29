@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid"> <!-- JUMBOTRON  -->
     <div class="container">
         <div class="row">
             <div class="col-md-8">
@@ -29,7 +29,7 @@
             <div class="col-md-6 mt-5">
                 <a href="{% url 'recipe_details' recipe.id %}"></a>
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-5"> <!-- RECIPE IMAGE  -->
                         {% if recipe.image %}
                             <a href="{% url 'recipe_details' recipe.id %}">
                                 <img src="{{ recipe.image.url }}" class="card-img-top img-fluid" alt="...">
@@ -40,7 +40,7 @@
                             </a>
                         {% endif %}
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-5"> <!-- RECIPE SUMMARY -->
                         <h3><a href="{% url 'recipe_details' recipe.id %}" class="text-link">{{ recipe.name }}</a></h3>
                         <p>By {{ recipe.user }}</p>
                         <p>{{ recipe.score }} <i class="fas fa-heart"></i></p>
@@ -75,7 +75,7 @@
     </div>
     <hr>
 </div>
-<div class="mt-5">
+<div class="mt-5"> <!-- RECIPE PAGINATION -->
     <nav aria-label="user recipes pagination">
         {% if user_recipes.has_other_pages %}
             <ul class="pagination justify-content-center">

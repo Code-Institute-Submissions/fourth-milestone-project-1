@@ -7,10 +7,10 @@
 
 {% block content %}
 <div class="container mt-5">
-    <div class="row">
+    <div class="row"> <!-- HEADING  -->
         <h1>Website Admin</h1>
     </div>
-    <div class="row">
+    <div class="row"> <!-- WEBSITE ADMIN NAV BUTTONS  -->
         <div class="col-md-3">
             <p class="mt-5">
                 <a href="{% url 'admin:index' %}" class="edit-button">Link to Django Admin</a>
@@ -33,12 +33,12 @@
         </div>   
     </div>
     <hr>
-    <div class="row mt-5">
-        <div class="col mb-3">
+    <div class="row mt-5"> 
+        <div class="col mb-3"> <!-- UNAPPROVED RECIPES  -->
             <h2>Recipes Pending Approval</h2>
         </div>
         {% for recipe in unapproved_recipes %}
-            <div class="col-12 mt-3">
+            <div class="col-12 mt-3"> 
                 <div class="row">
                     <div class="col-md-3">
                         {% if recipe.image %}
@@ -63,7 +63,7 @@
             </div>
         {% endfor %}
     </div>
-    <div class="mt-5">
+    <div class="mt-5"> <!-- UNAPPROVED RECIPES PAGINATION  -->
         <nav aria-label="unapproved recipes pagination">
             {% if unapproved_recipes.has_other_pages %}
                 <ul class="pagination justify-content-center">
