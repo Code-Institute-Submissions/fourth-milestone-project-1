@@ -6,12 +6,12 @@
 {% endblock %}
 
 {% block content %}
-<div class="container mt-5">
+<div class="container mt-5"> <!-- HEADING  -->
     <h1>Thank you</h1>
     <p>Your order has been successfully completed. Your order number is <strong>{{ order.id }}</strong>.</p>
     <p>An order summary can be found below:</p>
 </div>
-<div class="container mt-5">
+<div class="container mt-5"> <!-- ORDER SUMMARY  -->
     <div class="row d-none d-md-flex">
         <div class="col-md-3 text-center">Image</div>
         <div class="col-md-3 text-center">Items Ordered</div>
@@ -43,4 +43,5 @@
         <div class="col-md-3 text-center py-2 larger-font">£{{ order.get_total_cost }}</div> 
     </div>
     <hr>
+</div>
 {% endblock %}

@@ -6,55 +6,55 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container mt-5">
-        <h1>Checkout</h1>
-    </div>
-    <div class="container mt-3">
-        <div class="row">
-            <div class="col-md-6">
-                <h3>Your order</h3>
-                <ul>
-                    {% for item in cart %}
-                        <li>
-                            <p>{{ item.quantity }}x {{ item.product.name }} £{{ item.total_price }}</p>
-                        </li>
-                    {% endfor %}
-                </ul>
-                <p class="larger-font mt-4">Total: £{{ cart.get_total_price }}</p>
-                <a href="{% url 'view_cart' %}" class="mt-5 px-5 py-1 standard-button">Back to Cart</a>
-            </div>
-            <div class="col-md-6 mt-5">
-                <form method="POST" class="order-form" id="payment-form">
-                    {% csrf_token %}
-                    {{ form.first_name | as_crispy_field }}
-                    {{ form.last_name | as_crispy_field }}
-                    {{ form.email | as_crispy_field }}
-                    {{ form.address_line1 | as_crispy_field }}
-                    {{ form.address_line2 | as_crispy_field }}
-                    {{ form.town_or_city | as_crispy_field }}
-                    {{ form.postcode | as_crispy_field }}
-                    {{ form.country | as_crispy_field }}
-                    {% if user.is_authenticated %}
-                    <div class="form-check form-check-inline mt-2 mb-4">
-                        <label class="form-check-label" for="id-update-default">Update my default delivery information:</label>
-                        <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-update-default" name="update-default">
-					</div>
-                    {% endif %}
-                    {{ form.name_on_card | as_crispy_field }}
-                    <div class="mt-4" id="card-element"></div>
-                    <div class="mt-4" id="card-errors"></div>
-                    <p class="mt-5 text-center">
-                        <input id="submit-button" class="submit-button larger-font px-3" type="submit" value="Place Order">
-                        <button id="loading-button" class="submit-button larger-font px-3 d-none" type="button" disabled>
-                            <span class="spinner-border spinner-border" role="status" aria-hidden="true"></span>
-                            <span class="sr-only">Placing Order...</span>
-                            <span>Please Wait</span>
-                        </button>
-                    </p>
-                </form>
-            </div>
+<div class="container mt-5"> <!-- HEADING  -->
+    <h1>Checkout</h1>
+</div>
+<div class="container mt-3"> <!-- ORDER SUMMARY  -->
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Your order</h3>
+            <ul>
+                {% for item in cart %}
+                    <li>
+                        <p>{{ item.quantity }}x {{ item.product.name }} £{{ item.total_price }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+            <p class="larger-font mt-4">Total: £{{ cart.get_total_price }}</p>
+            <a href="{% url 'view_cart' %}" class="mt-5 px-5 py-1 standard-button">Back to Cart</a>
+        </div>
+        <div class="col-md-6 mt-5"> <!-- ORDER AND PAYMENT FORM  -->
+            <form method="POST" class="order-form" id="payment-form">
+                {% csrf_token %}
+                {{ form.first_name | as_crispy_field }}
+                {{ form.last_name | as_crispy_field }}
+                {{ form.email | as_crispy_field }}
+                {{ form.address_line1 | as_crispy_field }}
+                {{ form.address_line2 | as_crispy_field }}
+                {{ form.town_or_city | as_crispy_field }}
+                {{ form.postcode | as_crispy_field }}
+                {{ form.country | as_crispy_field }}
+                {% if user.is_authenticated %}
+                <div class="form-check form-check-inline mt-2 mb-4">
+                    <label class="form-check-label" for="id-update-default">Update my default delivery information:</label>
+                    <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-update-default" name="update-default">
+                </div>
+                {% endif %}
+                {{ form.name_on_card | as_crispy_field }}
+                <div class="mt-4" id="card-element"></div>
+                <div class="mt-4" id="card-errors"></div>
+                <p class="mt-5 text-center">
+                    <input id="submit-button" class="submit-button larger-font px-3" type="submit" value="Place Order">
+                    <button id="loading-button" class="submit-button larger-font px-3 d-none" type="button" disabled>
+                        <span class="spinner-border spinner-border" role="status" aria-hidden="true"></span>
+                        <span class="sr-only">Placing Order...</span>
+                        <span>Please Wait</span>
+                    </button>
+                </p>
+            </form>
         </div>
     </div>
+</div>
 {% endblock %}
 
 {% block postloadjs %}
