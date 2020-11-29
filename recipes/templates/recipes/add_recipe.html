@@ -12,6 +12,7 @@
         <div class="col text-center">
             <div class="mb-4 mt-3">
                 <h2>Add a New Recipe</h2>
+                <p>Please note that all recipe submissions will need to be approved by Miss Pan's. If approved, it will be accessible to other members of the community!</p>
             </div>
             <form method="POST" action="{% url 'add_recipe' %}" enctype="multipart/form-data">
                 {% csrf_token %}

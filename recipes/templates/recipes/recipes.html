@@ -30,6 +30,16 @@
                         <a href="{% url 'add_recipe' %}" class="larger-font edit-button">Add a recipe</a>
                     </div>
                 </div>
+            {% else %}
+                <div class="row">
+                    <div class="col my-3">
+                        <p>To submit your own recipes,
+                            <a href="{% url 'account_login' %}" class="text-link">Sign in</a>
+                            or
+                            <a href="{% url 'account_signup' %}" class="text-link">Register</a>.
+                        </p>
+                    </div>
+                </div>
             {% endif %}
     </div>
 </div>
