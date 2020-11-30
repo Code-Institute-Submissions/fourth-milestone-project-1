@@ -12,6 +12,8 @@ import stripe
 
 def create_order(request):
     cart = Cart(request)
+    if not cart:
+        return redirect('view_cart')
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     if request.method == 'POST':
