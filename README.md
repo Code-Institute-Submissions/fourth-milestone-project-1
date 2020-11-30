@@ -44,15 +44,41 @@ This includes documents detailing my thoughts on the strategy and scope planes o
 ## Technologies Used
 * [HTML5](https://www.w3.org/TR/2017/REC-html52-20171214/)
 
-  * html
+  * Used to create the template structure of each page.
 
 * [CSS3](https://www.w3.org/Style/CSS/)
 
-  * css
+  * Custom styling to the HTML - including font, layout and colours.
 
-* [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+* [Django](https://www.djangoproject.com/)
 
-  * js
+  * The open source Python web framework that the site is based on. A fundamental requirement. I used a number of Django packages, including allauth, crispy forms and storages.
+  A full list can be found in requirements.txt.
+
+* [Python3](https://www.python.org/)
+
+  * The programming language that Django is based on. Used to create the models, views, settings etc files for Django. I used a number of Python packages installed with pip,
+  such as Pillow and Gunicorn - a full list can be found in requirements.txt.
+
+* [Bootstrap](https://getbootstrap.com/)
+
+  * An open source CSS framework focused on responsive, mobile-first development. A number of Bootstrap classes and components were used, such as the navbar and carousel.
+
+* [JavaScript/JQuery](https://jquery.com/)
+
+  * JQuery was used to improve the user experience and make the site more interactive, as well as enabling Stripe payments.
+
+* [Stripe](https://stripe.com/gb)
+
+  * Used as the payment system.
+
+* [Heroku](https://heroku.com/)
+
+  * Used to deploy the final version of the project.
+
+* [Amazon Web Services](https://aws.amazon.com/)
+
+  * Used to host my static and media files for my deployed site. Using S3 and IAM.
 
 * [Git](https://git-scm.com/)
 
@@ -73,11 +99,15 @@ This includes documents detailing my thoughts on the strategy and scope planes o
 
 * [Font Awesome](https://fontawesome.com/)
 
-  * font awesome
+  * Used to source the icons, e.g. the shopping cart, social media icons etc.
 
 * [Google Fonts](https://fonts.google.com/)
   
   * Used to provide the Josefin Sans font.
+
+* [ScrollReveal](https://scrollrevealjs.org/guide/hello-world.html)
+  
+  *  A JavaScript library for easily animating elements as they scroll into view, used in the gallery app.
 
 ## Testing
 My full testing documentation can be found in the testing folder, which can be found [here](testing).
