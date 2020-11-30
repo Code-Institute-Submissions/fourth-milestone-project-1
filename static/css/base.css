@@ -65,6 +65,7 @@ input {
 }
 
 /* BRAND */
+/* Brand scrolling effect inspired by https://www.bettys.co.uk/ website code  */
 .scroll > #missPanBrand img {
     position: absolute;
     top: -9999rem;
