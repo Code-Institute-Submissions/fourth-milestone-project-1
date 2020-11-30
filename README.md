@@ -24,9 +24,12 @@ This includes documents detailing my thoughts on the strategy and scope planes o
 
 ### User Stories
 
-* First
-* Second
-* Third
+* As a fan of cakes and cookies, I want to go online and purchase some to my house.
+* As a repeat customer of Miss Pan's, I want to save my delivery information for quick checkout next time.
+* As a customer of Miss Pan's, I want to write reviews of their products and read reviews written by others.
+* As an avid baker, I want to find new recipes and share my own.
+* As a fan of Miss Pan's, I want to check out their social media pages.
+* As someone with an interest in baking, I want to watch or look at content that Miss Pan's is showcasing.
 
 ## Features
 ### Existing Features
@@ -141,7 +144,7 @@ My full testing documentation can be found in the testing folder, which can be f
 Text for products was written by myself.
 Text for recipes was sourced from an old recipe book.
 ### Media
-The brand logo was created my myself.
+The brand logo was created by myself.
 The images were sourced from Pexels and Unsplash.
 Credit to:
 [David Jakab](https://www.pexels.com/photo/cakes-chocolate-close-up-cupcakes-959079/)
