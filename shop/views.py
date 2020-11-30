@@ -7,6 +7,8 @@ from .models import Product, Category
 from .forms import ProductForm
 from cart.forms import CartAddProductForm
 
+from profiles.models import UserProfile
+
 
 def shop(request):
     """ Returns the shop products """
@@ -58,11 +60,19 @@ def product_details(request, id, slug):
     page = request.GET.get('page', 1)
     cart_product_form = CartAddProductForm()
     user_review = False
+    verified_purchase = False
     reviews = product.product_reviews.all().order_by('id')
     if reviews:
         for review in reviews:
             if request.user == review.user.user:
                 user_review = True
+    if request.user.is_authenticated:
+        user_profile = UserProfile.objects.get(user=request.user)
+        orders = user_profile.orders.all()
+        for order in orders:
+            for item in order.items.all():
+                if product == item.product:
+                    verified_purchase = True
     paginator = Paginator(reviews, 10)
     try:
         reviews = paginator.page(page)
@@ -76,6 +86,7 @@ def product_details(request, id, slug):
         'cart_product_form': cart_product_form,
         'reviews': reviews,
         'user_review': user_review,
+        'verified_purchase': verified_purchase,
     }
     return render(request, 'shop/product_details.html', context)
 
