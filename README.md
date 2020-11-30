@@ -138,13 +138,30 @@ My full testing documentation can be found in the testing folder, which can be f
 
 ## Credits
 ### Content
-text
+Text for products was written by myself.
+Text for recipes was sourced from an old recipe book.
 ### Media
-images
+The brand logo was created my myself.
+The images were sourced from Pexels and Unsplash.
+Credit to:
+[David Jakab](https://www.pexels.com/photo/cakes-chocolate-close-up-cupcakes-959079/)
+[tabitha turner](https://unsplash.com/photos/Ns2aJ5OXKds)
+[Sara Sperry](https://unsplash.com/photos/-EMvlQ5n8n0)
+[Brigitte Tohm](https://www.pexels.com/photo/bowl-dessert-food-macaroons-239578/)
 
 ### Acknowledgements
-inspiration etc
+My design was inspired by the Boutique Ado website shown in the course, as well as the [Anna Cake Couture website](https://www.thisisanna.co.uk/)
+and the [Bettys website](https://www.bettys.co.uk/).
 
-I made frequent use of [Stack Overflow](https://stackoverflow.com/)  
+The changing website logo on scroll animation was inspired by the same animation of the [Bettys website](https://www.bettys.co.uk/). I inspected the code of that website
+and used a very similar method to recreate it. It was achieved by applying css classes on scroll using jQuery, which changes which logo is shown and applies an animation.
 
-To create the background gradient, text shadow, and box shadow effects, I used the following online tools: [Here](https://cssgradient.io/), [Here](https://html-css-js.com/css/generator/text-shadow/) and [Here](https://www.cssmatic.com/box-shadow).
+Much of my shopping cart app functionality was taken from Chapter 7 of "Django 3 By Example" by Antonio Melé, including much of the code in cart.py and cart views.py.
+The chapter also prompted my use of product and category slugs and methods to get URLs in my shop models.py.
+
+I also used a fair amount of functionality demonstrated in the Boutique Ado website course content. This includes the Stripe payment and webhook functionality, the general outline of the ordering process,
+the functionality to send emails via Django, and the functionality to link to an AWS S3 bucket.
+
+I made frequent use of [Stack Overflow](https://stackoverflow.com/) when stuck.
+
+To create the box shadow effects, I used the following online tool: [Here](https://www.cssmatic.com/box-shadow).
