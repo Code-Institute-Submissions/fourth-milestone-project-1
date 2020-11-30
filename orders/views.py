@@ -10,6 +10,7 @@ from profiles.forms import UserOrderDetailsForm
 import stripe
 
 
+# Order process based on Boutique Ado course content
 def create_order(request):
     cart = Cart(request)
     if not cart:

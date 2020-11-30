@@ -8,6 +8,7 @@ from orders.webhook_handler import StripeWebhookHandler
 import stripe
 
 
+# Webhook code largely taken from Boutique Ado course content
 @require_POST
 @csrf_exempt
 def webhook(request):

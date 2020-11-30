@@ -1,3 +1,6 @@
+// Stripe functionality largely taken from Stripe documentation
+// and Boutique Ado course content
+
 var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
 var clientSecret = $('#id_client_secret').text().slice(1, -1);
 var stripe = Stripe(stripePublicKey);
