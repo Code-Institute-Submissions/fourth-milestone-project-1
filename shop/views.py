@@ -34,7 +34,7 @@ def shop(request):
                 name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
             total_products = products.filter(queries)
-    paginator = Paginator(products, 5)
+    paginator = Paginator(products, 9)
     try:
         products = paginator.page(page)
     except PageNotAnInteger:
