@@ -24,7 +24,7 @@ This includes documents detailing my thoughts on the strategy and scope planes o
 
 ### User Stories
 
-* As a fan of cakes and cookies, I want to go online and purchase some to my house.
+* As a fan of cakes and cookies, I want to go online and purchase some for delivery to my house.
 * As a repeat customer of Miss Pan's, I want to save my delivery information for quick checkout next time.
 * As a customer of Miss Pan's, I want to write reviews of their products and read reviews written by others.
 * As an avid baker, I want to find new recipes and share my own.
@@ -137,6 +137,41 @@ enlarge it, or direct you to the product.
 My full testing documentation can be found in the testing folder, which can be found [here](testing).
 
 ## Deployment
+To create my development workspace, I first created a new GitHub repo and made sure to install the GitPod browser extension. I then clicked the GitPod button to generate my
+GitPod workspace.
+
+To deploy to Heroku, I followed the following steps:
+
+1. Create a new Heroku app on [Heroku](https://dashboard.heroku.com/), giving it an appropriate name and region.
+2. On the Resource tab of the new Heroku app, search for the addon Heroku Postgres and select it. Use the free plan.
+3. Install the dj_database_url, psycopg2-binary and gunicorn packages using pip3. Freeze these to a requirements.txt file `pip3 freeze > requirements.txt`.
+4. Import dj_database_url in your settings.py file. Comment out your existing DATABASES sqlite3 config and instead point it at `dj_database_url.parse('')`. Go to your config vars in your new Heroku
+app and copy the value of the DATABASE_URL, then paste it into the quotes inside the brackets of `dj_database_url.parse('')` and save the file.
+5. Run migrations and it will set up the new Postgres database. You should also set up a superuser for the new database using `python3 manage.py createsuperuser`.
+6. Uncomment the old DATABASE config. Create an if statement in your settings.py file to check if DATABASE_URL exists in the os.environ, and move the new DATABASES postgres config inside the if statement. Create
+an else statement and set that as the old DATABASES config.
+7. Replace the postgres config you copied and pasted from the DATABASE_URL variable, and replace it with `os.environ.get('DATABASE_URL)` so that the config is not captured by version control.
+8. Create a file in your directory called Profile, and add `web: gunicorn miss_pans_bakery.wsgi:application`.
+9. In your Heroku app, set the config variable DISABLE_COLLECTSTATIC to 1, to disable collection of static files.
+10. Add the host name of your Heroku app to ALLOWED_HOSTS in your settings.py file, as well as localhost.
+11. Commit and push your changes to GitHub. Log into the the Heroku CLI, then use `git push heroku master` to push to Heroku. Make sure the app is selected if you
+have more than one.
+12. The website should deploy to Heroku. You can now switch on automatic deploys by connecting to your GitHub repo in the Deploy settings of your Heroku app.
+13. Update your config vars with a new Django secret key called SECRET_KEY, which you can generate using an online generator. Then update your SECRET_KEY in settings.py to look for a variable called
+SECRET_KEY. Make sure your development workspace also has a environment variable for SECRET_KEY.
+14. Add an environment variable to your development workspace called DEVELOPMENT with value of true, and set your DEBUG value in look for that variable. DEBUG will only be true in
+the development workspace.
+15. Set up an AWS S3 bucket which allows public access. Make sure to create a user that has access to it using IAM.
+16. Install boto3 and django-storages with pip3 and refreeze the requirements.txt. Add storages to the list of installed apps in settings.py.
+17. Add a config var in Heroku called USE_AWS as true. Create an if statement to look for USE_AWS and set the AWS_STORAGE_BUCKET_NAME and AWS_S3_REGION_NAME.
+18. Set more config vars in Heroku for the AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY. Remove the DISABLE_COLLECTSTATIC config var.
+19. Update the USE_AWS if statement with os.environ.get() statements to find the AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY. Add the AWS_S3_CUSTOM_DOMAIN.
+
+
+
+
+
+
 
 
 ## Credits
