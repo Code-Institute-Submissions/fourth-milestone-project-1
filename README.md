@@ -31,15 +31,36 @@ This includes documents detailing my thoughts on the strategy and scope planes o
 ## Features
 ### Existing Features
 
-* First
-* Second
-* Third
+* A navbar for accessing the main hubs of the site, as well as links to log in and register or links to the logged in user's account.
+* A user authentication system that allows a user to register and create an account, powered by Django Allauth. Users should be sent a verification email after registering. Logged in
+users have access to features that anonymous users do not.
+* Logged in users have a user profile, where they can view their order history, update their default delivery info and view any recipes they have created or hearted.
+* A shop where users can search by keyword or view different pages that filter products by category.
+* A shopping cart system, that allows users to add products to their cart from the shop or product page before checkout.
+* A checkout system that allows users to place orders for different quantities of product. All orders require payment by credit or debit card using Stripe. Users can update their default
+delivery info at checkout if logged in.
+* A product review system. Logged in users who have purchased an item can submit a review for the item and give it a rating, which then appears on the product details page.
+* A recipes hub. Logged in users can submit, edit or delete their own recipes. Recipes approved by the website admins appear on the recipes page for all users. Recipes can be selected for showcase and appear at the top of list.
+Recipes can be hearted by logged in users, and then appear on their hearted recipes page.
+* Website admins can add, edit and delete products on the shop.
+* Products have a stock number that decreases when orders are placed. A low stock or out of stock message appears if stock is too low, and out of stock products cannot be purchased.
+The cart system should adapt and prevent adding more of the product than the available stock.
+* A gallery that uses scrollreveal to display images. Users can switch between images uploaded directly by website admins, or images of each shop product. Clicking on an image should
+enlarge it, or direct you to the product.
+* A video hub, where website admins can add, edit or delete embedded YouTube videos. Users can watch these videos on the site.
+* Pages that feature lists of content should also feature pagination, so the items are split onto different pages.
+* The website should be responsive and adapt to different devices and screen sizes.
+* Some buttons such as the place order button should change to a spinning icon when the page loads, to give visual feedback to users.
 
 ### Future Features
 
-* First
-* Second
-* Third
+* More comprehensive sorting of products and recipes.
+* Information on delivery times to keep users up to date about their orders. An email should be sent with order confirmation.
+* Implementation of a Stripe webhook was started but not completed. This should be finished to prevent orders being placed without updating the system.
+* Users should be able to access their reviews from their user profile.
+* Reviews and more detailed ratings for recipes. The ability to view all recipes by a particular user.
+* More categories of item for the shop.
+* An alert or toast system to provide feedback to users when changes are made.
 
 ## Technologies Used
 * [HTML5](https://www.w3.org/TR/2017/REC-html52-20171214/)
@@ -64,9 +85,9 @@ This includes documents detailing my thoughts on the strategy and scope planes o
 
   * An open source CSS framework focused on responsive, mobile-first development. A number of Bootstrap classes and components were used, such as the navbar and carousel.
 
-* [JavaScript/JQuery](https://jquery.com/)
+* [JavaScript/jQuery](https://jquery.com/)
 
-  * JQuery was used to improve the user experience and make the site more interactive, as well as enabling Stripe payments.
+  * jQuery was used to improve the user experience and make the site more interactive, as well as enabling Stripe payments.
 
 * [Stripe](https://stripe.com/gb)
 
