@@ -5,6 +5,8 @@ from .cart import Cart
 from .forms import CartAddProductForm
 
 
+# Cart functionality largely taken from Chapter 7 of book
+# "Django 3 By Example" by Antonio Melé
 def view_cart(request):
     """View to return the shopping cart"""
     cart = Cart(request)
@@ -17,6 +19,8 @@ def view_cart(request):
     return render(request, 'cart/cart.html', context)
 
 
+# Cart functionality largely taken from Chapter 7 of book
+# "Django 3 By Example" by Antonio Melé
 @require_POST
 def add_to_cart(request, product_id):
     """View to add product and quantity to the cart"""

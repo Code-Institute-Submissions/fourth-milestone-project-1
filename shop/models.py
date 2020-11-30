@@ -2,6 +2,8 @@ from django.db import models
 from django.urls import reverse
 
 
+#  Use of slugs taken from Chapter 7 of book
+# "Django 3 By Example" by Antonio Melé
 class Category(models.Model):
     name = models.CharField(max_length=200, db_index=True)
     friendly_name = models.CharField(max_length=200, blank=True)
@@ -16,6 +18,8 @@ class Category(models.Model):
         return self.name
 
 
+# Use of slugs and get url methods largely taken from Chapter 7 of book
+# "Django 3 By Example" by Antonio Melé
 class Product(models.Model):
     category = models.ForeignKey('Category', null=True, blank=True,
                                  related_name='products',

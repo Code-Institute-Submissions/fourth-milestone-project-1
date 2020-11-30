@@ -3,6 +3,8 @@ from decimal import Decimal
 from shop.models import Product
 
 
+# Cart functionality largely taken from Chapter 7 of book
+# "Django 3 By Example" by Antonio Melé
 class Cart(object):
 
     def __init__(self, request):
