@@ -137,9 +137,11 @@
         <div class="col-md-2">
             {% if not user_review %}
                 {% if request.user.is_authenticated %}
-                    <div class="my-4">
-                        <a href="{{ product.get_create_review_url }}" class="edit-button">Write a Review</a>
-                    </div>
+                    {% if verified_purchase %}
+                        <div class="my-4">
+                            <a href="{{ product.get_create_review_url }}" class="edit-button">Write a Review</a>
+                        </div>
+                    {% endif %}
                 {% endif %}
             {% endif %}
         </div>
