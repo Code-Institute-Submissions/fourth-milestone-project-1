@@ -166,13 +166,13 @@ the development workspace.
 17. Add a config var in Heroku called USE_AWS as true. Create an if statement to look for USE_AWS and set the AWS_STORAGE_BUCKET_NAME and AWS_S3_REGION_NAME.
 18. Set more config vars in Heroku for the AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY. Remove the DISABLE_COLLECTSTATIC config var.
 19. Update the USE_AWS if statement with os.environ.get() statements to find the AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY. Add the AWS_S3_CUSTOM_DOMAIN.
-
-
-
-
-
-
-
+20. Create a new file called custom_storages.py that uses S3Boto3 to find the static and media files locations. This is available in my project files.
+21. Then update settings.py with a new location for static and media files, pointing at the custom_storages file. Set new STATIC_URL and MEDIA_URL to use the custom AWS domain. Make sure
+all of the above is set within the USE_AWS if statement.
+22. Commit and push your changes to GitHub. Heroku should now collect static and media files from your project files.
+23. Make sure to sign into the new Postgres Django Admin pages and set the superuser email address as verified.
+24. Add the Stripe public and secret keys to Heroku as new config vars. Update the webhook in Stripe to send to the new Heroku endpoint.
+25. Deployment is complete.
 
 ## Credits
 ### Content
