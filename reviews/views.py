@@ -27,11 +27,20 @@ def create_product_review(request, id, slug):
             return redirect(reverse('product_details',
                             args=[product.id, product.slug]))
     form = ProductReviewForm()
-    context = {
-        'product': product,
-        'form': form,
-    }
-    return render(request, 'reviews/create_product_review.html', context)
+    if request.user.is_authenticated:
+        orders = user.orders.all()
+        for order in orders:
+            for item in order.items.all():
+                if product == item.product:
+                    context = {
+                        'product': product,
+                        'form': form,
+                    }
+                    return render(request,
+                                  'reviews/create_product_review.html',
+                                  context)
+    return redirect(reverse('product_details',
+                            args=[product.id, product.slug]))
 
 
 @login_required
